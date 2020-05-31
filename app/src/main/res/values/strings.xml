@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ant Colony Clicker</string>
+    <string name="totalAnts">Total Ants:</string>
+    <string name="todo">todo</string>
+    <string name="AntCount">0</string>
+    <string name="UnemployedAnts">Unemployed Ants:</string>
+    <string name="UnemployedCount">0</string>
+    <string name="g_r_o_w">G R O W</string>
+    <string name="ToGROW">Unemployed Needed To Grow:</string>
+    <string name="NeededToGrow">10</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+</resources>
