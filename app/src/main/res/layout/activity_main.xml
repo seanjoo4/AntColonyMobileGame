@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#5BE1D24C"
+    android:contentDescription="@string/settings"
     tools:context=".MainActivity">
 
     <TextView
@@ -98,7 +99,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/queenButton"
+        android:hapticFeedbackEnabled="false"
         app:layout_constraintBottom_toBottomOf="@id/toGrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -131,34 +133,33 @@
         android:text="@string/NeededToGrow"
         android:textColor="#020000"
         app:autoSizeMaxTextSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/upgradeButton"
+        app:layout_constraintBottom_toTopOf="@+id/growButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toGrow" />
 
     <Button
-        android:id="@+id/upgradeButton"
+        android:id="@+id/growButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginRight="161dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_button2"
+        android:background="@drawable/pressed_button"
+        android:hapticFeedbackEnabled="true"
         android:shadowColor="#000000"
         android:text="@string/g_r_o_w"
         android:textColor="#000201"
-        app:layout_constraintBottom_toBottomOf="@id/adView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/numberToGrow"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toStartOf="@+id/liftButton"
+        app:layout_constraintStart_toEndOf="@+id/biteButton"
+        app:layout_constraintTop_toBottomOf="@id/numberToGrow" />
 
     <Button
-        android:id="@+id/upgradeButton2"
+        android:id="@+id/liftButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -166,18 +167,18 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_button2"
+        android:background="@drawable/pressed_button"
+        android:hapticFeedbackEnabled="true"
         android:shadowColor="#000000"
-        android:text="@string/g_r_o_w"
+        android:text="@string/l_i_f_t"
         android:textColor="#000201"
-        app:layout_constraintBottom_toBottomOf="@id/adView"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/upgradeButton"
-        app:layout_constraintTop_toBottomOf="@id/numberToGrow"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintStart_toEndOf="@+id/growButton"
+        app:layout_constraintTop_toBottomOf="@id/numberToGrow" />
 
     <Button
-        android:id="@+id/upgradeButton3"
+        android:id="@+id/biteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -185,15 +186,15 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_button2"
+        android:background="@drawable/pressed_button"
+        android:hapticFeedbackEnabled="true"
         android:shadowColor="#000000"
-        android:text="@string/g_r_o_w"
+        android:text="@string/b_i_t_e"
         android:textColor="#000201"
-        app:layout_constraintBottom_toBottomOf="@id/adView"
-        app:layout_constraintEnd_toStartOf="@+id/upgradeButton"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toStartOf="@+id/growButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/numberToGrow"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintTop_toBottomOf="@id/numberToGrow" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -206,6 +207,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upgradeButton" />
+        app:layout_constraintTop_toBottomOf="@+id/growButton" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="516dp"
+        android:contentDescription="@string/settings"
+        app:layout_constraintBottom_toTopOf="@+id/liftButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/StaticAnts"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
