@@ -13,7 +13,7 @@ A clear and concise description of what the bug is.
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**How severe is this bug**
+**Severity of the bug**
 On a scale of 1-5, 1 being mild to 5 being extreme, how bad is this bug.
 
 **Screenshots**
