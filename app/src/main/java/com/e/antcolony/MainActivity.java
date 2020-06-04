@@ -239,14 +239,11 @@ public class MainActivity extends AppCompatActivity {
     public void biteMessage() {
         String text = biteEffect > 0 ?
                 "VICTORY IS OURS!!! GAINED " + biteEffect + " ANTS!":
-                "LOST " + biteEffect + " NOBLE ANTS!  RETREAT!!!";
+                "LOST " + Math.abs(biteEffect) + " NOBLE ANTS! RETREAT!!!";
         Intent intent = new Intent(this, PopBite.class);
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
     }
-
-
-
 
     @Override
     protected void onStart() {

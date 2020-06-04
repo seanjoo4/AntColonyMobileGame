@@ -16,16 +16,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:autofillHints=""
             android:background="@null"
             android:clickable="false"
             android:gravity="center"
-            android:importantForAutofill="no"
-            android:inputType="none"
+            android:inputType="text"
             android:textColor="#ffffff"
             app:layout_constraintBottom_toTopOf="@+id/okayLift"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/liftText" />
 
@@ -35,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="110dp"
             android:layout_marginLeft="110dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="98dp"
             android:layout_marginRight="98dp"
             android:layout_marginBottom="8dp"
@@ -51,7 +50,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/liftMessage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,11 +64,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="161dp"
             android:layout_marginRight="161dp"
-            android:layout_marginBottom="289dp"
+            android:layout_marginBottom="50dp"
             android:text="@string/doubleBack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/liftMessage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
