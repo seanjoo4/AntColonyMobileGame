@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +20,21 @@
 
         <activity
             android:name=".Pop"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/l_i_f_t"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.e.antcolony.MainActivity" />
+        </activity>
 
         <activity
             android:name=".PopBite"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/b_i_t_e"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.e.antcolony.MainActivity" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
