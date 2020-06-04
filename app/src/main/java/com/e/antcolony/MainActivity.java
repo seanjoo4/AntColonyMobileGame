@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -61,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("lifecycle", "onCreate invoked");
 
+        // change window color from black to nice peach
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
+        }
+
         // queen ant button - ALL HAIL THE QUEEN NOW BACK TO WORK!!
         /* need to place sound to QUEEN */
         //final MediaPlayer LIFTsound = MediaPlayer.create(this, R.raw.lift);
@@ -75,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // upgrade button
+        // grow button
         final MediaPlayer GROWsound = MediaPlayer.create(this, R.raw.grow);
         upgradeButton = (Button) findViewById(R.id.growButton);
         upgradeButton.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +128,9 @@ public class MainActivity extends AppCompatActivity {
                 bad outcome is equivalent to 0 to 10 clicks on queen
                 */
                 liftIncreaseFactor = Math.random() <= .5 ? 11+(int)(20*Math.random()) : (int)(Math.random()*10);
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor*multiplier));
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor*multiplier));
+                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor*multiplier*2));
+                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor*multiplier*2));
+
                 liftMessage();
                 /* ORIGINAL
                 if (chance < 6) {
@@ -229,8 +240,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
-                "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS FROM EXPLOITS OF FORAGING! ALL HAIL THE QUEEN!!!" :
-                "GAINED A MEAGER " + liftIncreaseFactor + " ANTS FROM FORAGING! LIFT HARDER!!!" ;
+                "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
+                "GAINED A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!" ;
         Intent intent = new Intent(this, Pop.class);
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);

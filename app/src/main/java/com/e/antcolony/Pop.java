@@ -44,23 +44,4 @@ public class Pop extends Activity {
             }
         });
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            super.onBackPressed();
-            super.onBackPressed();
-        }
-        return false;
-    }
-
-    @Override
-    public void onBackPressed() {
-        //this is only needed if you have specific things
-        //that you want to do when the user presses the back button.
-        /* your specific things...*/
-        // super.onBackPressed();
-    }
-
-
 }
