@@ -1,21 +1,15 @@
 package com.e.antcolony;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -193,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
                 toGrowCount.setText(Integer.toString((int)(Integer.parseInt(toGrowCount.getText().toString()) * .85)));
                 biteMessage();
 
-
                 // startActivity(new Intent(MainActivity.this, PopBite.class));
                 /*
                 chance = (int) (Math.random() * 10);
@@ -242,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         String text = liftIncreaseFactor >= 11 ?
                 "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
                 "GAINED A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!" ;
-        Intent intent = new Intent(this, Pop.class);
+        Intent intent = new Intent(this, PopLift.class);
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
     }

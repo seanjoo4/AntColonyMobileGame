@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Pop"
+            android:name=".PopLift"
             android:label="@string/l_i_f_t"
             android:parentActivityName=".MainActivity">
             <meta-data
