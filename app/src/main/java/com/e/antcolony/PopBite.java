@@ -27,7 +27,7 @@ public class PopBite extends Activity {
         TextView message = (TextView) findViewById(R.id.biteMessage);
         message.setText(text);
 
-        boolean isVictorious = text.indexOf("-") != -1 ? false: true;
+        boolean isVictorious = text.charAt(0) == 'L' ? false: true;
         TextView description = (TextView) findViewById(R.id.biteDescription);
         description.setText(getBattleDescription(isVictorious));
 
