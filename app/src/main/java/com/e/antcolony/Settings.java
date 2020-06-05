@@ -14,12 +14,15 @@ public class Settings extends AppCompatActivity {
 
     Switch musicSwitch;
     Switch soundEffectSwitch;
+    Button howToPlayButton;
+    Button credits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        // Music Switch
         musicSwitch = (Switch) findViewById(R.id.musicSwitch);
         musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -36,6 +39,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        // Sound Effect Switch
         soundEffectSwitch = (Switch) findViewById(R.id.soundEffectSwitch);
         soundEffectSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -58,15 +62,43 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        // How To Play Button
+        howToPlayButton = (Button) findViewById(R.id.howToPlayButton);
+        howToPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHowToPlay();
+            }
+        });
+
+        // Credits Button
+        credits = findViewById(R.id.creditsButton);
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCredits();
+            }
+        });
+
         Intent intent = getIntent();
 
+        // Back Button
         Button okay = findViewById(R.id.okaySetting);
-
         okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+    }
+
+    public void openHowToPlay() {
+        Intent intent = new Intent(this, HowToPlay.class);
+        startActivity(intent);
+    }
+
+    public void openCredits() {
+        Intent intent = new Intent(this, Credits.class);
+        startActivity(intent);
     }
 }

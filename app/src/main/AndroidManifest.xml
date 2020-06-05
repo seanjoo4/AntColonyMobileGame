@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Settings"></activity>
+        <activity
+            android:name=".Settings"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Credits"
+            android:parentActivityName=".Settings" />
+        <activity
+            android:name=".HowToPlay"
+            android:parentActivityName=".Settings" />
 
         <service
             android:name=".MusicService"

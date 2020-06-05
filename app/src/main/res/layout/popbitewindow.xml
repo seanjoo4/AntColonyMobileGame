@@ -58,8 +58,8 @@
 
         <TextView
             android:id="@+id/biteDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="1dp"
+            android:layout_height="13dp"
             android:layout_margin="15dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
