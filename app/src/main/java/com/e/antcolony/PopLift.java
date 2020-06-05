@@ -27,9 +27,9 @@ public class PopLift extends Activity {
         TextView message = (TextView) findViewById(R.id.liftMessage);
         message.setText(text);
 
-        boolean isSuccessful = text.charAt(0) == 'L' ? false : true;
-        TextView description = (TextView) findViewById(R.id.liftDescription);
-        description.setText(getHarvestDescription(isSuccessful));
+        boolean isSuccessful = text.charAt(0) != 'O';
+        TextView liftDescription = findViewById(R.id.liftDescription);
+        liftDescription.setText(getHarvestDescription(isSuccessful));
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

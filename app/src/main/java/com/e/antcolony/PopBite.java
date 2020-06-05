@@ -32,17 +32,17 @@ public class PopBite extends Activity {
         TextView message = (TextView) findViewById(R.id.biteMessage);
         message.setText(text);
 
-        boolean isVictorious = text.charAt(0) == 'L' ? false : true;
+        boolean isVictorious = text.charAt(0) != 'L';
         TextView description = (TextView) findViewById(R.id.biteDescription);
         description.setText(getBattleDescription(isVictorious));
+        // set background depending on victory status
         RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.container);
         if (isVictorious) {
-            // bgElement.setBackgroundColor(Color.WHITE);
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteVictory));
         } else {
-            // bgElement.setBackgroundColor(Color.WHITE);
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteLoss));
         }
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 

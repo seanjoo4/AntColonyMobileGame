@@ -14,12 +14,13 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="306dp"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="94dp"
             android:layout_marginLeft="94dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="315dp"
             android:layout_marginEnd="94dp"
             android:layout_marginRight="94dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/abeezee"
             android:gravity="center"
             android:text="@string/app_name"
@@ -39,15 +40,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="103dp"
             android:layout_marginLeft="103dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="103dp"
             android:layout_marginRight="103dp"
-            android:layout_marginBottom="328dp"
             android:text="@string/loading"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

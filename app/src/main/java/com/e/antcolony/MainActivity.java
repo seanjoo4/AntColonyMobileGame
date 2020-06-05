@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
                 "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
-                "ONLY A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!";
+                "ONLY GAINED A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!";
         if (text.charAt(0) == 'G') {
             successfulLifts++;
         } else {
