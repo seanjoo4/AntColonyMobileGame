@@ -34,8 +34,8 @@
 
         <EditText
             android:id="@+id/liftText"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
+            android:layout_width="296dp"
+            android:layout_height="82dp"
             android:layout_marginStart="110dp"
             android:layout_marginLeft="110dp"
             android:layout_marginTop="2dp"
@@ -54,10 +54,11 @@
             android:text="@string/lift_for_the_queen"
             android:textAllCaps="true"
             android:textColor="#ffffff"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/liftMessage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.569"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

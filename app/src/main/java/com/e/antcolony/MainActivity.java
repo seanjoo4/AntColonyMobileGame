@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
 
-
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - costToUpgrade));
                 costToUpgrade *= 3.333;
                 toGrowCount = (TextView) findViewById(R.id.numberToGrow);
@@ -183,6 +182,14 @@ public class MainActivity extends AppCompatActivity {
                 costToUpgrade *= .85;
                 toGrowCount.setText(Integer.toString((int) (Integer.parseInt(toGrowCount.getText().toString()) * .85)));
                 biteMessage();
+            }
+        });
+        settingsButton = (Button) findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                startActivityForResult(intent, 1);
             }
         });
         // music
