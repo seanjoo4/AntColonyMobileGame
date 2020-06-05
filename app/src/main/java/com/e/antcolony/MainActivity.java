@@ -30,23 +30,17 @@ public class MainActivity extends AppCompatActivity {
     Button biteButton;
     private int multiplier = 1;
     private int costToUpgrade = 10;
-    // can you explain to me what these do lol
     private int liftIncreaseFactor = 0;
-
-
-    private int antIncrease = 0;
     private int biteEffect = 0;
-    // private int increase = 20;
-    private int biteIncrease = 100;
-    private int chance = 50;
-    private int damage = 0;
-    private int change = 1;
+    private int biteVictories = 0;
+    private int biteDefeats = 0;
+    private int successfulLifts = 0;
+    private int unsuccessfulLifts = 0;
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
     AdView adView;
     // for switching through android activity cycles
     int antCountSave = 0;
     int unAntCountSave = 0;
-    int numberToGrow = 10;
     TextView antCount;
     TextView unCount;
     TextView toGrowCount;
@@ -83,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         final MediaPlayer GROWsound = MediaPlayer.create(this, R.raw.grow);
         upgradeButton = (Button) findViewById(R.id.growButton);
         upgradeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
                 if (costToUpgrade > Integer.parseInt(unCount.getText().toString())) {
@@ -93,6 +88,17 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 GROWsound.start();
+
+                // opening the pop_grow to transfer data back and forth
+                Intent intent = new Intent(MainActivity.this, PopGrow.class);
+                //intent.putExtra() values we are going to pass back and forth
+                int unemployedCount = Integer.parseInt(unCount.getText().toString());
+                intent.putExtra("unemployed", unemployedCount);
+                intent.putExtra("costToUpgrade", costToUpgrade);
+                // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
+                startActivityForResult(intent, 1);
+
+
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - costToUpgrade));
                 costToUpgrade *= 3.333;
                 toGrowCount = (TextView) findViewById(R.id.numberToGrow);
@@ -106,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         liftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (multiplier < 2){
+                if (multiplier < 2) {
                     Toast.makeText(
                             MainActivity.this, "must grow colony", Toast.LENGTH_SHORT
                     ).show();
@@ -121,28 +127,11 @@ public class MainActivity extends AppCompatActivity {
                 good outcome is equivalent to  10 to 30 clicks on queen
                 bad outcome is equivalent to 0 to 10 clicks on queen
                 */
-                liftIncreaseFactor = Math.random() <= .5 ? 11+(int)(20*Math.random()) : (int)(Math.random()*10);
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor*multiplier*2));
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor*multiplier*2));
+                liftIncreaseFactor = Math.random() <= .5 ? 11 + (int) (40 * Math.random()) : (int) (Math.random() * 10);
+                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor * multiplier));
+                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor * multiplier));
 
                 liftMessage();
-                /* ORIGINAL
-                if (chance < 6) {
-                    unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + multiplier));
-                    antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + multiplier));
-                    //resultCount = (TextView) findViewById(R.id.gainedNum);
-                    //resultCount.setText(Integer.toString(multiplier));
-                    openLiftMessage();
-                } else {
-                    antIncrease = (int) (Math.random() * increase);
-                    increase *= 1.5;
-                    unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + antIncrease));
-                    antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + antIncrease));
-                    //resultCount = (TextView) findViewById(R.id.gainedNum);
-                    //resultCount.setText(Integer.toString(antIncrease));
-                    openLiftMessage2();
-                }
-                */
             }
         });
         // bite button
@@ -154,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // put mediaplayer here
                 // no number of ants required, just number of total ants affects likelihood of success
-                if (multiplier < 2){
+                if (multiplier < 2) {
                     Toast.makeText(
                             MainActivity.this, "must grow colony", Toast.LENGTH_SHORT
                     ).show();
@@ -162,62 +151,30 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // ensures that
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.15)
-                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length())*.025) + ((antCount.getText().toString().length())*.015)?
-                                        // case victory: gain at most 75% of colony size
-                                        Double.parseDouble(antCount.getText().toString()) * 0.75 * Math.random():
-                                        // case loss: lose at most 50% of colony size
-                                        Double.parseDouble(antCount.getText().toString()) * -0.5 * Math.random());
+                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .015) ?
+                        // case victory: gain at most 75% of colony size
+                        Double.parseDouble(antCount.getText().toString()) * 0.75 * Math.random() :
+                        // case loss: lose at most 50% of colony size
+                        Double.parseDouble(antCount.getText().toString()) * -0.5 * Math.random());
 
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + biteEffect));
                 antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + biteEffect));
                 // prevents unemployed ants from becoming negative
-                if (Integer.parseInt(unCount.getText().toString()) < 0){
+                if (Integer.parseInt(unCount.getText().toString()) < 0) {
                     // weaken multiplier due to tired ants unless multiplier == 1 because then int will round to 0
                     multiplier *= multiplier > 1 ? .80 : 1;
                     unCount.setText(Integer.toString(0));
                 }
                 // prevents total ants from becoming negative
-                if (Integer.parseInt(antCount.getText().toString()) < 0){
+                if (Integer.parseInt(antCount.getText().toString()) < 0) {
                     // weaken multiplier due to tired ants unless multiplier == 1 because then int will round to 0
                     multiplier *= multiplier > 1 ? .90 : 1;
                     antCount.setText(Integer.toString(0));
                 }
                 // lower to grow requirement
                 costToUpgrade *= .85;
-                toGrowCount.setText(Integer.toString((int)(Integer.parseInt(toGrowCount.getText().toString()) * .85)));
+                toGrowCount.setText(Integer.toString((int) (Integer.parseInt(toGrowCount.getText().toString()) * .85)));
                 biteMessage();
-
-                // startActivity(new Intent(MainActivity.this, PopBite.class));
-                /*
-                chance = (int) (Math.random() * 10);
-                if (chance < 8) {
-                    damage = (int) (2 + (Math.random() * change));
-                    change *= 2;
-                    if ((Integer.parseInt(unCount.getText().toString()) - damage) < 0 &&
-                            (Integer.parseInt(antCount.getText().toString()) - damage) < 0) {
-                        unCount.setText(Integer.toString(0));
-                        antCount.setText(Integer.toString(0));
-                    } else if ((Integer.parseInt(unCount.getText().toString()) - damage) < 0 &&
-                            (Integer.parseInt(antCount.getText().toString()) - damage) >= 0) {
-                        unCount.setText(Integer.toString(0));
-                        antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) - damage));
-                    } else if ((Integer.parseInt(unCount.getText().toString()) - damage) >= 0 &&
-                            (Integer.parseInt(antCount.getText().toString()) - damage) < 0) {
-                        unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - damage));
-                        antCount.setText(Integer.toString(0));
-                    } else {
-                        unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - damage));
-                        antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) - damage));
-                    }
-                    openBiteMessage();
-                } else {
-                    antIncrease = (int) (Math.random() * biteIncrease);
-                    biteIncrease *= 1.1;
-                    unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + antIncrease));
-                    antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + antIncrease));
-                    openBiteMessage2();
-                }
-                */
             }
         });
         // ads
@@ -231,10 +188,27 @@ public class MainActivity extends AppCompatActivity {
         adView.loadAd(adRequest);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (requestCode == RESULT_OK) {
+                int result = data.getIntExtra("result", 0);
+                unCount.setText("" + result);
+            }
+        }
+    }
+
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
                 "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
-                "GAINED A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!" ;
+                "ONLY A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!";
+        if (text.charAt(0) == 'G') {
+            successfulLifts++;
+        } else {
+            unsuccessfulLifts++;
+        }
         Intent intent = new Intent(this, PopLift.class);
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
@@ -242,8 +216,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void biteMessage() {
         String text = biteEffect > 0 ?
-                "VICTORY IS OURS!!! GAINED " + biteEffect + " ANTS!":
+                "VICTORY IS OURS!!! GAINED " + biteEffect + " ANTS!" :
                 "LOST " + Math.abs(biteEffect) + " NOBLE ANTS! RETREAT!!!";
+        if (text.charAt(0) == 'V') {
+            biteVictories++;
+        } else {
+            biteDefeats++;
+        }
         Intent intent = new Intent(this, PopBite.class);
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
