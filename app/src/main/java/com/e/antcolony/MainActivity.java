@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 int unemployedCount = Integer.parseInt(unCount.getText().toString());
                 intent.putExtra("unemployed", unemployedCount);
                 intent.putExtra("costToUpgrade", costToUpgrade);
+                intent.putExtra("victoryCount", biteVictories);
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
 

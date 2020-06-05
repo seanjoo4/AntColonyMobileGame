@@ -22,6 +22,13 @@
         android:text="Cost To Upgrade: "
         android:textSize="30sp" />
 
+    <TextView
+        android:id="@+id/biteVictory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of Victories: "
+        android:textSize="30sp" />
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"

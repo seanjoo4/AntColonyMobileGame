@@ -19,11 +19,14 @@ public class PopGrow extends AppCompatActivity {
         Intent intent = getIntent();
         final int unemployedCount = intent.getIntExtra("unemployed", 0);
         final int costToUpgrade = intent.getIntExtra("costToUpgrade", 0);
+        final int victoryCount = intent.getIntExtra("victoryCount", 0);
 
         TextView textViewIdleAnts = findViewById(R.id.idle_ants);
         textViewIdleAnts.setText("Idle Ants: " + unemployedCount);
         TextView textViewCostToUpgrade = findViewById(R.id.cost_to_upgrade);
         textViewCostToUpgrade.setText("Cost to Upgrade: " + costToUpgrade);
+        TextView textViewVictory = findViewById(R.id.biteVictory);
+        textViewVictory.setText("Number of Victories: " + victoryCount);
 
         Button backButton = findViewById(R.id.backButton);
 
