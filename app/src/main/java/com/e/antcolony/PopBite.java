@@ -2,11 +2,16 @@ package com.e.antcolony;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Text;
 
@@ -30,7 +35,14 @@ public class PopBite extends Activity {
         boolean isVictorious = text.charAt(0) == 'L' ? false : true;
         TextView description = (TextView) findViewById(R.id.biteDescription);
         description.setText(getBattleDescription(isVictorious));
-
+        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.container);
+        if (isVictorious) {
+            // bgElement.setBackgroundColor(Color.WHITE);
+            bgElement.setBackgroundColor(getResources().getColor(R.color.biteVictory));
+        } else {
+            // bgElement.setBackgroundColor(Color.WHITE);
+            bgElement.setBackgroundColor(getResources().getColor(R.color.biteLoss));
+        }
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -56,7 +68,6 @@ public class PopBite extends Activity {
         int textChoice = (int) (Math.random() * 10);
         if (isVictorious) {
             switch (textChoice) {
-                // PLACEHOLDER TEXT => CHANGE TO A DESCRIPTION OF THE BATTLE
                 case 0:
                     return "The stealth and guile of our mighty ants sanctioned our raiding group to obnubilate under the " +
                             "cover of tenebrosity and take the enemies by surprise. Such feats of glory shall be told in the " +
