@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3A593B">
+    android:background="#3D405B">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,8 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:autofillHints=""
             android:background="@null"
             android:clickable="false"
@@ -26,22 +24,21 @@
             android:gravity="center"
             android:singleLine="false"
             android:textColor="#ffffff"
-            app:layout_constraintBottom_toTopOf="@+id/okayLift"
+            app:layout_constraintBottom_toTopOf="@+id/liftDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/liftText" />
 
         <EditText
             android:id="@+id/liftText"
-            android:layout_width="210dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="98dp"
-            android:layout_marginRight="98dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:autofillHints=""
             android:background="@null"
             android:clickable="false"
@@ -57,7 +54,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/liftMessage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,16 +65,14 @@
             android:layout_margin="15dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="3dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:text=""
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:gravity="center"
+            android:text=""
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toTopOf="@+id/okayLift"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,19 +83,19 @@
         <Button
             android:id="@+id/okayLift"
             android:layout_width="88dp"
-            android:layout_height="41dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="162dp"
             android:layout_marginLeft="162dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="161dp"
             android:layout_marginRight="161dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="130dp"
             android:text="@string/doubleBack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/liftMessage" />
+            app:layout_constraintTop_toBottomOf="@+id/liftMessage"
+            app:layout_constraintVertical_bias="0.735" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
