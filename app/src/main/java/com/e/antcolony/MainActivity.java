@@ -67,11 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
         // queen ant button - ALL HAIL THE QUEEN NOW BACK TO WORK!!
         /* need to place sound to QUEEN */
-        //final MediaPlayer LIFTsound = MediaPlayer.create(this, R.raw.lift);
+        final MediaPlayer WORKsound = MediaPlayer.create(this, R.raw.work);
+        WORKsound.setVolume(1f, 1f);
         queen = (ImageButton) findViewById(R.id.queen);
         queen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //LIFTsound.start();
+
+                WORKsound.start();
                 antCount = (TextView) findViewById(R.id.AntCount);
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
                 antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + multiplier));
@@ -142,13 +144,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // bite button
-        // need a mediaplayer for bite
+        final MediaPlayer BITEsound = MediaPlayer.create(this, R.raw.bite);
         biteButton = (Button) findViewById(R.id.biteButton);
         biteButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                // put mediaplayer here
                 // no number of ants required, just number of total ants affects likelihood of success
                 if (multiplier < 2) {
                     Toast.makeText(
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                // ensures that
+                BITEsound.start();
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.15)
                 biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .015) ?
                         // case victory: gain at most 75% of colony size
@@ -199,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     mServ.pauseMusic();
                 }
             }
+
             @Override
             public void onHomeLongPressed() {
                 if (mServ != null) {
@@ -260,11 +262,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean mIsBound = false;
     private MusicService mServ;
-    private ServiceConnection Scon =new ServiceConnection(){
+    private ServiceConnection Scon = new ServiceConnection() {
 
         public void onServiceConnected(ComponentName name, IBinder
                 binder) {
-            mServ = ((MusicService.ServiceBinder)binder).getService();
+            mServ = ((MusicService.ServiceBinder) binder).getService();
         }
 
         public void onServiceDisconnected(ComponentName name) {
@@ -272,16 +274,14 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    void doBindService(){
-        bindService(new Intent(this,MusicService.class),
+    void doBindService() {
+        bindService(new Intent(this, MusicService.class),
                 Scon, Context.BIND_AUTO_CREATE);
         mIsBound = true;
     }
 
-    void doUnbindService()
-    {
-        if(mIsBound)
-        {
+    void doUnbindService() {
+        if (mIsBound) {
             unbindService(Scon);
             mIsBound = false;
         }
@@ -375,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
         // music
         doUnbindService();
         Intent music = new Intent();
-        music.setClass(this,MusicService.class);
+        music.setClass(this, MusicService.class);
         stopService(music);
     }
 
