@@ -42,7 +42,6 @@ public class PopBite extends Activity {
         } else {
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteLoss));
         }
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
