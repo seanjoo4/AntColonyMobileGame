@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class MusicService extends Service implements MediaPlayer.OnErrorListener {
 
     private final IBinder mBinder = new ServiceBinder();
-    MediaPlayer mPlayer;
+    public static MediaPlayer mPlayer;
     private int length = 0;
 
     public MusicService() {

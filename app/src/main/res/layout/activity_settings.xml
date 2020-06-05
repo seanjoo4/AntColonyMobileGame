@@ -9,10 +9,31 @@
     android:orientation="vertical"
     tools:context=".Settings">
 
+    <Switch
+        android:id="@+id/musicSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Music"
+        android:checked="true"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        />
+
+    <Switch
+        android:id="@+id/soundEffectSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Sound Effects"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        />
+
+
     <Button
         android:id="@+id/okaySetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="okay" />
+        android:text="back" />
 
 </LinearLayout>

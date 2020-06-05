@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
     TextView unCount;
     TextView toGrowCount;
     HomeWatcher mHomeWatcher;
+    private boolean mIsBound = false;
+    private MusicService mServ;
+    public static MediaPlayer WORKsound;
+    public static MediaPlayer GROWsound;
+    public static MediaPlayer LIFTsound;
+    public static MediaPlayer BITEsound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         // queen ant button - ALL HAIL THE QUEEN NOW BACK TO WORK!!
         /* need to place sound to QUEEN */
-        final MediaPlayer WORKsound = MediaPlayer.create(this, R.raw.work);
+        WORKsound = MediaPlayer.create(this, R.raw.work);
         WORKsound.setVolume(1f, 1f);
         queen = (ImageButton) findViewById(R.id.queen);
         queen.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // grow button
-        final MediaPlayer GROWsound = MediaPlayer.create(this, R.raw.grow);
+        GROWsound = MediaPlayer.create(this, R.raw.grow);
         upgradeButton = (Button) findViewById(R.id.growButton);
         upgradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // lift button
-        final MediaPlayer LIFTsound = MediaPlayer.create(this, R.raw.lift);
+        LIFTsound = MediaPlayer.create(this, R.raw.lift);
         liftButton = (Button) findViewById(R.id.liftButton);
         liftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // bite button
-        final MediaPlayer BITEsound = MediaPlayer.create(this, R.raw.bite);
+        BITEsound = MediaPlayer.create(this, R.raw.bite);
         biteButton = (Button) findViewById(R.id.biteButton);
         biteButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -184,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 biteMessage();
             }
         });
+
+        // Settings Popup
         settingsButton = (Button) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,8 +277,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean mIsBound = false;
-    private MusicService mServ;
     private ServiceConnection Scon = new ServiceConnection() {
 
         public void onServiceConnected(ComponentName name, IBinder
