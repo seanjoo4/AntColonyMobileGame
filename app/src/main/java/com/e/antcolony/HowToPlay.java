@@ -3,6 +3,7 @@ package com.e.antcolony;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,8 +27,17 @@ public class HowToPlay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout(width, height);
+
         //Back Button
         Button okay = findViewById(R.id.howToPlayOkayButton);
+
         okay.setOnClickListener(new View.OnClickListener() {
 
             /**

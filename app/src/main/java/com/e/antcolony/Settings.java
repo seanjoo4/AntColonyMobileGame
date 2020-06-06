@@ -103,7 +103,7 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                openHowToPlay();
+                startActivity(new Intent(Settings.this, HowToPlay.class));
             }
         });
 
@@ -119,7 +119,7 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                openCredits();
+                startActivity(new Intent(Settings.this, Credits.class));
             }
         });
 
@@ -140,23 +140,5 @@ public class Settings extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    /**
-     * This allows for data to transport back and forth.
-     */
-
-    public void openHowToPlay() {
-        Intent intent = new Intent(this, HowToPlay.class);
-        startActivity(intent);
-    }
-
-    /**
-     * This allows for data to transport back and forth.
-     */
-
-    public void openCredits() {
-        Intent intent = new Intent(this, Credits.class);
-        startActivity(intent);
     }
 }
