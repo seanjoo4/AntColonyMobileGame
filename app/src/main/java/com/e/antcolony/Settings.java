@@ -26,6 +26,7 @@ public class Settings extends AppCompatActivity {
     Button credits;
     Button rateUs;
     Button privacy;
+    Button termsOfUse;
     Button okay;
 
     /**
@@ -163,6 +164,21 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Settings.this, Privacy.class));
+            }
+        });
+
+        // Terms of Use Button
+        termsOfUse = findViewById(R.id.termsOfUseButton);
+        termsOfUse.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.this, TermsOfUse.class));
             }
         });
 

@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Privacy: a class that handles the privacy page of the app. Child of Settings.
+ * TermsOfUse: a class that handles the Terms of Use page of the app. Child of Settings.
  *
  * @author Sean Joo
  * @version June 6, 2020
  */
-public class Privacy extends Activity {
+public class TermsOfUse extends Activity {
 
     /**
      * Initializes the activity.
@@ -22,7 +22,7 @@ public class Privacy extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy);
+        setContentView(R.layout.activity_terms_of_use);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -33,7 +33,7 @@ public class Privacy extends Activity {
         getWindow().setLayout(width, height);
 
         // Back Button
-        Button okay = findViewById(R.id.privacyBackButton);
+        Button okay = findViewById(R.id.termsOfUseBackButton);
         okay.setOnClickListener(new View.OnClickListener() {
 
             /**

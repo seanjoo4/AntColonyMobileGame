@@ -52,6 +52,12 @@
         android:text="Privacy" />
 
     <Button
+        android:id="@+id/termsOfUseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terms of Use" />
+
+    <Button
         android:id="@+id/okaySetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
