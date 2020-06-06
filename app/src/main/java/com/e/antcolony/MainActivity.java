@@ -15,9 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +26,13 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.gms.ads.AdRequest;
 
 import android.util.Log;
+
+/**
+ * MainActivity: the main class that runs the main interface of the app.
+ *
+ * @author Aidan Andrucyk and Sean Joo
+ * @version June 5, 2020
+ */
 
 public class MainActivity extends AppCompatActivity {
     ImageButton queen;
@@ -54,10 +59,16 @@ public class MainActivity extends AppCompatActivity {
     HomeWatcher mHomeWatcher;
     private boolean mIsBound = false;
     private MusicService mServ;
-    public static MediaPlayer WORKsound;
-    public static MediaPlayer GROWsound;
-    public static MediaPlayer LIFTsound;
-    public static MediaPlayer BITEsound;
+    public static MediaPlayer workSound;
+    public static MediaPlayer growSound;
+    public static MediaPlayer liftSound;
+    public static MediaPlayer biteSound;
+
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +86,19 @@ public class MainActivity extends AppCompatActivity {
 
         // queen ant button - ALL HAIL THE QUEEN NOW BACK TO WORK!!
         /* need to place sound to QUEEN */
-        WORKsound = MediaPlayer.create(this, R.raw.work);
-        WORKsound.setVolume(1f, 1f);
+        workSound = MediaPlayer.create(this, R.raw.work);
+        workSound.setVolume(1f, 1f);
         queen = (ImageButton) findViewById(R.id.queen);
         queen.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                WORKsound.start();
+            /**
+             * It is a callback for when the button (queen) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
+            public void onClick(View v) {
+                workSound.start();
                 antCount = (TextView) findViewById(R.id.AntCount);
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
                 antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + multiplier));
@@ -90,9 +107,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // grow button
-        GROWsound = MediaPlayer.create(this, R.raw.grow);
+        growSound = MediaPlayer.create(this, R.raw.grow);
         upgradeButton = (Button) findViewById(R.id.growButton);
         upgradeButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (upgradeButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
@@ -103,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                GROWsound.start();
+                growSound.start();
 
                 // opening the pop_grow to transfer data back and forth
                 Intent intent = new Intent(MainActivity.this, PopGrow.class);
@@ -123,9 +147,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // lift button
-        LIFTsound = MediaPlayer.create(this, R.raw.lift);
+        liftSound = MediaPlayer.create(this, R.raw.lift);
         liftButton = (Button) findViewById(R.id.liftButton);
         liftButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (liftButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 if (multiplier < 2) {
@@ -134,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                LIFTsound.start();
+                liftSound.start();
                 // THIS WAS REASON WHY IT WAS STARTING TWICE startActivity(new Intent(MainActivity.this, Pop.class));
                 // weaken multiplier due to tired ants unless multiplier == 1 because then int will round to 0
                 multiplier *= multiplier > 1 ? .9 : 1;
@@ -151,9 +182,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // bite button
-        BITEsound = MediaPlayer.create(this, R.raw.bite);
+        biteSound = MediaPlayer.create(this, R.raw.bite);
         biteButton = (Button) findViewById(R.id.biteButton);
         biteButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (biteButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
@@ -164,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                BITEsound.start();
+                biteSound.start();
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.15)
                 biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .015) ?
                         // case victory: gain at most 75% of colony size
@@ -196,6 +234,13 @@ public class MainActivity extends AppCompatActivity {
         // Settings Popup
         settingsButton = (Button) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Settings.class);
@@ -208,15 +253,23 @@ public class MainActivity extends AppCompatActivity {
         music.setClass(this, MusicService.class);
         startService(music);
 
-
         mHomeWatcher = new HomeWatcher(this);
         mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+
+            /**
+             *
+             */
+
             @Override
             public void onHomePressed() {
                 if (mServ != null) {
                     mServ.pauseMusic();
                 }
             }
+
+            /**
+             *
+             */
 
             @Override
             public void onHomeLongPressed() {
@@ -228,6 +281,13 @@ public class MainActivity extends AppCompatActivity {
         mHomeWatcher.startWatch();
         // ads
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
+
+            /**
+             * description
+             *
+             * @param initializationStatus used when a view is clicked.
+             */
+
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
@@ -236,6 +296,14 @@ public class MainActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
     }
+
+    /**
+     * It is a function that receives results from a previously started activity.
+     *
+     * @param requestCode represents the request code that was shown.
+     * @param resultCode  represents the result code that was shown.
+     * @param data        represents the data that is stored.
+     */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -248,6 +316,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * This function displays the lift message depending on output.
+     */
 
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
@@ -262,6 +334,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
     }
+
+    /**
+     * This function displays the bite message depending on output.
+     */
 
     public void biteMessage() {
         String text = biteEffect > 0 ?
@@ -279,21 +355,40 @@ public class MainActivity extends AppCompatActivity {
 
     private ServiceConnection Scon = new ServiceConnection() {
 
+        /**
+         *
+         * @param name
+         * @param binder
+         */
+
         public void onServiceConnected(ComponentName name, IBinder
                 binder) {
             mServ = ((MusicService.ServiceBinder) binder).getService();
         }
+
+        /**
+         *
+         * @param name
+         */
 
         public void onServiceDisconnected(ComponentName name) {
             mServ = null;
         }
     };
 
+    /**
+     *
+     */
+
     void doBindService() {
         bindService(new Intent(this, MusicService.class),
                 Scon, Context.BIND_AUTO_CREATE);
         mIsBound = true;
     }
+
+    /**
+     *
+     */
 
     void doUnbindService() {
         if (mIsBound) {
@@ -302,11 +397,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This function is called when the activity is visible to the user
+     */
+
     @Override
     protected void onStart() {
         super.onStart();
         Log.d("lifecycle", "onStart invoked");
     }
+
+    /**
+     * This function is called when the activity is interacting with the user.
+     */
 
     @Override
     protected void onResume() {
@@ -331,6 +434,11 @@ public class MainActivity extends AppCompatActivity {
         toGrowCount.setText(String.valueOf(growth));*/
 
     }
+
+    /**
+     * This function is called when the app still can be visible to the user, but is about to experience
+     * stoppage or destruction.
+     */
 
     @Override
     protected void onPause() {
@@ -363,6 +471,10 @@ public class MainActivity extends AppCompatActivity {
         myEdit.commit();*/
     }
 
+    /**
+     * This function is called when the activity is no longer visible to the user.
+     */
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -373,6 +485,10 @@ public class MainActivity extends AppCompatActivity {
         unAntCountSave = Integer.parseInt(unCount.getText().toString());
     }
 
+    /**
+     * This function is called when the activity is stopped before it starting again.
+     */
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -382,6 +498,10 @@ public class MainActivity extends AppCompatActivity {
         antCount.setText(Integer.toString(antCountSave));
         unCount.setText(Integer.toString(unAntCountSave));
     }
+
+    /**
+     * This function is called during the final stage when the activity is going to be destroyed.
+     */
 
     @Override
     protected void onDestroy() {
