@@ -37,10 +37,13 @@ public class PopLift extends Activity {
         TextView message = (TextView) findViewById(R.id.liftMessage);
         message.setText(text);
 
+        // if the first character is 'O' from "Only gained", then not successful
         boolean isSuccessful = text.charAt(0) != 'O';
+        // set description to generated message
         TextView liftDescription = findViewById(R.id.liftDescription);
         liftDescription.setText(getHarvestDescription(isSuccessful));
 
+        // make the pop up full screen
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -49,6 +52,7 @@ public class PopLift extends Activity {
 
         getWindow().setLayout((int) (width), (int) (height));
 
+        // listen for a click on the okay (back) button
         okayButton = (Button) findViewById(R.id.okayLift);
         okayButton.setOnClickListener(new View.OnClickListener() {
 
@@ -74,7 +78,6 @@ public class PopLift extends Activity {
         int textChoice = (int)(Math.random()*10);
         if (isSuccessful){
             switch(textChoice){
-                // PLACEHOLDER TEXT => CHANGE TO A DESCRIPTION OF THE BATTLE
                 case 0:
                     return "The Queen’s ants found a package of severely genetically modified strawberries!";
                 case 1:
@@ -93,10 +96,8 @@ public class PopLift extends Activity {
                     return "One of our brothers found a coconut! He cannot lift on his own. We must help! LIFT!";
                 case 8:
                     return "A kind human drops a clump of delicious orange peels!";
-                case 9:
-                    return "A human leaves their sausage left unattended! Lets lift!";
                 default:
-                    return "SUCCESSFUL";
+                    return "A human leaves their sausage left unattended! Lets lift!";
             }
         }
         else{
@@ -119,10 +120,8 @@ public class PopLift extends Activity {
                     return "The ants harvesting got greedy and ate our harvest. BAD ANTS!";
                 case 8:
                     return "No humans are throwing away scraps!";
-                case 9:
-                    return "Our ants are struggling. We need to ANTi-depressANTS";
                 default:
-                    return "UNSUCCESSFUL";
+                    return "Our ants are struggling. We need to ANTi-depressANTS";
             }
         }
     }

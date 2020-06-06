@@ -42,16 +42,23 @@ public class PopBite extends Activity {
         TextView message = (TextView) findViewById(R.id.biteMessage);
         message.setText(text);
 
+        // if the first character is 'L' from "Lost", then not victorious
         boolean isVictorious = text.charAt(0) != 'L';
+        // set description to generated message
         TextView description = (TextView) findViewById(R.id.biteDescription);
         description.setText(getBattleDescription(isVictorious));
+
         // set background depending on victory status
         RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.container);
         if (isVictorious) {
+            // if victorious, then make the background green
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteVictory));
         } else {
+            // if loss, then make the background red
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteLoss));
         }
+
+        // make the pop up full screen
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -60,10 +67,7 @@ public class PopBite extends Activity {
 
         getWindow().setLayout((int) (width), (int) (height));
 
-        // biteVictoryMessage.setText();
-        // boolean isVictorious = message.getText().toString().indexOf("-");
-        // getBattleDescription()
-        // button to end pop up
+        // listen for a click on the okay (back) button
         okayButton = (Button) findViewById(R.id.okayBite);
         okayButton.setOnClickListener(new View.OnClickListener() {
 
@@ -86,13 +90,14 @@ public class PopBite extends Activity {
      * @return the description of the battle.
      */
     public static String getBattleDescription(boolean isVictorious) {
+        // for each battle outcome, there are 10 possible battle descriptions which are randomly choosen to be displayed
         int textChoice = (int) (Math.random() * 10);
         if (isVictorious) {
             switch (textChoice) {
                 case 0:
-                    return "The stealth and guile of our mighty ants sanctioned our raiding group to obnubilate under the " +
-                            "cover of tenebrosity and take the enemies by surprise. Such feats of glory shall be told in the " +
-                            "annals of ant history!";
+                    return "The stealth and guile of our mighty ants sanctioned our raiding group to obnubilate " +
+                            "under the cover of tenebrosity and take the enemies by surprise. Such feats of glory shall" +
+                            " be told in the annals of ant history!";
                 case 1:
                     return "Lady fortuity graced us on this day. Authentically it was an act of providence. On leaf paper, " +
                             "their inundating numbers should have proved insurmountable. But our ants proved to be the " +
@@ -119,11 +124,9 @@ public class PopBite extends Activity {
                 case 8:
                     return "A praying mantis wants to have a bite off to claim territory. Our best bite ants have the game of " +
                             "their lives and come out victorious! Continue to BITE!!!";
-                case 9:
+                default:
                     return " Till now it was a myth that ants can defeat a murder hornet. Till today. Our troops battle in dramatic " +
                             "fashion and defeat the hornets even humans feared!";
-                default:
-                    return "VICTORIOUS";
             }
         } else {
             switch (textChoice) {
@@ -157,12 +160,10 @@ public class PopBite extends Activity {
                             "One minor setback for a larger comeback!";
                 case 8:
                     return "A dog spots one of our ants and sprints to us! This bite strength is something we have never seen " +
-                            "before! Such power! Our ants alarmed, retreats.\n";
-                case 9:
+                            "before! Such power! Our ants alarmed, retreats.";
+                default:
                     return "This was totally uncalled for. A situation so unique, our ants have been left astonished. " +
                             "Troubled, the only feasible option is to retreat.";
-                default:
-                    return "LOSS";
             }
         }
     }

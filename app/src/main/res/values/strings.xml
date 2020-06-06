@@ -10,6 +10,8 @@
     <string name="l_i_f_t">L I F T</string>
     <string name="ToGROW">Idle Needed To Grow:</string>
     <string name="NeededToGrow">10</string>
+    <string name="StrengthText">Current Strength:</string>
+    <string name="Strength">1</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="settings">Settings</string>
     <string name="lift_for_the_queen">LIFT FOR THE QUEEN</string>
@@ -18,7 +20,10 @@
     <string name="bite_for_the_queen">BITE FOR THE QUEEN!!!</string>
     <string name="doubleBack">okay</string>
     <string name="settingsCog">⚙</string>
+    <string name="upgradeArrow">⟰</string>
     <string name="bitevictorymessage">  </string>
     <string name="homeText">Ant Colony</string>
     <string name="loading">Presented by Pluto Playgrounds</string>
+    <string name="strength">Strength: </string>
+    <string name="colony_name">Queen\'s Colony</string>
 </resources>
