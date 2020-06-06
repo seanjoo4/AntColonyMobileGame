@@ -9,7 +9,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * PopGrow: this class is interactive with the MainActivity and is a shop. The popup displays how many idle ants are available,
+ * cost to upgrade, and number of victories. This class is child of MainActivity.
+ *
+ * @author Aidan Andrucyk and Sean Joo
+ * @version June 5, 2020
+ */
+
 public class PopGrow extends AppCompatActivity {
+
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +45,13 @@ public class PopGrow extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (backButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 int result = unemployedCount - costToUpgrade;

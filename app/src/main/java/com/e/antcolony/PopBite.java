@@ -15,10 +15,22 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Text;
 
-// bite popup class
+/**
+ * PopBite: a popup class that displays the result of the bite button. The class will display how many ants were lost/gained,
+ * a description of the event, and a dynamic background depending on the output. This class is a child of MainActivity.
+ *
+ * @author Aidan Andrucyk and Sean Joo
+ * @version June 5, 2020
+ */
 
 public class PopBite extends Activity {
     Button okayButton;
+
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +72,25 @@ public class PopBite extends Activity {
         // listen for a click on the okay (back) button
         okayButton = (Button) findViewById(R.id.okayBite);
         okayButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayBite) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
     }
+
+    /**
+     * This function gives the app an output on the bite button. This is determined by Math.random().
+     * @param isVictorious a boolean that tells the function whether the battle was won or not.
+     * @return the description of the battle.
+     */
 
     public static String getBattleDescription(boolean isVictorious) {
         // for each battle outcome, there are 10 possible battle descriptions which are randomly choosen to be displayed

@@ -10,12 +10,25 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+/**
+ * Settings: this class is where all the settings are implemented for the app. This class is a child of MainActivity.
+ *
+ * @author Sean Joo
+ * @version June 5, 2020
+ */
+
 public class Settings extends AppCompatActivity {
 
     Switch musicSwitch;
     Switch soundEffectSwitch;
     Button howToPlayButton;
     Button credits;
+
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +38,14 @@ public class Settings extends AppCompatActivity {
         // Music Switch
         musicSwitch = (Switch) findViewById(R.id.musicSwitch);
         musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            /**
+             * This function checks if the switch is checked or not.
+             *
+             * @param buttonView checks if the state has changed.
+             * @param isChecked if it is checked, it returns true, if not, false.
+             */
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -42,22 +63,30 @@ public class Settings extends AppCompatActivity {
         // Sound Effect Switch
         soundEffectSwitch = (Switch) findViewById(R.id.soundEffectSwitch);
         soundEffectSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            /**
+             * This function checks if the switch is checked or not.
+             *
+             * @param buttonView checks if the state has changed.
+             * @param isChecked if it is checked, it returns true, if not, false.
+             */
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     Toast.makeText(getBaseContext(), "Sound Effect On", Toast.LENGTH_SHORT).show();
-                    MainActivity.WORKsound.setVolume(1f, 1f);
-                    MainActivity.GROWsound.setVolume(1f, 1f);
-                    MainActivity.LIFTsound.setVolume(1f, 1f);
-                    MainActivity.BITEsound.setVolume(1f, 1f);
-                    musicSwitch.setChecked(true);
+                    MainActivity.workSound.setVolume(1f, 1f);
+                    MainActivity.growSound.setVolume(1f, 1f);
+                    MainActivity.liftSound.setVolume(1f, 1f);
+                    MainActivity.biteSound.setVolume(1f, 1f);
+                    soundEffectSwitch.setChecked(true);
                 } else {
                     Toast.makeText(getBaseContext(), "Sound Effect Off", Toast.LENGTH_SHORT).show();
-                    MainActivity.WORKsound.setVolume(0f, 0f);
-                    MainActivity.GROWsound.setVolume(0f, 0f);
-                    MainActivity.LIFTsound.setVolume(0f, 0f);
-                    MainActivity.BITEsound.setVolume(0f, 0f);
-                    musicSwitch.setChecked(false);
+                    MainActivity.workSound.setVolume(0f, 0f);
+                    MainActivity.growSound.setVolume(0f, 0f);
+                    MainActivity.liftSound.setVolume(0f, 0f);
+                    MainActivity.biteSound.setVolume(0f, 0f);
+                    soundEffectSwitch.setChecked(false);
                 }
             }
         });
@@ -65,18 +94,32 @@ public class Settings extends AppCompatActivity {
         // How To Play Button
         howToPlayButton = (Button) findViewById(R.id.howToPlayButton);
         howToPlayButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
-                openHowToPlay();
+                startActivity(new Intent(Settings.this, HowToPlay.class));
             }
         });
 
         // Credits Button
         credits = findViewById(R.id.creditsButton);
         credits.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
-                openCredits();
+                startActivity(new Intent(Settings.this, Credits.class));
             }
         });
 
@@ -85,20 +128,17 @@ public class Settings extends AppCompatActivity {
         // Back Button
         Button okay = findViewById(R.id.okaySetting);
         okay.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-    }
-
-    public void openHowToPlay() {
-        Intent intent = new Intent(this, HowToPlay.class);
-        startActivity(intent);
-    }
-
-    public void openCredits() {
-        Intent intent = new Intent(this, Credits.class);
-        startActivity(intent);
     }
 }

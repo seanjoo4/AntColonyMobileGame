@@ -6,8 +6,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+/**
+ * HomeActivity: this class is when the user first opens up the app. It displays the name of the game and our company.
+ *
+ * @author Sean Joo
+ * @version June 5, 2020
+ */
+
 public class HomeActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
+
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +28,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         new Handler().postDelayed(new Runnable() {
+
+            /**
+             * This function creates the connection between HomeActivity() and MainActivity().
+             */
+
             @Override
             public void run() {
                 Intent homeIntent = new Intent(HomeActivity.this, MainActivity.class);

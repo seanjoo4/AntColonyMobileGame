@@ -10,10 +10,22 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-// lift popup
+/**
+ * PopLift: this class shows the result of the lift button. It will display how many ants were gained and a description
+ * of the event. This class is a child of MainActivity.
+ *
+ * @author Aidan Andrucyk and Sean Joo
+ * @version June 5, 2020
+ */
 
 public class PopLift extends Activity {
     Button okayButton;
+
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +57,25 @@ public class PopLift extends Activity {
         // listen for a click on the okay (back) button
         okayButton = (Button) findViewById(R.id.okayLift);
         okayButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
     }
+
+    /**
+     * This function gives the app an output on the lift button. This is determined by Math.random().
+     * @param isSuccessful a boolean that tells the function whether the lift was successful or not.
+     * @return the description of the adventure.
+     */
 
     public static String getHarvestDescription(boolean isSuccessful){
         int textChoice = (int)(Math.random()*10);
