@@ -7,28 +7,46 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.widget.Toast;
 
-// background music class
-
+/**
+ * description
+ *
+ * @author Aidan Andrucyk
+ * @version June 5, 2020
+ */
 public class MusicService extends Service implements MediaPlayer.OnErrorListener {
 
     private final IBinder mBinder = new ServiceBinder();
     public static MediaPlayer mPlayer;
     private int length = 0;
 
+    /**
+     *
+     */
     public MusicService() {
     }
 
+    /**
+     *
+     */
     public class ServiceBinder extends Binder {
         MusicService getService() {
             return MusicService.this;
         }
     }
 
+    /**
+     *
+     * @param arg0
+     * @return
+     */
     @Override
     public IBinder onBind(Intent arg0) {
         return mBinder;
     }
 
+    /**
+     *
+     */
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,6 +64,13 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
 
         mPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
 
+            /**
+             *
+             * @param mp
+             * @param what
+             * @param extra
+             * @return
+             */
             public boolean onError(MediaPlayer mp, int what, int
                     extra) {
 
@@ -56,6 +81,14 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     // make responsive for the app lifecycles
+
+    /**
+     *
+     * @param intent
+     * @param flags
+     * @param startId
+     * @return
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (mPlayer != null) {
@@ -64,6 +97,9 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         return START_NOT_STICKY;
     }
 
+    /**
+     *
+     */
     public void pauseMusic() {
         if (mPlayer != null) {
             if (mPlayer.isPlaying()) {
@@ -73,6 +109,9 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         }
     }
 
+    /**
+     *
+     */
     public void resumeMusic() {
         if (mPlayer != null) {
             if (!mPlayer.isPlaying()) {
@@ -82,6 +121,9 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         }
     }
 
+    /**
+     *
+     */
     public void startMusic() {
         mPlayer = MediaPlayer.create(this, R.raw.music);
         mPlayer.setOnErrorListener(this);
@@ -94,6 +136,9 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
 
     }
 
+    /**
+     *
+     */
     public void stopMusic() {
         if (mPlayer != null) {
             mPlayer.stop();
@@ -102,6 +147,9 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -115,6 +163,13 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         }
     }
 
+    /**
+     *
+     * @param mp
+     * @param what
+     * @param extra
+     * @return
+     */
     public boolean onError(MediaPlayer mp, int what, int extra) {
 
         Toast.makeText(this, "Music player failed", Toast.LENGTH_SHORT).show();

@@ -17,10 +17,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +30,12 @@ import com.google.android.gms.ads.AdRequest;
 
 import android.util.Log;
 
+/**
+ * MainActivity: the main class that runs the main interface of the app.
+ *
+ * @author Aidan Andrucyk and Sean Joo
+ * @version June 5, 2020
+ */
 public class MainActivity extends AppCompatActivity {
     TextView antCount;
     TextView unCount;
@@ -68,11 +72,16 @@ public class MainActivity extends AppCompatActivity {
     HomeWatcher mHomeWatcher;
     private boolean mIsBound = false;
     private MusicService mServ;
-    public static MediaPlayer WORKsound;
-    public static MediaPlayer GROWsound;
-    public static MediaPlayer LIFTsound;
-    public static MediaPlayer BITEsound;
+    public static MediaPlayer workSound;
+    public static MediaPlayer growSound;
+    public static MediaPlayer liftSound;
+    public static MediaPlayer biteSound;
 
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,15 +110,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // work sound to be played upon clicking the queen button
-        WORKsound = MediaPlayer.create(this, R.raw.work);
+        workSound = MediaPlayer.create(this, R.raw.work);
         // original audio was a little too quiet during recording
-        WORKsound.setVolume(1f, 1f);
+        workSound.setVolume(1f, 1f);
         // queen button
         queen = (ImageButton) findViewById(R.id.queen);
         queen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                WORKsound.start();
+                workSound.start();
                 antCount = (TextView) findViewById(R.id.AntCount);
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
                 // add ant count by the modifier
@@ -119,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        GROWsound = MediaPlayer.create(this, R.raw.grow);
+        growSound = MediaPlayer.create(this, R.raw.grow);
         // grow button
         upgradeButton = (Button) findViewById(R.id.growButton);
         upgradeButton.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                GROWsound.start();
+                growSound.start();
 
                 // opening the pop_grow to transfer data back and forth
                 Intent intent = new Intent(MainActivity.this, PopGrow.class);
@@ -154,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // lift button
-        LIFTsound = MediaPlayer.create(this, R.raw.lift);
+        liftSound = MediaPlayer.create(this, R.raw.lift);
         liftButton = (Button) findViewById(R.id.liftButton);
         liftButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                LIFTsound.start();
+                liftSound.start();
                 // weaken strength due to tired ants unless strength == 1 because then int will round to 0
                 strength *= strength > 1 ? .95 : 1;
                 strengthText.setText(Integer.toString(strength));
@@ -183,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // bite button
-        BITEsound = MediaPlayer.create(this, R.raw.bite);
+        biteSound = MediaPlayer.create(this, R.raw.bite);
         biteButton = (Button) findViewById(R.id.biteButton);
         biteButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -196,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
-                BITEsound.start();
+                biteSound.start();
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.1)
                 biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .01) ?
                         // case victory: gain at most 75% of colony size
@@ -245,6 +254,10 @@ public class MainActivity extends AppCompatActivity {
         // checks if user presses the home button => pauses music
         mHomeWatcher = new HomeWatcher(this);
         mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+
+            /**
+             *
+             */
             @Override
             public void onHomePressed() {
                 if (mServ != null) {
@@ -252,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            /**
+             *
+             */
             @Override
             public void onHomeLongPressed() {
                 if (mServ != null) {
@@ -263,6 +279,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Google Firebase ads
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
+
+            /**
+             *
+             */
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
@@ -273,8 +293,13 @@ public class MainActivity extends AppCompatActivity {
     }
     // OUTSIDE OF OnCreate!
 
-
-    // @ SEAN wtf does this do lmao
+    /**
+     * It is a function that receives results from a previously started activity.
+     *
+     * @param requestCode represents the request code that was shown.
+     * @param resultCode  represents the result code that was shown.
+     * @param data        represents the data that is stored.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -287,6 +312,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This function displays the lift message depending on output.
+     */
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
                 "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
@@ -299,6 +327,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * This function displays the bite message depending on output.
+     */
     public void biteMessage() {
         String text = biteEffect > 0 ?
                 "VICTORY IS OURS!!! GAINED " + biteEffect + " ANTS!" :
@@ -324,22 +355,37 @@ public class MainActivity extends AppCompatActivity {
     // music services
     private ServiceConnection Scon = new ServiceConnection() {
 
+        /**
+         *
+         * @param name
+         * @param binder
+         */
         public void onServiceConnected(ComponentName name, IBinder
                 binder) {
             mServ = ((MusicService.ServiceBinder) binder).getService();
         }
 
+        /**
+         *
+         * @param name
+         */
         public void onServiceDisconnected(ComponentName name) {
             mServ = null;
         }
     };
 
+    /**
+     *
+     */
     void doBindService() {
         bindService(new Intent(this, MusicService.class),
                 Scon, Context.BIND_AUTO_CREATE);
         mIsBound = true;
     }
 
+    /**
+     *
+     */
     void doUnbindService() {
         if (mIsBound) {
             unbindService(Scon);
@@ -347,12 +393,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This function is called when the activity is visible to the user
+     */
     @Override
     protected void onStart() {
         super.onStart();
         Log.d("lifecycle", "onStart invoked");
     }
 
+    /**
+     * This function is called when the activity is interacting with the user.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -377,6 +429,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This function is called when the app still can be visible to the user, but is about to experience
+     * stoppage or destruction.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -408,6 +464,9 @@ public class MainActivity extends AppCompatActivity {
         myEdit.commit();*/
     }
 
+    /**
+     * This function is called when the activity is no longer visible to the user.
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -418,6 +477,9 @@ public class MainActivity extends AppCompatActivity {
         unAntCountSave = Integer.parseInt(unCount.getText().toString());
     }
 
+    /**
+     * This function is called when the activity is stopped before it starting again.
+     */
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -428,6 +490,9 @@ public class MainActivity extends AppCompatActivity {
         unCount.setText(Integer.toString(unAntCountSave));
     }
 
+    /**
+     * This function is called during the final stage when the activity is going to be destroyed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

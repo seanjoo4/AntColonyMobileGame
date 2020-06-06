@@ -42,7 +42,6 @@ public class Credits extends AppCompatActivity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 finish();
