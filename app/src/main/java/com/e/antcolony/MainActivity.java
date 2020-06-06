@@ -218,13 +218,13 @@ public class MainActivity extends AppCompatActivity {
                 // prevents unemployed ants from becoming negative
                 if (Integer.parseInt(unCount.getText().toString()) < 0) {
                     // weaken strength due to tired ants unless strength == 1 because then int will round to 0
-                    strength *= strength > 1 ? .80 : 1;
+                    strength *= strength > 2 ? .80 : 1;
                     unCount.setText(Integer.toString(0));
                 }
                 // prevents total ants from becoming negative
                 if (Integer.parseInt(antCount.getText().toString()) < 0) {
                     // weaken strength due to tired ants unless strength == 1 because then int will round to 0
-                    strength *= strength > 1 ? .90 : 1;
+                    strength *= strength > 2 ? .90 : 1;
                     antCount.setText(Integer.toString(0));
                 }
                 // lower to grow requirement
