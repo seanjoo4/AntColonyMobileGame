@@ -7,6 +7,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.widget.Toast;
 
+// background music class
 
 public class MusicService extends Service implements MediaPlayer.OnErrorListener {
 
@@ -32,9 +33,11 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     public void onCreate() {
         super.onCreate();
 
+        // music is sourced from a royalty free music service, Bensound.com
         mPlayer = MediaPlayer.create(this, R.raw.music);
         mPlayer.setOnErrorListener(this);
 
+        // creates loop for music
         if (mPlayer != null) {
             mPlayer.setLooping(true);
             mPlayer.setVolume(.1f, .1f);
@@ -52,6 +55,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         });
     }
 
+    // make responsive for the app lifecycles
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (mPlayer != null) {
