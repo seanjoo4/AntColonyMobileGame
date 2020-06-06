@@ -12,7 +12,6 @@ import android.os.Handler;
  * @author Sean Joo
  * @version June 5, 2020
  */
-
 public class HomeActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
 
@@ -21,7 +20,6 @@ public class HomeActivity extends AppCompatActivity {
      *
      * @param savedInstanceState used when activity needs to be created/recreated
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +30,6 @@ public class HomeActivity extends AppCompatActivity {
             /**
              * This function creates the connection between HomeActivity() and MainActivity().
              */
-
             @Override
             public void run() {
                 Intent homeIntent = new Intent(HomeActivity.this, MainActivity.class);

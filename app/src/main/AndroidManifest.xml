@@ -18,6 +18,10 @@
         <activity
             android:name=".HowToPlay"
             android:parentActivityName=".Settings" />
+        <activity
+            android:name=".Privacy"
+            android:parentActivityName=".Settings" />
+
 
         <service
             android:name=".MusicService"

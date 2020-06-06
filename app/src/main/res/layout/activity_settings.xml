@@ -39,6 +39,17 @@
         android:layout_height="wrap_content"
         android:text="Credits" />
 
+    <Button
+        android:id="@+id/rateUsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate Us!" />
+
+    <Button
+        android:id="@+id/privacyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy" />
 
     <Button
         android:id="@+id/okaySetting"

@@ -13,7 +13,6 @@ import android.widget.Button;
  * @author Sean Joo
  * @version June 5, 2020
  */
-
 public class HowToPlay extends AppCompatActivity {
 
     /**
@@ -21,7 +20,6 @@ public class HowToPlay extends AppCompatActivity {
      *
      * @param savedInstanceState used when activity needs to be created/recreated
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

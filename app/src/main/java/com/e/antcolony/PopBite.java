@@ -22,7 +22,6 @@ import org.w3c.dom.Text;
  * @author Aidan Andrucyk and Sean Joo
  * @version June 5, 2020
  */
-
 public class PopBite extends Activity {
     Button okayButton;
 
@@ -31,7 +30,6 @@ public class PopBite extends Activity {
      *
      * @param savedInstanceState used when activity needs to be created/recreated
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +85,6 @@ public class PopBite extends Activity {
      * @param isVictorious a boolean that tells the function whether the battle was won or not.
      * @return the description of the battle.
      */
-
     public static String getBattleDescription(boolean isVictorious) {
         int textChoice = (int) (Math.random() * 10);
         if (isVictorious) {

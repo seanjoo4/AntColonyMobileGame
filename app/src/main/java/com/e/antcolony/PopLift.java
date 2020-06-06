@@ -17,7 +17,6 @@ import org.w3c.dom.Text;
  * @author Aidan Andrucyk and Sean Joo
  * @version June 5, 2020
  */
-
 public class PopLift extends Activity {
     Button okayButton;
 
@@ -26,7 +25,6 @@ public class PopLift extends Activity {
      *
      * @param savedInstanceState used when activity needs to be created/recreated
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +70,6 @@ public class PopLift extends Activity {
      * @param isSuccessful a boolean that tells the function whether the lift was successful or not.
      * @return the description of the adventure.
      */
-
     public static String getHarvestDescription(boolean isSuccessful){
         int textChoice = (int)(Math.random()*10);
         if (isSuccessful){

@@ -2,7 +2,9 @@ package com.e.antcolony;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,20 +18,21 @@ import android.widget.Toast;
  * @author Sean Joo
  * @version June 5, 2020
  */
-
 public class Settings extends AppCompatActivity {
 
     Switch musicSwitch;
     Switch soundEffectSwitch;
     Button howToPlayButton;
     Button credits;
+    Button rateUs;
+    Button privacy;
+    Button okay;
 
     /**
      * Initializes the activity.
      *
      * @param savedInstanceState used when activity needs to be created/recreated.
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +103,6 @@ public class Settings extends AppCompatActivity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Settings.this, HowToPlay.class));
@@ -116,17 +118,58 @@ public class Settings extends AppCompatActivity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Settings.this, Credits.class));
             }
         });
 
+        // Rate Us Button
+        rateUs = findViewById(R.id.rateUsButton);
+        rateUs.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                // To count with Play market backstack, After pressing back button,
+                // to taken back to our application, we need to add following flags to intent.
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                        Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                try {
+                    startActivity(goToMarket);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+                }
+            }
+        });
+
+        // Privacy Button
+        privacy = findViewById(R.id.privacyButton);
+        privacy.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.this, Privacy.class));
+            }
+        });
+
         Intent intent = getIntent();
 
         // Back Button
-        Button okay = findViewById(R.id.okaySetting);
+        okay = findViewById(R.id.okaySetting);
         okay.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -134,7 +177,6 @@ public class Settings extends AppCompatActivity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 finish();

@@ -11,7 +11,6 @@ import android.content.IntentFilter;
  * @author Aidan Andrucyk
  * @version June 5, 2020
  */
-
 public class HomeWatcher {
 
     //static final String TAG = "hg";
@@ -25,7 +24,6 @@ public class HomeWatcher {
      *
      * @param context description
      */
-
     public HomeWatcher(Context context) {
         mContext = context;
         mFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
@@ -36,8 +34,6 @@ public class HomeWatcher {
      *
      * @param listener description
      */
-
-
     public void setOnHomePressedListener(OnHomePressedListener listener) {
         mListener = listener;
         mRecevier = new InnerRecevier();
@@ -46,8 +42,6 @@ public class HomeWatcher {
     /**
      * Description
      */
-
-
     public void startWatch() {
         if (mRecevier != null) {
             mContext.registerReceiver(mRecevier, mFilter);
@@ -57,8 +51,6 @@ public class HomeWatcher {
     /**
      * Description
      */
-
-
     public void stopWatch() {
         if (mRecevier != null) {
             mContext.unregisterReceiver(mRecevier);
@@ -68,7 +60,6 @@ public class HomeWatcher {
     /**
      * description
      */
-
     class InnerRecevier extends BroadcastReceiver {
         final String SYSTEM_DIALOG_REASON_KEY = "reason";
         final String SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS = "globalactions";
@@ -81,7 +72,6 @@ public class HomeWatcher {
          * @param context description
          * @param intent description
          */
-
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -104,19 +94,16 @@ public class HomeWatcher {
     /**
      * description
      */
-
     public interface OnHomePressedListener {
 
         /**
          * description
          */
-
         void onHomePressed();
 
         /**
          * description
          */
-
         void onHomeLongPressed();
     }
 }

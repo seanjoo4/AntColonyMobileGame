@@ -16,7 +16,6 @@ import android.widget.TextView;
  * @author Aidan Andrucyk and Sean Joo
  * @version June 5, 2020
  */
-
 public class PopGrow extends AppCompatActivity {
 
     /**
@@ -24,7 +23,6 @@ public class PopGrow extends AppCompatActivity {
      *
      * @param savedInstanceState used when activity needs to be created/recreated
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

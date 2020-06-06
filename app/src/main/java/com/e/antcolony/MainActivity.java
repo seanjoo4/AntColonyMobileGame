@@ -33,7 +33,6 @@ import android.util.Log;
  * @author Aidan Andrucyk and Sean Joo
  * @version June 5, 2020
  */
-
 public class MainActivity extends AppCompatActivity {
     ImageButton queen;
     Button settingsButton;
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param savedInstanceState used when activity needs to be created/recreated
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Settings.class);
@@ -259,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
             /**
              *
              */
-
             @Override
             public void onHomePressed() {
                 if (mServ != null) {
@@ -270,7 +266,6 @@ public class MainActivity extends AppCompatActivity {
             /**
              *
              */
-
             @Override
             public void onHomeLongPressed() {
                 if (mServ != null) {
@@ -287,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
              *
              * @param initializationStatus used when a view is clicked.
              */
-
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
@@ -304,7 +298,6 @@ public class MainActivity extends AppCompatActivity {
      * @param resultCode  represents the result code that was shown.
      * @param data        represents the data that is stored.
      */
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -320,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function displays the lift message depending on output.
      */
-
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
                 "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
@@ -338,7 +330,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function displays the bite message depending on output.
      */
-
     public void biteMessage() {
         String text = biteEffect > 0 ?
                 "VICTORY IS OURS!!! GAINED " + biteEffect + " ANTS!" :
@@ -360,7 +351,6 @@ public class MainActivity extends AppCompatActivity {
          * @param name
          * @param binder
          */
-
         public void onServiceConnected(ComponentName name, IBinder
                 binder) {
             mServ = ((MusicService.ServiceBinder) binder).getService();
@@ -370,7 +360,6 @@ public class MainActivity extends AppCompatActivity {
          *
          * @param name
          */
-
         public void onServiceDisconnected(ComponentName name) {
             mServ = null;
         }
@@ -379,7 +368,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      *
      */
-
     void doBindService() {
         bindService(new Intent(this, MusicService.class),
                 Scon, Context.BIND_AUTO_CREATE);
@@ -389,7 +377,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      *
      */
-
     void doUnbindService() {
         if (mIsBound) {
             unbindService(Scon);
@@ -400,7 +387,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function is called when the activity is visible to the user
      */
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -410,7 +396,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function is called when the activity is interacting with the user.
      */
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -439,7 +424,6 @@ public class MainActivity extends AppCompatActivity {
      * This function is called when the app still can be visible to the user, but is about to experience
      * stoppage or destruction.
      */
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -474,7 +458,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function is called when the activity is no longer visible to the user.
      */
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -488,7 +471,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function is called when the activity is stopped before it starting again.
      */
-
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -502,7 +484,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function is called during the final stage when the activity is going to be destroyed.
      */
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -13,7 +13,6 @@ import android.widget.Toast;
  * @author Aidan Andrucyk
  * @version June 5, 2020
  */
-
 public class MusicService extends Service implements MediaPlayer.OnErrorListener {
 
     private final IBinder mBinder = new ServiceBinder();
@@ -23,14 +22,12 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     public MusicService() {
     }
 
     /**
      *
      */
-
     public class ServiceBinder extends Binder {
         MusicService getService() {
             return MusicService.this;
@@ -43,7 +40,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
      * @param arg0
      * @return
      */
-
     @Override
     public IBinder onBind(Intent arg0) {
         return mBinder;
@@ -52,7 +48,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -90,7 +85,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
      * @param startId
      * @return
      */
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (mPlayer != null) {
@@ -102,7 +96,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     public void pauseMusic() {
         if (mPlayer != null) {
             if (mPlayer.isPlaying()) {
@@ -115,7 +108,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     public void resumeMusic() {
         if (mPlayer != null) {
             if (!mPlayer.isPlaying()) {
@@ -128,7 +120,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     public void startMusic() {
         mPlayer = MediaPlayer.create(this, R.raw.music);
         mPlayer.setOnErrorListener(this);
@@ -144,7 +135,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     public void stopMusic() {
         if (mPlayer != null) {
             mPlayer.stop();
@@ -156,7 +146,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      *
      */
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -176,7 +165,6 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
      * @param extra
      * @return
      */
-
     public boolean onError(MediaPlayer mp, int what, int extra) {
 
         Toast.makeText(this, "Music player failed", Toast.LENGTH_SHORT).show();
