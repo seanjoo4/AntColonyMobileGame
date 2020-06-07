@@ -43,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
     TextView toGrowCount;
     ImageButton queen;
     Button settingsButton;
-    Button upgradeButton;
+    Button growButton;
     Button liftButton;
     Button biteButton;
+    Button upgradeButton;
     // previously "multiplier:
     private int strength = 1;
     // cost to grow in terms of idle ants
@@ -55,11 +56,17 @@ public class MainActivity extends AppCompatActivity {
     private int biteEffect = 0;
     // start with one territory claimed to include home colony (cannot go below 1)
     private int territoriesClaimed = 1;
+    private int territoriesLost = 0;
+    private int successfulLift = 0;
+    private int unsuccessfulLift = 0;
+    private int growPressed = 0;
+
+
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
     private int liftIncreaseFactor = 0;
 
-    // @ SEAN annotate this
+    // string constant for intent functions: package_name.OUR_TEXT
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
 
     // ads
@@ -108,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
         // deselect colony name after finished editing
         EditText colonyName = (EditText) findViewById(R.id.ColonyName);
         colonyName.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+
+            /**
+             *
+             * @param v
+             * @param actionId
+             * @param event
+             * @return
+             */
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                     Log.e("TAG", "Done pressed");
@@ -123,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
         // queen button
         queen = (ImageButton) findViewById(R.id.queen);
         queen.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
             public void onClick(View v) {
 
                 workSound.start();
@@ -135,8 +156,14 @@ public class MainActivity extends AppCompatActivity {
 
         growSound = MediaPlayer.create(this, R.raw.grow);
         // grow button
-        upgradeButton = (Button) findViewById(R.id.growButton);
-        upgradeButton.setOnClickListener(new View.OnClickListener() {
+        growButton = (Button) findViewById(R.id.growButton);
+        growButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
             @Override
             public void onClick(View v) {
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
@@ -148,16 +175,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 growSound.start();
+                growPressed++;
 
-                // opening the pop_grow to transfer data back and forth
-                Intent intent = new Intent(MainActivity.this, PopGrow.class);
-                //intent.putExtra() values we are going to pass back and forth
-                int unemployedCount = Integer.parseInt(unCount.getText().toString());
-                intent.putExtra("unemployed", unemployedCount);
-                intent.putExtra("costToGrow", costToGrow);
-                intent.putExtra("victoryCount", territoriesClaimed);
-                // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
-                startActivityForResult(intent, 1);
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - costToGrow));
                 costToGrow *= 3;
                 toGrowCount.setText(Integer.toString(costToGrow));
@@ -171,6 +190,12 @@ public class MainActivity extends AppCompatActivity {
         liftSound = MediaPlayer.create(this, R.raw.lift);
         liftButton = (Button) findViewById(R.id.liftButton);
         liftButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
             @Override
             public void onClick(View v) {
                 if (strength < 2) {
@@ -201,6 +226,12 @@ public class MainActivity extends AppCompatActivity {
         biteSound = MediaPlayer.create(this, R.raw.bite);
         biteButton = (Button) findViewById(R.id.biteButton);
         biteButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
@@ -241,9 +272,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Upgrade Button
+        upgradeButton = (Button) findViewById(R.id.upgradeButton);
+        upgradeButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                // opening the pop_grow to transfer data back and forth
+                Intent intent = new Intent(MainActivity.this, PopUpgrade.class);
+                //intent.putExtra() values we are going to pass back and forth
+                int unemployedCount = Integer.parseInt(unCount.getText().toString());
+                intent.putExtra("unemployed", unemployedCount);
+                intent.putExtra("costToGrow", costToGrow);
+                intent.putExtra("victoryCount", territoriesClaimed);
+                intent.putExtra("lossCount", territoriesLost);
+                intent.putExtra("successfulLift", successfulLift);
+                intent.putExtra("unsuccessfulLift", unsuccessfulLift);
+                intent.putExtra("growPressed", growPressed);
+
+                // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
+                startActivityForResult(intent, 1);
+            }
+        });
+
         // Settings Popup
         settingsButton = (Button) findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (settingsButton) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Settings.class);
@@ -327,6 +392,11 @@ public class MainActivity extends AppCompatActivity {
                 "ONLY GAINED A MEAGER " + liftIncreaseFactor * strength + " ANTS! \n LIFT HARDER!!!";
         // if victory, increment by lift inertia by 1 else decrement by 1
         liftInertia += text.charAt(0) == 'G' ? .1 : -.1;
+        if (text.charAt(0) == 'G') {
+            successfulLift++;
+        } else {
+            unsuccessfulLift++;
+        }
         // get pop up
         Intent intent = new Intent(this, PopLift.class);
         intent.putExtra(EXTRA_TEXT, text);
@@ -344,7 +414,8 @@ public class MainActivity extends AppCompatActivity {
         if (text.charAt(0) == 'V') {
             territoriesClaimed++;
         } else {
-            territoriesClaimed--;
+            //territoriesClaimed--;
+            territoriesLost++;
             // prevents territories claimed from becoming 0 or negative
             if (territoriesClaimed <= 0) {
                 // reset to 1

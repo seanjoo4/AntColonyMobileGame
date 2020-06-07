@@ -24,20 +24,21 @@
         <activity
             android:name=".TermsOfUse"
             android:parentActivityName=".Settings" />
+        <activity
+            android:name=".PopUpgrade"
+            android:parentActivityName=".MainActivity" />
 
         <service
             android:name=".MusicService"
             android:enabled="true" />
 
-        <activity android:name=".PopGrow" />
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- adjustPan => prevents main screen from moving -->
+        </activity> <!-- adjustPan => prevents main screen from moving -->
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="stateVisible|adjustPan">

@@ -1,72 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".Settings">
+    android:orientation="vertical">
 
-    <Switch
-        android:id="@+id/musicSwitch"
+    <TextView
+        android:id="@+id/idle_ants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="Music"
+        android:text="Idle Ants: "
         android:textColor="#000000"
-        android:textSize="25sp" />
+        android:textSize="30sp" />
 
-    <Switch
-        android:id="@+id/soundEffectSwitch"
+    <TextView
+        android:id="@+id/biteVictory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="Sound Effects"
+        android:text="Territories Owned: "
         android:textColor="#000000"
-        android:textSize="25sp" />
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/biteLoss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BITE Defeats: "
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/liftSuccessful"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Successful LIFT: "
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/liftUnsuccessful"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unsuccessful LIFT: "
+        android:textColor="#000000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/growPressed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GROW Pressed: "
+        android:textColor="#000000"
+        android:textSize="30sp" />
 
     <Button
-        android:id="@+id/howToPlayButton"
+        android:id="@+id/upgradeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:soundEffectsEnabled="false"
-        android:text="How To Play" />
+        android:text="Upgrade Tier" />
 
     <Button
-        android:id="@+id/creditsButton"
+        android:id="@+id/upgradeOkayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:soundEffectsEnabled="false"
-        android:text="Credits" />
-
-    <Button
-        android:id="@+id/rateUsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:soundEffectsEnabled="false"
-        android:text="Rate Us!" />
-
-    <Button
-        android:id="@+id/privacyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:soundEffectsEnabled="false"
-        android:text="Privacy" />
-
-    <Button
-        android:id="@+id/termsOfUseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:soundEffectsEnabled="false"
-        android:text="Terms of Use" />
-
-    <Button
-        android:id="@+id/okaySetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:soundEffectsEnabled="false"
-        android:text="back" />
+        android:text="Okay" />
 
 </LinearLayout>

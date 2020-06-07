@@ -9,7 +9,7 @@ import android.widget.Button;
 /**
  * Privacy: a class that handles the privacy page of the app. Child of Settings.
  *
- * @author Sean Joo
+ * @author Aidan Andrucyk and Sean Joo
  * @version June 6, 2020
  */
 public class Privacy extends Activity {

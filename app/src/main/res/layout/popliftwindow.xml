@@ -98,6 +98,7 @@
             android:layout_marginRight="161dp"
             android:layout_marginBottom="170dp"
             android:fontFamily="@font/abeezee"
+            android:soundEffectsEnabled="false"
             android:text="@string/doubleBack"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -9,7 +9,7 @@ import android.widget.Button;
 /**
  * TermsOfUse: a class that handles the Terms of Use page of the app. Child of Settings.
  *
- * @author Sean Joo
+ * @author Aidan Andrucyk and Sean Joo
  * @version June 6, 2020
  */
 public class TermsOfUse extends Activity {

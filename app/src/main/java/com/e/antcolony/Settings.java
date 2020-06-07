@@ -83,6 +83,7 @@ public class Settings extends AppCompatActivity {
                     MainActivity.growSound.setVolume(1f, 1f);
                     MainActivity.liftSound.setVolume(1f, 1f);
                     MainActivity.biteSound.setVolume(1f, 1f);
+
                     soundEffectSwitch.setChecked(true);
                 } else {
                     Toast.makeText(getBaseContext(), "Sound Effect Off", Toast.LENGTH_SHORT).show();
