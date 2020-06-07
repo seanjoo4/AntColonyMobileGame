@@ -14,7 +14,8 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Privacy"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/privacy"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -23,13 +24,18 @@
         android:id="@+id/overviewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#000000" />
+        android:fontFamily="@font/abeezee"
+        android:padding="25sp"
+        android:paddingTop="10sp"
+        android:text="@string/privacy_statement"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/privacyBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Okay" />
+        android:fontFamily="@font/abeezee"
+        android:text="@string/okay" />
 
 </LinearLayout>

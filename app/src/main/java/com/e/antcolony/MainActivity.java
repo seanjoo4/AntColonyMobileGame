@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     Button liftButton;
     Button biteButton;
     // previously "multiplier:
-    private int strength = 1;
+    private double strength = 1;
     // cost to grow in terms of idle ants
     private int costToGrow = 10;
 
@@ -122,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
                 antCount = (TextView) findViewById(R.id.AntCount);
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
                 // add ant count by the modifier
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + strength));
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + strength));
+                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + (int) strength));
+                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + (int) strength));
             }
         });
 
@@ -154,11 +154,11 @@ public class MainActivity extends AppCompatActivity {
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - costToGrow));
-                costToGrow *= 3.333;
+                costToGrow *= 3;
                 toGrowCount = (TextView) findViewById(R.id.numberToGrow);
                 toGrowCount.setText(Integer.toString(costToGrow));
-                strength *= 2.333;
-                strengthText.setText(Integer.toString(strength));
+                strength *= 2;
+                strengthText.setText(Integer.toString((int) strength));
             }
         });
 
@@ -177,16 +177,17 @@ public class MainActivity extends AppCompatActivity {
                 liftSound.start();
                 // weaken strength due to tired ants unless strength == 1 because then int will round to 0
                 strength *= strength > 1 ? .95 : 1;
-                strengthText.setText(Integer.toString(strength));
+
                 /*
                 ~50% likelihood of gain or loss
                 good outcome is equivalent to  10 to 60 clicks on queen
                 bad outcome is equivalent to 0 to 10 clicks on queen
                 */
+                // intertia designed to ensure ~50% lift rate success
                 liftIncreaseFactor = Math.random() <= .5 + liftInertia ? 11 + (int) (50 * Math.random()) : (int) (Math.random() * 10);
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor * strength));
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor * strength));
-
+                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor * (int) strength));
+                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor * (int) strength));
+                strengthText.setText(Integer.toString((int) strength));
                 liftMessage();
             }
         });
@@ -230,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 // lower to grow requirement
                 costToGrow *= .85;
                 toGrowCount.setText(Integer.toString((int) (Integer.parseInt(toGrowCount.getText().toString()) * .85)));
-                strengthText.setText(Integer.toString(strength));
+                strengthText.setText(Integer.toString((int) strength));
                 biteMessage();
             }
         });

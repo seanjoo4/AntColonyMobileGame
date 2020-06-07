@@ -14,7 +14,8 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Terms of Use"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/terms_conditions"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -23,13 +24,16 @@
         android:id="@+id/termsOfUseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#000000" />
+        android:fontFamily="@font/abeezee"
+        android:padding="25sp"
+        android:text="@string/termsDescription"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/termsOfUseBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Okay" />
+        android:text="@string/okay" />
 
 </LinearLayout>
