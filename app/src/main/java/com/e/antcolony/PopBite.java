@@ -90,8 +90,9 @@ public class PopBite extends Activity {
      * @return the description of the battle.
      */
     public static String getBattleDescription(boolean isVictorious) {
-        // for each battle outcome, there are 10 possible battle descriptions which are randomly choosen to be displayed
+        // for each battle outcome, there are 10 possible battle descriptions which are randomly chosen to be displayed
         int textChoice = (int) (Math.random() * 10);
+        // the +'s are purely for  ease of reading source code
         if (isVictorious) {
             switch (textChoice) {
                 case 0:

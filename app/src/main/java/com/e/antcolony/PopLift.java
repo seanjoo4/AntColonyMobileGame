@@ -86,7 +86,9 @@ public class PopLift extends Activity {
      * @return the description of the adventure.
      */
     public static String getHarvestDescription(boolean isSuccessful){
+        // for each battle outcome, there are 10 possible lift descriptions which are randomly chosen to be displayed
         int textChoice = (int)(Math.random()*10);
+        // the +'s are purely for  ease of reading source code
         if (isSuccessful){
             switch(textChoice){
                 case 0:
