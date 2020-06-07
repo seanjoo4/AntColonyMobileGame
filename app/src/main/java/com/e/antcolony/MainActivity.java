@@ -37,6 +37,7 @@ import android.util.Log;
  * @version June 5, 2020
  */
 public class MainActivity extends AppCompatActivity {
+    TextView strengthText;
     TextView antCount;
     TextView unCount;
     TextView toGrowCount;
@@ -46,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
     Button liftButton;
     Button biteButton;
     // previously "multiplier:
-    private double strength = 1;
+    private int strength = 1;
     // cost to grow in terms of idle ants
     private int costToGrow = 10;
 
+    private int numberOfGrows = 0; // put this into the stat screen
     private int biteEffect = 0;
-    // @SEAN I made biteVictories & biteLosses into one variable
-    private int territoriesClaimed = 0;
-    // @SEAN successful lifts too
+    // start with one territory claimed to include home colony (cannot go below 1)
+    private int territoriesClaimed = 1;
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
     private int liftIncreaseFactor = 0;
@@ -89,14 +90,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d("lifecycle", "onCreate invoked");
 
         // change window color from black to nice peachy color
+        // first checks if correct version
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // colorPrimary == peachy color
             window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
         }
 
-        final TextView strengthText = (TextView) findViewById(R.id.strengthNumber);
+        // create strengthText
+        strengthText = findViewById(R.id.strengthNumber);
+        antCount = findViewById(R.id.AntCount);
+        unCount = findViewById(R.id.UnemployedCount);
+        toGrowCount = findViewById(R.id.numberToGrow);
 
         // deselect colony name after finished editing
         EditText colonyName = (EditText) findViewById(R.id.ColonyName);
@@ -119,11 +126,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 workSound.start();
-                antCount = (TextView) findViewById(R.id.AntCount);
-                unCount = (TextView) findViewById(R.id.UnemployedCount);
                 // add ant count by the modifier
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + (int) strength));
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + (int) strength));
+                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + strength));
+                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + strength));
             }
         });
 
@@ -155,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - costToGrow));
                 costToGrow *= 3;
-                toGrowCount = (TextView) findViewById(R.id.numberToGrow);
                 toGrowCount.setText(Integer.toString(costToGrow));
+                numberOfGrows++;
                 strength *= 2;
                 strengthText.setText(Integer.toString((int) strength));
             }
@@ -175,19 +180,19 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 liftSound.start();
-                // weaken strength due to tired ants unless strength == 1 because then int will round to 0
-                strength *= strength > 1 ? .95 : 1;
+                // weaken strength due to tired ants unless strength <= 1 because we want strength to always be greater than 0
+                strength += strength > 1 ? (int) (-.1 * strength) : 0;
 
                 /*
                 ~50% likelihood of gain or loss
-                good outcome is equivalent to  10 to 60 clicks on queen
-                bad outcome is equivalent to 0 to 10 clicks on queen
+                good outcome is equivalent to  10 to 50 clicks on queen
+                bad outcome is equivalent to 0 to 4 clicks on queen
                 */
                 // intertia designed to ensure ~50% lift rate success
-                liftIncreaseFactor = Math.random() <= .5 + liftInertia ? 11 + (int) (50 * Math.random()) : (int) (Math.random() * 10);
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + liftIncreaseFactor * (int) strength));
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + liftIncreaseFactor * (int) strength));
-                strengthText.setText(Integer.toString((int) strength));
+                liftIncreaseFactor = Math.random() + liftInertia <= .5 ? 11 + (int) (40 * Math.random()) : (int) (Math.random() * 5);
+                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + (liftIncreaseFactor * strength)));
+                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + (liftIncreaseFactor * strength)));
+                strengthText.setText(Integer.toString(strength));
                 liftMessage();
             }
         });
@@ -208,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 biteSound.start();
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.1)
-                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .01) ?
+                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .02) + ((antCount.getText().toString().length()) * .01) ?
                         // case victory: gain at most 75% of colony size
                         Double.parseDouble(antCount.getText().toString()) * 0.75 * Math.random() :
                         // case loss: lose at most 50% of colony size
@@ -218,14 +223,14 @@ public class MainActivity extends AppCompatActivity {
                 antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + biteEffect));
                 // prevents unemployed ants from becoming negative
                 if (Integer.parseInt(unCount.getText().toString()) < 0) {
-                    // weaken strength due to tired ants unless strength == 1 because then int will round to 0
-                    strength *= strength > 2 ? .80 : 1;
+                    // weaken strength due to tired ants unless strength <= 1 because we want strength to always be greater than 0
+                    strength += strength > 2 ? (int) (-.20 * strength) : 0;
                     unCount.setText(Integer.toString(0));
                 }
                 // prevents total ants from becoming negative
                 if (Integer.parseInt(antCount.getText().toString()) < 0) {
                     // weaken strength due to tired ants unless strength == 1 because then int will round to 0
-                    strength *= strength > 2 ? .90 : 1;
+                    strength += strength > 2 ? (int) (-.10 * strength) : 0;
                     antCount.setText(Integer.toString(0));
                 }
                 // lower to grow requirement
@@ -318,8 +323,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void liftMessage() {
         String text = liftIncreaseFactor >= 11 ?
-                "GAINED A MIGHTY " + liftIncreaseFactor + " ANTS! \n ALL HAIL THE QUEEN!!!" :
-                "ONLY GAINED A MEAGER " + liftIncreaseFactor + " ANTS! \n LIFT HARDER!!!";
+                "GAINED A MIGHTY " + liftIncreaseFactor * strength + " ANTS! \n ALL HAIL THE QUEEN!!!" :
+                "ONLY GAINED A MEAGER " + liftIncreaseFactor * strength + " ANTS! \n LIFT HARDER!!!";
         // if victory, increment by lift inertia by 1 else decrement by 1
         liftInertia += text.charAt(0) == 'G' ? .1 : -.1;
         // get pop up

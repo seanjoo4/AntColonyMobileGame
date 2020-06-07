@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -42,6 +43,16 @@ public class PopLift extends Activity {
         // set description to generated message
         TextView liftDescription = findViewById(R.id.liftDescription);
         liftDescription.setText(getHarvestDescription(isSuccessful));
+
+        // set background depending on victory status
+        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.container);
+        if (isSuccessful) {
+            // if victorious, then make the background green
+            bgElement.setBackgroundColor(getResources().getColor(R.color.liftVictory));
+        } else {
+            // if loss, then make the background red
+            bgElement.setBackgroundColor(getResources().getColor(R.color.liftLoss));
+        }
 
         // make the pop up full screen
         DisplayMetrics dm = new DisplayMetrics();

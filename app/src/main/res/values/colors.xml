@@ -3,6 +3,8 @@
     <color name="colorPrimary">#f2cc8f</color>
     <color name="colorPrimaryDark">#f2cc8f</color>
     <color name="colorAccent">#81b29a</color>
-    <color name="biteVictory">#3C633E</color>s
+    <color name="biteVictory">#3C633E</color>
     <color name="biteLoss">#733829</color>
+    <color name="liftVictory">#3D405B</color>
+    <color name="liftLoss">#633d3d</color>
 </resources>
