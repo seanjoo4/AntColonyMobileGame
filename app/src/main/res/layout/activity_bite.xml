@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2A3573"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/biteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bite_for_queen"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/biteMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:fontFamily="@font/abeezee"
+        android:gravity="center"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/biteDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:fontFamily="@font/abeezee"
+        android:gravity="center"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/okayBite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/okay_bite" />
+
+</LinearLayout>

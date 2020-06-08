@@ -37,7 +37,7 @@ public class PopBite extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.popbitewindow);
+        setContentView(R.layout.activity_bite);
 
         Intent intent = getIntent();
         String text = intent.getStringExtra(MainActivity.EXTRA_TEXT);
@@ -52,7 +52,7 @@ public class PopBite extends Activity {
         description.setText(getBattleDescription(isVictorious));
 
         // set background depending on victory status
-        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.container);
+        LinearLayout bgElement = (LinearLayout) findViewById(R.id.container);
         if (isVictorious) {
             // if victorious, then make the background green
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteVictory));
@@ -79,7 +79,6 @@ public class PopBite extends Activity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 finish();

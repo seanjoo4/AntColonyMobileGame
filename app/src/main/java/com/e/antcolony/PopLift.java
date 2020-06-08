@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ public class PopLift extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.popliftwindow);
+        setContentView(R.layout.activity_lift);
 
         Intent intent = getIntent();
         String text = intent.getStringExtra(MainActivity.EXTRA_TEXT);
@@ -48,7 +49,7 @@ public class PopLift extends Activity {
         liftDescription.setText(getHarvestDescription(isSuccessful));
 
         // set background depending on victory status
-        RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.container);
+        LinearLayout bgElement = (LinearLayout) findViewById(R.id.container);
         if (isSuccessful) {
             // if victorious, then make the background green
             bgElement.setBackgroundColor(getResources().getColor(R.color.liftVictory));
