@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,31 +53,25 @@ public class MainActivity extends AppCompatActivity {
     private int strength = 1;
     // cost to grow in terms of idle ants
     private int costToGrow = 10;
-
     private int numberOfGrows = 0; // put this into the stat screen
     private int biteEffect = 0;
     // start with one territory claimed to include home colony (cannot go below 1)
+    // for statistics purposes
     private int territoriesClaimed = 1;
     private int territoriesLost = 0;
     private int successfulLift = 0;
     private int unsuccessfulLift = 0;
     private int growPressed = 0;
-
-
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
     private int liftIncreaseFactor = 0;
-
     // string constant for intent functions: package_name.OUR_TEXT
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
-
     // ads
     AdView adView;
-
     // for switching through android activity cycles (probably should delete)
     int antCountSave = 0;
     int unAntCountSave = 0;
-
     // audio attributes
     HomeWatcher mHomeWatcher;
     private boolean mIsBound = false;
@@ -417,7 +412,6 @@ public class MainActivity extends AppCompatActivity {
         if (text.charAt(0) == 'V') {
             territoriesClaimed++;
         } else {
-            //territoriesClaimed--;
             territoriesLost++;
             // prevents territories claimed from becoming 0 or negative
             if (territoriesClaimed <= 0) {
