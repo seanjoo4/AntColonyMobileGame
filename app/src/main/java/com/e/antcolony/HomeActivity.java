@@ -12,7 +12,7 @@ import android.view.WindowManager;
 /**
  * HomeActivity: this class is when the user first opens up the app. It displays the name of the game and our company.
  *
- * @author Sean Joo
+ * @author Aidan Andrucyk and Sean Joo
  * @version June 5, 2020
  */
 public class HomeActivity extends AppCompatActivity {

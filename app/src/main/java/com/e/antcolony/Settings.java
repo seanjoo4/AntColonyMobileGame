@@ -18,8 +18,8 @@ import android.widget.Toast;
 /**
  * Settings: this class is where all the settings are implemented for the app. This class is a child of MainActivity.
  *
- * @author Sean Joo
- * @version June 5, 2020
+ * @author Aidan Andrucyk and Sean Joo
+ * @version June 8, 2020
  */
 public class Settings extends AppCompatActivity {
 
