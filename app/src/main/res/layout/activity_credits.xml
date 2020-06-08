@@ -17,7 +17,7 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="CREDITS"
+        android:text="@string/credits"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -30,9 +30,10 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Software Developers: Aidan Andrucyk and Sean Joo"
-        android:textSize="15sp"
-        android:textColor="#000000" />
+        android:gravity="center"
+        android:text="@string/software_developers_aidan_andrucyk_and_sean_joo"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/musicText"
@@ -42,9 +43,10 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Music: Bensound"
-        android:textSize="15sp"
-        android:textColor="#000000" />
+        android:gravity="center"
+        android:text="@string/music_bensound"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/inspirationText"
@@ -54,9 +56,10 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Inspiration: A group where we all pretend to be ants in an ant colony"
-        android:textSize="13sp"
-        android:textColor="#000000" />
+        android:gravity="center"
+        android:text="@string/inspiration_credits"
+        android:textColor="#000000"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/contactUsText"
@@ -66,15 +69,16 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Contact Us: "
-        android:textColor="#000000" />
+        android:text="@string/contact_us"
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/creditsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:soundEffectsEnabled="false"
-        android:text="Okay" />
+        android:text="@string/okay" />
 
 
 </LinearLayout>

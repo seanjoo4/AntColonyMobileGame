@@ -3,8 +3,11 @@ package com.e.antcolony;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
 
 /**
  * HomeActivity: this class is when the user first opens up the app. It displays the name of the game and our company.
@@ -24,6 +27,18 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // change window colors
+        // first checks if correct version
+        if (android.os.Build.VERSION.SDK_INT >= 21 && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // change system nav bar color
+            window.setNavigationBarColor(this.getResources().getColor(R.color.homeColor));
+            // change status bar color
+            window.setStatusBarColor(this.getResources().getColor(R.color.homeColor));
+        }
 
         new Handler().postDelayed(new Runnable() {
 

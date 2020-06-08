@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Ant Colony Clicker</string>
     <string name="totalAnts">Total Ants:</string>
     <string name="queenButton">todo</string>
@@ -13,7 +13,7 @@
     <string name="StrengthText">Current Strength:</string>
     <string name="Strength">1</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="settings">Settings</string>
+    <string name="settings">SETTINGS</string>
     <string name="lift_for_the_queen">LIFT FOR THE QUEEN</string>
     <string name="press_back_to_return">Press Back to return</string>
     <string name="todo">TODO</string>
@@ -29,7 +29,35 @@
     <string name="privacy_statement">Users’ privacy and trust are important to us at Pluto’s Playground. We aim to provide a trustworthy mobile application without in-app purchases or user accounts to ensure user security and privateness. \n \n Google Analytics is used to anonymously collect and analyze data to enhance the user experience. User data includes major characteristics such as regional location, what in-app actions are taken, and ad interaction rates. Data will not be sold or transferred to any other party without the knowledge and permission of the user. Pluto’s playground shall adhere to users’ right to be informed and forgotten.
     </string>
     <string name="privacy">Privacy</string>
+    <string name="privacy_Caps">PRIVACY</string>
     <string name="okay">Okay</string>
     <string name="termsDescription">All contents, logo, and other visual media are the sole property of Pluto’s Playground. Pluto Playground is not responsible for third party redirects, particularly those of Google Ads. \n \n Source code for this application is available at https://github.com/aidanandrucyk/AntColonyMobileApp. While non-commercial use of the source or object code is permitted, commercial use of any description is strictly prohibited without the explicit consent of Pluto’s Playground. Users who fail to follow established guidelines will be barred from further usage in cases of abuse at Pluto’s Playgrounds sole discretion.</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="credits">CREDITS</string>
+    <string name="software_developers_aidan_andrucyk_and_sean_joo">Software Developers: \n Aidan Andrucyk and Sean Joo</string>
+    <string name="contact_us">Contact Us:</string>
+    <string name="music_bensound">Music: \n Bensound</string>
+    <string name="inspiration_credits">Inspiration: \n A group where we all pretend to be ants in an ant colony</string>
+    <string name="number_of_grows">Number of GROWs:</string>
+    <string name="unsuccessful_lifts">Unsuccessful LIFTs:</string>
+    <string name="total_ants">Total Ants:</string>
+    <string name="colony_glory_score">Colony Glory Score:</string>
+    <string name="sean_pls_make_this_colony_name_in_all_caps_lol">Sean pls make this colony name in all caps lol</string>
+    <string name="tier">Tier:</string>
+    <string name="tier_upgrade_requirements">TIER UPGRADE REQUIREMENTS</string>
+    <string name="territories_needed">Territories Needed:</string>
+    <string name="upgrade_colony">UPGRADE COLONY</string>
+    <string name="colony_stats">COLONY STATS</string>
+    <string name="idle_ants">Idle Ants:</string>
+    <string name="colony_strength">Colony Strength:</string>
+    <string name="territories_owned">Territories Owned:</string>
+    <string name="bite_defeats">BITE Defeats:</string>
+    <string name="successful_lifts">Successful LIFTs:</string>
+    <string name="music">Music</string>
+    <string name="sound_effects">Sound Effects</string>
+    <string name="how_to_play">How To Play</string>
+    <string name="creditsInSettings">Credits</string>
+    <string name="rate_us">Rate Us!</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="back">back</string>
 </resources>

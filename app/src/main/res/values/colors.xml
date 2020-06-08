@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="homeColor">#1E4541</color>
     <color name="colorPrimary">#f2cc8f</color>
     <color name="colorPrimaryDark">#f2cc8f</color>
+    <color name="colorLight">#f4f1de</color>
+    <color name="colorDark">#3D405B</color>
+    <color name="colorOffBlack">#090c2b</color>
     <color name="colorAccent">#81b29a</color>
     <color name="biteVictory">#3C633E</color>
     <color name="biteLoss">#733829</color>
-    <color name="liftVictory">#3D405B</color>
+    <color name="liftVictory">#3d5b4f</color>
     <color name="liftLoss">#633d3d</color>
 </resources>

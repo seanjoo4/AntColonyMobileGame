@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -96,13 +97,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("lifecycle", "onCreate invoked");
 
-        // change window color from black to nice peachy color
+        // change window colors
         // first checks if correct version
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
+        if (android.os.Build.VERSION.SDK_INT >= 21 && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // colorPrimary == peachy color
+            // change system nav bar color
+            window.setNavigationBarColor(this.getResources().getColor(R.color.colorOffBlack));
+            // change status bar color
             window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
         }
 
@@ -145,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
              * @param v used when a view is clicked.
              */
             public void onClick(View v) {
-
                 workSound.start();
                 // add ant count by the modifier
                 antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + strength));
@@ -244,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 biteSound.start();
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.1)
-                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .02) + ((antCount.getText().toString().length()) * .01) ?
+                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .01) ?
                         // case victory: gain at most 75% of colony size
                         Double.parseDouble(antCount.getText().toString()) * 0.75 * Math.random() :
                         // case loss: lose at most 50% of colony size
@@ -252,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
                 unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + biteEffect));
                 antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + biteEffect));
+                // only lowers strength when unemployed ants < 0
                 // prevents unemployed ants from becoming negative
                 if (Integer.parseInt(unCount.getText().toString()) < 0) {
                     // weaken strength due to tired ants unless strength <= 1 because we want strength to always be greater than 0

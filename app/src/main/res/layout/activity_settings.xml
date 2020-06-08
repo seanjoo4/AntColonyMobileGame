@@ -4,18 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorLight"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".Settings">
+
+    <TextView
+        android:id="@+id/settingsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/abeezee"
+        android:gravity="center"
+        android:text="@string/settings"
+        android:textColor="@color/liftLoss"
+        android:textSize="45sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="250sp"
+        android:layout_height="2dp"
+        android:background="@color/liftLoss" />
 
     <Switch
         android:id="@+id/musicSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="Music"
-        android:textColor="#000000"
+        android:text="@string/music"
+        android:textColor="@color/liftLoss"
         android:textSize="25sp" />
 
     <Switch
@@ -23,50 +41,68 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="Sound Effects"
-        android:textColor="#000000"
+        android:text="@string/sound_effects"
+        android:textColor="@color/liftLoss"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/howToPlayButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="How To Play" />
+        android:text="@string/how_to_play" />
 
     <Button
         android:id="@+id/creditsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="Credits" />
+        android:text="@string/creditsInSettings" />
 
     <Button
         android:id="@+id/rateUsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="Rate Us!" />
+        android:text="@string/rate_us" />
 
     <Button
         android:id="@+id/privacyButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="Privacy" />
+        android:text="@string/privacy_Caps" />
 
     <Button
         android:id="@+id/termsOfUseButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="Terms of Use" />
+        android:text="@string/terms_of_use" />
 
     <Button
         android:id="@+id/okaySetting"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="back" />
+        android:text="@string/back" />
 
 </LinearLayout>
