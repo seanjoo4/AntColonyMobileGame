@@ -29,6 +29,7 @@ public class Settings extends AppCompatActivity {
     Button credits;
     Button rateUs;
     Button share;
+    Button visit;
     Button privacy;
     Button termsOfUse;
     Button okay;
@@ -187,6 +188,25 @@ public class Settings extends AppCompatActivity {
                 myIntent.putExtra(Intent.EXTRA_SUBJECT,sub);
                 myIntent.putExtra(Intent.EXTRA_TEXT,body);
                 startActivity(Intent.createChooser(myIntent, "Share Using"));
+            }
+        });
+
+        // Visit Us Button
+        visit = findViewById(R.id.visitButton);
+        visit.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://seanjoo4.github.io/PlutosPlayground/"));
+                startActivity(intent);
             }
         });
 

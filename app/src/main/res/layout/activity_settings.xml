@@ -83,7 +83,17 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/share" />
+        android:text="Share" />
+
+    <Button
+        android:id="@+id/visitButton"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
+        android:soundEffectsEnabled="false"
+        android:text="Visit Us!" />
 
     <Button
         android:id="@+id/privacyButton"

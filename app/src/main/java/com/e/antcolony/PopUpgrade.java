@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * PopUgrade: this class is employed to show the user statistics and colony upgrade requirements upon pressing the arrow button from the parent activity.
+ * PopUpgrade: this class is employed to show the user statistics and colony upgrade requirements upon pressing the arrow button from the parent activity.
  *
  * @author Aidan Andrucyk and Sean Joo
  * @version June 8, 2020
