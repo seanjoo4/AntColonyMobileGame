@@ -28,6 +28,7 @@ public class Settings extends AppCompatActivity {
     Button howToPlayButton;
     Button credits;
     Button rateUs;
+    Button share;
     Button privacy;
     Button termsOfUse;
     Button okay;
@@ -165,6 +166,27 @@ public class Settings extends AppCompatActivity {
                     startActivity(new Intent(Intent.ACTION_VIEW,
                             Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
                 }
+            }
+        });
+
+        // Share Button
+        share = findViewById(R.id.shareButton);
+        share.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String body = "Your body here";
+                String sub = "Your Subject";
+                myIntent.putExtra(Intent.EXTRA_SUBJECT,sub);
+                myIntent.putExtra(Intent.EXTRA_TEXT,body);
+                startActivity(Intent.createChooser(myIntent, "Share Using"));
             }
         });
 

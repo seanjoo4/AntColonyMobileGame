@@ -288,7 +288,7 @@
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/colony_name"
+        android:hint="Unnamed Colony"
         android:imeActionLabel="Done"
         android:imeOptions="actionDone"
         android:inputType="textShortMessage"

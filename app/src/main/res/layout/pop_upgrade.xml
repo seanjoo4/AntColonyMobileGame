@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/abeezee"
         android:gravity="center"
-        android:text="Enter Your Colony Name!"
+        android:text="Unnamed Colony"
         android:textAllCaps="true"
         android:textColor="@color/colorDark"
         android:textSize="22sp"

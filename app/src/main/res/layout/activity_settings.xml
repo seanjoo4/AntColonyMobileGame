@@ -76,6 +76,16 @@
         android:text="@string/rate_us" />
 
     <Button
+        android:id="@+id/shareButton"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
+        android:soundEffectsEnabled="false"
+        android:text="@string/share" />
+
+    <Button
         android:id="@+id/privacyButton"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
