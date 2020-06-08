@@ -8,7 +8,7 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 /**
- * description
+ * This class allows for music to be played in the background for active points of the main activity's lifecycle.
  *
  * @author Aidan Andrucyk
  * @version June 5, 2020
@@ -20,13 +20,13 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     private int length = 0;
 
     /**
-     *
+     * This class represents the music service.
      */
     public MusicService() {
     }
 
     /**
-     *
+     * This function allows the main activity to bind to the service.
      */
     public class ServiceBinder extends Binder {
         MusicService getService() {
@@ -35,9 +35,8 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
-     * @param arg0
-     * @return
+     * @param arg0 represents
+     * @return music binder
      */
     @Override
     public IBinder onBind(Intent arg0) {
@@ -45,7 +44,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     *  Establishes music media player its attributes
      */
     @Override
     public void onCreate() {
@@ -83,8 +82,8 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     // make responsive for the app lifecycles
 
     /**
-     *
-     * @param intent
+     * This function starts the starting of music services.
+     * @param intent represents carried data.
      * @param flags
      * @param startId
      * @return
@@ -98,7 +97,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     * This function stops music from playing.
      */
     public void pauseMusic() {
         if (mPlayer != null) {
@@ -110,7 +109,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     * This function resumes music after it has been paused.
      */
     public void resumeMusic() {
         if (mPlayer != null) {
@@ -122,7 +121,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     * This function initiates music to play.
      */
     public void startMusic() {
         mPlayer = MediaPlayer.create(this, R.raw.music);
@@ -130,6 +129,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
 
         if (mPlayer != null) {
             mPlayer.setLooping(true);
+            // reduce volume
             mPlayer.setVolume(.1f, .1f);
             mPlayer.start();
         }
@@ -137,7 +137,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     * This function stops music from playing.
      */
     public void stopMusic() {
         if (mPlayer != null) {
@@ -148,7 +148,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     * This function stops music from playing when the application is destroyed.
      */
     @Override
     public void onDestroy() {
@@ -164,7 +164,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *
+     * This function stops music from playing when error occurs and notifies end user.
      * @param mp
      * @param what
      * @param extra
@@ -172,7 +172,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
      */
     public boolean onError(MediaPlayer mp, int what, int extra) {
 
-        Toast.makeText(this, "Music player failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "music player has encountered an error", Toast.LENGTH_SHORT).show();
         if (mPlayer != null) {
             try {
                 mPlayer.stop();

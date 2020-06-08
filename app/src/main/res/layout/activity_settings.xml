@@ -53,7 +53,8 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/how_to_play" />
+        android:text="@string/how_to_play"
+        android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/creditsButton"
@@ -63,17 +64,8 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/creditsInSettings" />
-
-    <Button
-        android:id="@+id/rateUsButton"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_margin="4sp"
-        android:background="@color/liftLoss"
-        android:hapticFeedbackEnabled="true"
-        android:soundEffectsEnabled="false"
-        android:text="@string/rate_us" />
+        android:text="@string/creditsInSettings"
+        android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/shareButton"
@@ -83,7 +75,8 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="Share" />
+        android:text="@string/share"
+        android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/visitButton"
@@ -93,7 +86,19 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="Visit Us!" />
+        android:text="@string/visit_us"
+        android:textColor="@color/colorLight" />
+
+    <Button
+        android:id="@+id/rateUsButton"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
+        android:soundEffectsEnabled="false"
+        android:text="@string/rate_us"
+        android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/privacyButton"
@@ -103,7 +108,8 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/privacy_Caps" />
+        android:text="@string/privacy_Caps"
+        android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/termsOfUseButton"
@@ -113,7 +119,8 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/terms_of_use" />
+        android:text="@string/terms_of_use"
+        android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/okaySetting"
@@ -123,6 +130,7 @@
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/back" />
+        android:text="@string/back"
+        android:textColor="@color/colorLight" />
 
 </LinearLayout>

@@ -10,8 +10,8 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="325dp"
+        android:id="@+id/appTitle"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="94dp"
         android:layout_marginEnd="94dp"
@@ -23,7 +23,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/studioPresented"
         android:layout_width="316dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="103dp"

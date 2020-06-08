@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Ant Colony Clicker</string>
+    <string name="app_name">Ant Colony Simulator</string>
     <string name="totalAnts">Total Ants:</string>
     <string name="queenButton">todo</string>
     <string name="AntCount">0</string>
@@ -65,4 +65,5 @@
     <string name="bite_for_queen">BITE FOR QUEEN</string>
     <string name="okay_bite">okay</string>
     <string name="share">Share!</string>
+    <string name="visit_us">Visit Us!</string>
 </resources>

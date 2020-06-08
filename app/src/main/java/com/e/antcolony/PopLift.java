@@ -85,7 +85,8 @@ public class PopLift extends Activity {
     }
 
     /**
-     * This function gives the app an output on the lift button. This is determined by Math.random().
+     * This function randomly returns a description for the respective win/loss lift state.
+     *
      * @param isSuccessful a boolean that tells the function whether the lift was successful or not.
      * @return the description of the adventure.
      */

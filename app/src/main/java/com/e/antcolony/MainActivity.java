@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         growSound = MediaPlayer.create(this, R.raw.grow);
         // grow button
         growButton = (Button) findViewById(R.id.growButton);
@@ -325,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
         mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
 
             /**
-             *
+             * This function will pause the music when the system nav bar home button is pressed
              */
             @Override
             public void onHomePressed() {
@@ -335,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             /**
-             *
+             * This function will pause the music when the system nav bar home button is "long" pressed
              */
             @Override
             public void onHomeLongPressed() {
@@ -350,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
 
             /**
-             *
+             * @param initializationStatus represents
              */
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -430,9 +429,9 @@ public class MainActivity extends AppCompatActivity {
     private ServiceConnection Scon = new ServiceConnection() {
 
         /**
-         *
-         * @param name
-         * @param binder
+         * This function is called upon the creation of the app to connect the music service.
+         * @param name represents the file component
+         * @param binder tells the app what it is responsible for incrementing and maintaining
          */
         public void onServiceConnected(ComponentName name, IBinder
                 binder) {
@@ -440,7 +439,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /**
-         *
+         * This function disconnects music service.
          * @param name
          */
         public void onServiceDisconnected(ComponentName name) {
@@ -449,7 +448,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     /**
-     *
+     * This function attempts to establish a connection with the music service without supporting component replacement by other
+     * applications.
      */
     void doBindService() {
         bindService(new Intent(this, MusicService.class),
@@ -458,7 +458,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * This function releases information regarding the music service's state.
      */
     void doUnbindService() {
         if (mIsBound) {

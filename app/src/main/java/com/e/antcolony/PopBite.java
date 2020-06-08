@@ -87,7 +87,8 @@ public class PopBite extends Activity {
     }
 
     /**
-     * This function gives the app an output on the bite button. This is determined by Math.random().
+     * This function randomly returns a description for the respective win/loss bite state.
+     *
      * @param isVictorious a boolean that tells the function whether the battle was won or not.
      * @return the description of the battle.
      */
