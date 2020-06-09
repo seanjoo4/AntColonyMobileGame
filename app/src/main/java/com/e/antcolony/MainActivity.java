@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public static MediaPlayer growSound;
     public static MediaPlayer liftSound;
     public static MediaPlayer biteSound;
+    public static MediaPlayer nouSound;
 
     /**
      * Initializes the activity.
@@ -109,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
         antCount = findViewById(R.id.AntCount);
         unCount = findViewById(R.id.UnemployedCount);
         toGrowCount = findViewById(R.id.numberToGrow);
+
+        // no sounds
+        nouSound = MediaPlayer.create(this, R.raw.nou);
 
         // deselect colony name after finished editing
         EditText colonyName = (EditText) findViewById(R.id.ColonyName);
@@ -164,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
                 if (costToGrow > Integer.parseInt(unCount.getText().toString())) {
+                    // play "can't do" sound
+                    nouSound.start();
                     // toast telling user that they do not have enough idle ants
                     Toast.makeText(
                             MainActivity.this, "too few ants", Toast.LENGTH_SHORT
@@ -195,6 +201,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (strength < 2) {
+                    // play "can't do" sound
+                    nouSound.start();
                     Toast.makeText(
                             MainActivity.this, "colony is too weak", Toast.LENGTH_SHORT
                     ).show();
@@ -233,6 +241,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // no number of ants required, just number of total ants affects likelihood of success
                 if (strength < 2) {
+                    // play "can't do" sound
+                    nouSound.start();
                     Toast.makeText(
                             MainActivity.this, "colony is too weak", Toast.LENGTH_SHORT
                     ).show();
