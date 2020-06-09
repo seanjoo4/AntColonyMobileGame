@@ -21,11 +21,12 @@ import android.widget.Toast;
  */
 public class PopUpgrade extends AppCompatActivity {
     // top colony attributes
-    String currentTier = "Tribal Village";
+    //String currentTier = "Tribal Village";
     int gloryScore = 0;
     // number of territories and grows required to upgrade tier
-    int territoriesToUpgrade = 2;
-    int growsToUpgrade = 6;
+    int territoriesToUpgrade = 1;
+    int growsToUpgrade = 2;
+    int tempAnt = 0;
 
     // button music when upgrade tier is pressed
     public static MediaPlayer forTheQueenSound;
@@ -64,6 +65,7 @@ public class PopUpgrade extends AppCompatActivity {
         final int successfulLift = intent.getIntExtra("successfulLift", 0);
         final int unsuccessfulLift = intent.getIntExtra("unsuccessfulLift", 0);
         final int growPressed = intent.getIntExtra("growPressed", 0);
+        final int antTitle = intent.getIntExtra("antTitle", 0);
 
         // update glory score
         gloryScore = victoryCount * 30 + successfulLift + growPressed * 5;
@@ -74,7 +76,7 @@ public class PopUpgrade extends AppCompatActivity {
 
         // setting text for top colony aspects
         textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + gloryScore);
-        textCurrentTier.setText(getResources().getText(R.string.tier) + " " + currentTier);
+        textCurrentTier.setText(getResources().getText(R.string.tier) + " " + antTitle);
 
         // upgrade requirements
         final TextView textTerritoryRequirement = findViewById(R.id.territoryRequirementText);
@@ -132,13 +134,25 @@ public class PopUpgrade extends AppCompatActivity {
                 gloryScore *= 2;
                 textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + gloryScore);
                 // upgrade the tier status
-                currentTier = upgradeTierName(currentTier);
-                textCurrentTier.setText(getResources().getText(R.string.tier) + " " + currentTier);
+                //currentTier = upgradeTierName(currentTier);
+                tempAnt = antTitle + 1;
+                MainActivity.storeTitle = tempAnt;
+
+                // REALLY  importanT antTitle = upgradeTierName(antTitle);
+                textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.storeTitle);
                 // augment the requirements for next colony upgrade
                 territoriesToUpgrade *= 3;
                 growsToUpgrade *= 2;
+
                 textTerritoryRequirement.setText(getResources().getText(R.string.territories_needed) + " " + territoriesToUpgrade);
                 textNumberOfGrowsRequirement.setText(getResources().getText(R.string.number_of_grows) + " " + growsToUpgrade);
+
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("result", tempAnt);
+                // resultIntent.putExtra("result", territoriesToUpgrade);
+                // resultIntent.putExtra("result", growPressed);
+
+                setResult(RESULT_OK, resultIntent);
             }
         });
 

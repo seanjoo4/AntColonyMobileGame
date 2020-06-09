@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
     private int liftIncreaseFactor = 0;
+    private int title = 0;
+    public static int storeTitle = 4;
     // string constant for intent functions: package_name.OUR_TEXT
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
     // ads
@@ -304,6 +306,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("successfulLift", successfulLift);
                 intent.putExtra("unsuccessfulLift", unsuccessfulLift);
                 intent.putExtra("growPressed", growPressed);
+                intent.putExtra("antTitle", storeTitle);
 
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
@@ -387,8 +390,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == 1) {
             if (requestCode == RESULT_OK) {
-                int result = data.getIntExtra("result", 0);
-                unCount.setText("" + result);
+                storeTitle = data.getIntExtra("result", 1230);
+                storeTitle = 12323423;
             }
         }
     }
