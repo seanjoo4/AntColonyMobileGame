@@ -19,7 +19,6 @@ import android.widget.Toast;
  * @author Aidan Andrucyk and Sean Joo
  * @version June 8, 2020
  */
-
 public class PopUpgrade extends AppCompatActivity {
     // top colony attributes
     String currentTier = "Tribal Village";
@@ -27,7 +26,6 @@ public class PopUpgrade extends AppCompatActivity {
     // number of territories and grows required to upgrade tier
     int territoriesToUpgrade = 2;
     int growsToUpgrade = 6;
-
 
     // button music when upgrade tier is pressed
     public MediaPlayer forTheQueenSound;
@@ -58,7 +56,9 @@ public class PopUpgrade extends AppCompatActivity {
         Intent intent = getIntent();
 
         // SEAN can you add a bunch of things i don't know how to do this part
+        final int totalAntsCount = intent.getIntExtra("totalAnts", 0);
         final int unemployedCount = intent.getIntExtra("unemployed", 0);
+        final int strengthCount = intent.getIntExtra("strengthCount", 0);
         final int victoryCount = intent.getIntExtra("victoryCount", 0);
         final int lossCount = intent.getIntExtra("lossCount", 0);
         final int successfulLift = intent.getIntExtra("successfulLift", 0);
@@ -95,9 +95,9 @@ public class PopUpgrade extends AppCompatActivity {
         TextView textViewGrowPressed = findViewById(R.id.growPressed);
 
         // setting text for colony stats
-        textViewTotalAnts.setText(getResources().getText(R.string.total_ants) + " " + 0); // add actual var
+        textViewTotalAnts.setText(getResources().getText(R.string.total_ants) + " " + totalAntsCount); // add actual var
         textViewIdleAnts.setText(getResources().getText(R.string.idle_ants) + " " + unemployedCount);
-        textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + 0); // add actual var
+        textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + strengthCount); // add actual var
         textViewVictory.setText(getResources().getText(R.string.territories_owned) + " " + victoryCount);
         textViewLoss.setText(getResources().getText(R.string.bite_defeats) + " " + lossCount);
         textViewSuccessful.setText(getResources().getText(R.string.successful_lifts) + " " + successfulLift);
@@ -126,7 +126,7 @@ public class PopUpgrade extends AppCompatActivity {
                 forTheQueenSound.start();
                 // ADD LATER do something when upgrading tier (ex: dynamic background in MainActivity)
                 // change colony strength
-                textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + 0); // add actual var
+                textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + strengthCount); // add actual var
                 // update/double glory score
                 gloryScore *= 2;
                 textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + gloryScore);

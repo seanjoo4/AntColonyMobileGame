@@ -294,7 +294,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, PopUpgrade.class);
                 //intent.putExtra() values we are going to pass back and forth
                 int unemployedCount = Integer.parseInt(unCount.getText().toString());
+                int employedCount = Integer.parseInt(antCount.getText().toString());
+                intent.putExtra("totalAnts", employedCount);
                 intent.putExtra("unemployed", unemployedCount);
+                intent.putExtra("strengthCount", strength);
                 intent.putExtra("costToGrow", costToGrow);
                 intent.putExtra("victoryCount", territoriesClaimed);
                 intent.putExtra("lossCount", territoriesLost);
