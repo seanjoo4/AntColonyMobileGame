@@ -64,9 +64,8 @@ public class Settings extends AppCompatActivity {
              * This function checks if the switch is checked or not.
              *
              * @param buttonView checks if the state has changed.
-             * @param isChecked if it is checked, it returns true, if not, false.
+             * @parm isChecked if it is checked, it returns true, if not, false.
              */
-
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -100,7 +99,8 @@ public class Settings extends AppCompatActivity {
                     MainActivity.growSound.setVolume(1f, 1f);
                     MainActivity.liftSound.setVolume(1f, 1f);
                     MainActivity.biteSound.setVolume(1f, 1f);
-
+                    MainActivity.nouSound.setVolume(1f, 1f);
+                    PopUpgrade.forTheQueenSound.setVolume(1f, 1f);
                     soundEffectSwitch.setChecked(true);
                 } else {
                     Toast.makeText(getBaseContext(), "Sound Effect Off", Toast.LENGTH_SHORT).show();
@@ -108,6 +108,8 @@ public class Settings extends AppCompatActivity {
                     MainActivity.growSound.setVolume(0f, 0f);
                     MainActivity.liftSound.setVolume(0f, 0f);
                     MainActivity.biteSound.setVolume(0f, 0f);
+                    MainActivity.nouSound.setVolume(0f, 0f);
+                    PopUpgrade.forTheQueenSound.setVolume(0f, 0f);
                     soundEffectSwitch.setChecked(false);
                 }
             }

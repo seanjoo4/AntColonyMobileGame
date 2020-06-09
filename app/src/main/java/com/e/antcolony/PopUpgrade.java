@@ -28,7 +28,7 @@ public class PopUpgrade extends AppCompatActivity {
     int growsToUpgrade = 6;
 
     // button music when upgrade tier is pressed
-    public MediaPlayer forTheQueenSound;
+    public static MediaPlayer forTheQueenSound;
 
     /**
      * Initializes the activity.
@@ -118,6 +118,7 @@ public class PopUpgrade extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (victoryCount < territoriesToUpgrade || growPressed < growsToUpgrade) {
+                    MainActivity.nouSound.start();
                     Toast.makeText(
                             PopUpgrade.this, "must have " + territoriesToUpgrade + " territories and " + growsToUpgrade + " G R O W S", Toast.LENGTH_SHORT
                     ).show();
