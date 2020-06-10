@@ -1,6 +1,7 @@
 package com.e.antcolony;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
@@ -21,6 +22,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,9 +38,10 @@ import android.util.Log;
  * MainActivity: the main class that runs the main interface of the app.
  *
  * @author Aidan Andrucyk and Sean Joo
- * @version June 5, 2020
+ * @version June 9, 2020
  */
 public class MainActivity extends AppCompatActivity {
+    // MAIN ACTIVITY XML ELEMENTS
     TextView strengthText;
     TextView antCount;
     TextView unCount;
@@ -49,36 +52,46 @@ public class MainActivity extends AppCompatActivity {
     Button liftButton;
     Button biteButton;
     Button upgradeButton;
-    // previously "multiplier:
+    // OVERARCHING STATS
+    private int idleAntNumber = 0;
+    private int antNumber = 0;
+    // number of ants gained per click on queen
     private int strength = 1;
+    // GROW BUTTON
     // cost to grow in terms of idle ants
     private int costToGrow = 10;
-    private int numberOfGrows = 0; // put this into the stat screen
+    private int growPressed = 0;
+    // BITE BUTTON
     private int biteEffect = 0;
     // start with one territory claimed to include home colony (cannot go below 1)
     // for statistics purposes
     private int territoriesClaimed = 1;
     private int territoriesLost = 0;
-    private int successfulLift = 0;
-    private int unsuccessfulLift = 0;
-    private int growPressed = 0;
+    // LIFT BUTTON
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
+    private int successfulLift = 0;
+    private int unsuccessfulLift = 0;
     private int liftIncreaseFactor = 0;
-    public static int storeTitle = 0;
+    // VARIABLES AFFECTED BY PopUpgrade.java
+    public static ConstraintLayout mainBackground;
+    public static String tier = "Tribal Village";
     public static int gloryScore = 0;
-    public static int totalTerritories = 1;
-    public static int allGrows = 2;
+
+    public static int territoriesRequired = 1;
+    public static int growsRequired = 2;
     // string constant for intent functions: package_name.OUR_TEXT
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
-    // ads
+    // ADS
     AdView adView;
+    // SAVE STATE
     // for switching through android activity cycles (probably should delete)
     int antCountSave = 0;
     int unAntCountSave = 0;
-    // audio attributes
+    // AUDIO
     HomeWatcher mHomeWatcher;
     private boolean mIsBound = false;
+    // background audio
     private MusicService mServ;
     public static MediaPlayer workSound;
     public static MediaPlayer growSound;
@@ -114,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
         antCount = findViewById(R.id.AntCount);
         unCount = findViewById(R.id.UnemployedCount);
         toGrowCount = findViewById(R.id.numberToGrow);
+
+        // establish main background
+        mainBackground = (ConstraintLayout) findViewById(R.id.mainBackground);
 
         // no sounds
         nouSound = MediaPlayer.create(this, R.raw.nou);
@@ -153,8 +169,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 workSound.start();
                 // add ant count by the modifier
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + strength));
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + strength));
+                idleAntNumber += strength;
+                unCount.setText(idleAntNumber + "");
+                antNumber += strength;
+                antCount.setText(antNumber + "");
             }
         });
 
@@ -171,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 unCount = (TextView) findViewById(R.id.UnemployedCount);
-                if (costToGrow > Integer.parseInt(unCount.getText().toString())) {
+                if (costToGrow > idleAntNumber) {
                     // play "can't do" sound
                     nouSound.start();
                     // toast telling user that they do not have enough idle ants
@@ -180,15 +198,22 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
+                // play grow sound effect
                 growSound.start();
+                // increment the number of times grow pressed
                 growPressed++;
 
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) - costToGrow));
-                costToGrow *= 3;
-                toGrowCount.setText(Integer.toString(costToGrow));
-                numberOfGrows++;
+                // decrease idle ants
+                idleAntNumber -= costToGrow;
+                unCount.setText(idleAntNumber + "");
+
+                // increase colony strength
                 strength *= 2;
-                strengthText.setText(Integer.toString((int) strength));
+                strengthText.setText(strength + "");
+
+                // increase the cost of idle ants for next grow
+                costToGrow *= 3;
+                toGrowCount.setText(costToGrow + "");
             }
         });
 
@@ -212,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
+                // play lift sound effect
                 liftSound.start();
                 // weaken strength due to tired ants unless strength <= 1 because we want strength to always be greater than 0
                 strength += strength > 1 ? (int) (-.1 * strength) : 0;
@@ -223,9 +249,11 @@ public class MainActivity extends AppCompatActivity {
                 */
                 // intertia designed to ensure ~50% lift rate success
                 liftIncreaseFactor = Math.random() + liftInertia <= .5 ? 11 + (int) (40 * Math.random()) : (int) (Math.random() * 5);
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + (liftIncreaseFactor * strength)));
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + (liftIncreaseFactor * strength)));
-                strengthText.setText(Integer.toString(strength));
+                idleAntNumber += liftIncreaseFactor * strength;
+                unCount.setText(idleAntNumber + "");
+                antNumber += liftIncreaseFactor * strength;
+                antCount.setText(antNumber + "");
+                strengthText.setText(strength + "");
                 liftMessage();
             }
         });
@@ -252,33 +280,45 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
+
+                // play bite sound effect
                 biteSound.start();
+
                 // if (1 < (0 <= random num <1) + unemployed(.25) + total(.1)
                 biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .01) ?
                         // case victory: gain at most 75% of colony size
-                        Double.parseDouble(antCount.getText().toString()) * 0.75 * Math.random() :
+                        antNumber * 0.75 * Math.random() :
                         // case loss: lose at most 50% of colony size
-                        Double.parseDouble(antCount.getText().toString()) * -0.5 * Math.random());
+                        antNumber * -0.5 * Math.random());
 
-                unCount.setText(Integer.toString(Integer.parseInt(unCount.getText().toString()) + biteEffect));
-                antCount.setText(Integer.toString(Integer.parseInt(antCount.getText().toString()) + biteEffect));
+                // change idle and total number ants by bite effect
+                idleAntNumber += biteEffect;
+                antNumber += biteEffect;
+
+                // lower to grow requirement after battle
+                costToGrow *= .85;
+
                 // only lowers strength when unemployed ants < 0
                 // prevents unemployed ants from becoming negative
-                if (Integer.parseInt(unCount.getText().toString()) < 0) {
+                if (idleAntNumber < 0) {
                     // weaken strength due to tired ants unless strength <= 1 because we want strength to always be greater than 0
                     strength += strength > 2 ? (int) (-.20 * strength) : 0;
-                    unCount.setText(Integer.toString(0));
+                    idleAntNumber = 0;
                 }
                 // prevents total ants from becoming negative
-                if (Integer.parseInt(antCount.getText().toString()) < 0) {
+                if (antNumber < 0) {
                     // weaken strength due to tired ants unless strength == 1 because then int will round to 0
                     strength += strength > 2 ? (int) (-.10 * strength) : 0;
-                    antCount.setText(Integer.toString(0));
+                    antNumber = 0;
                 }
-                // lower to grow requirement
-                costToGrow *= .85;
-                toGrowCount.setText(Integer.toString((int) (Integer.parseInt(toGrowCount.getText().toString()) * .85)));
-                strengthText.setText(Integer.toString((int) strength));
+
+                // update texts
+                unCount.setText(idleAntNumber + "");
+                antCount.setText(antNumber + "");
+                strengthText.setText(strength + "");
+                toGrowCount.setText(costToGrow + "");
+
+                // display bitMessage
                 biteMessage();
             }
         });
@@ -297,10 +337,8 @@ public class MainActivity extends AppCompatActivity {
                 // opening the pop_grow to transfer data back and forth
                 Intent intent = new Intent(MainActivity.this, PopUpgrade.class);
                 //intent.putExtra() values we are going to pass back and forth
-                int unemployedCount = Integer.parseInt(unCount.getText().toString());
-                int employedCount = Integer.parseInt(antCount.getText().toString());
-                intent.putExtra("totalAnts", employedCount);
-                intent.putExtra("unemployed", unemployedCount);
+                intent.putExtra("totalAnts", antNumber);
+                intent.putExtra("unemployed", idleAntNumber);
                 intent.putExtra("strengthCount", strength);
                 intent.putExtra("costToGrow", costToGrow);
                 intent.putExtra("victoryCount", territoriesClaimed);
@@ -308,10 +346,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("successfulLift", successfulLift);
                 intent.putExtra("unsuccessfulLift", unsuccessfulLift);
                 intent.putExtra("growPressed", growPressed);
-                intent.putExtra("antTitle", storeTitle);
+                intent.putExtra("antTitle", tier);
                 intent.putExtra("gloryScore", gloryScore);
-                intent.putExtra("totalTerritories", totalTerritories);
-                intent.putExtra("totalGrows", allGrows);
+                intent.putExtra("totalTerritories", territoriesRequired);
+                intent.putExtra("totalGrows", growsRequired);
 
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
@@ -381,27 +419,6 @@ public class MainActivity extends AppCompatActivity {
         adView.loadAd(adRequest);
     }
     // OUTSIDE OF OnCreate!
-
-    /**
-     * It is a function that receives results from a previously started activity.
-     *
-     * @param requestCode represents the request code that was shown.
-     * @param resultCode  represents the result code that was shown.
-     * @param data        represents the data that is stored.
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1) {
-            if (requestCode == RESULT_OK) {
-                storeTitle = data.getIntExtra("result", 0);
-                gloryScore = data.getIntExtra("gloryScore", 0);
-                totalTerritories = data.getIntExtra("totalTerritories", 0);
-                allGrows = data.getIntExtra("totalGrows", 0);
-            }
-        }
-    }
 
     /**
      * This function displays the lift message depending on output.
@@ -506,10 +523,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("lifecycle", "onResume invoked");
-        antCount = (TextView) findViewById(R.id.AntCount);
-        unCount = (TextView) findViewById(R.id.UnemployedCount);
-        antCount.setText(Integer.toString(antCountSave));
-        unCount.setText(Integer.toString(unAntCountSave));
+
         // music
         if (mServ != null) {
             mServ.resumeMusic();
@@ -534,10 +548,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d("lifecycle", "onPause invoked");
-        antCount = (TextView) findViewById(R.id.AntCount);
-        unCount = (TextView) findViewById(R.id.UnemployedCount);
-        antCountSave = Integer.parseInt(antCount.getText().toString());
-        unAntCountSave = Integer.parseInt(unCount.getText().toString());
+
         // stop music
         PowerManager pm = (PowerManager)
                 getSystemService(Context.POWER_SERVICE);
@@ -568,10 +579,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.d("lifecycle", "onStop invoked");
-        antCount = (TextView) findViewById(R.id.AntCount);
-        unCount = (TextView) findViewById(R.id.UnemployedCount);
-        antCountSave = Integer.parseInt(antCount.getText().toString());
-        unAntCountSave = Integer.parseInt(unCount.getText().toString());
+
     }
 
     /**
@@ -581,10 +589,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d("lifecycle", "onRestart invoked");
-        antCount = (TextView) findViewById(R.id.AntCount);
-        unCount = (TextView) findViewById(R.id.UnemployedCount);
-        antCount.setText(Integer.toString(antCountSave));
-        unCount.setText(Integer.toString(unAntCountSave));
+
     }
 
     /**

@@ -26,7 +26,6 @@ public class PopUpgrade extends AppCompatActivity {
     // number of territories and grows required to upgrade tier
     int growsToUpgrade = 2;
     int tempAnt = 0;
-    int totalGloryScore = 0;
     int territoriesCount = 1;
     int totalGrows = 2;
 
@@ -73,16 +72,15 @@ public class PopUpgrade extends AppCompatActivity {
         final int totalGrows = intent.getIntExtra("totalGrows", 0);
 
         // update glory score
-        totalGloryScore = victoryCount * 30 + successfulLift + growPressed * 5;
-        MainActivity.gloryScore = totalGloryScore;
+        MainActivity.gloryScore = victoryCount * 30 + successfulLift + growPressed * 5;
 
         // top colony aspects
         final TextView textGloryScore = findViewById(R.id.gloryScore);
         final TextView textCurrentTier = findViewById(R.id.currentTier);
 
         // setting text for top colony aspects
-        textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + gloryScoreTitle);
-        textCurrentTier.setText(getResources().getText(R.string.tier) + " " + antTitle);
+        textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + MainActivity.gloryScore);
+        textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.tier);
 
         // upgrade requirements
         final TextView textTerritoryRequirement = findViewById(R.id.territoryRequirementText);
@@ -103,9 +101,9 @@ public class PopUpgrade extends AppCompatActivity {
         TextView textViewGrowPressed = findViewById(R.id.growPressed);
 
         // setting text for colony stats
-        textViewTotalAnts.setText(getResources().getText(R.string.total_ants) + " " + totalAntsCount); // add actual var
+        textViewTotalAnts.setText(getResources().getText(R.string.total_ants) + " " + totalAntsCount);
         textViewIdleAnts.setText(getResources().getText(R.string.idle_ants) + " " + unemployedCount);
-        textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + strengthCount); // add actual var
+        textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + strengthCount);
         textViewVictory.setText(getResources().getText(R.string.territories_owned) + " " + victoryCount);
         textViewLoss.setText(getResources().getText(R.string.bite_defeats) + " " + lossCount);
         textViewSuccessful.setText(getResources().getText(R.string.successful_lifts) + " " + successfulLift);
@@ -125,10 +123,10 @@ public class PopUpgrade extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                if (victoryCount < MainActivity.totalTerritories || growPressed < MainActivity.allGrows) {
+                if (victoryCount < MainActivity.territoriesRequired || growPressed < MainActivity.growsRequired) {
                     MainActivity.nouSound.start();
                     Toast.makeText(
-                            PopUpgrade.this, "must have " + MainActivity.totalTerritories + " territories and " + MainActivity.allGrows + " G R O W S", Toast.LENGTH_SHORT
+                            PopUpgrade.this, "must have " + MainActivity.territoriesRequired + " territories and " + MainActivity.growsRequired + " G R O W S", Toast.LENGTH_SHORT
                     ).show();
                     return;
                 }
@@ -141,24 +139,16 @@ public class PopUpgrade extends AppCompatActivity {
                 textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + MainActivity.gloryScore);
                 // upgrade the tier status
                 //currentTier = upgradeTierName(currentTier);
-                tempAnt = antTitle + 1;
-                MainActivity.storeTitle = tempAnt;
+                MainActivity.tier = upgradeTierName(MainActivity.tier);
 
                 // REALLY  importanT antTitle = upgradeTierName(antTitle);
-                textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.storeTitle);
+                textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.tier);
                 // augment the requirements for next colony upgrade
-                MainActivity.totalTerritories *= 3;
-                MainActivity.allGrows *= 2;
+                MainActivity.territoriesRequired *= 3;
+                MainActivity.growsRequired *= 2;
 
-                textTerritoryRequirement.setText(getResources().getText(R.string.territories_needed) + " " + MainActivity.totalTerritories);
-                textNumberOfGrowsRequirement.setText(getResources().getText(R.string.number_of_grows) + " " + MainActivity.allGrows);
-
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("result", tempAnt);
-                resultIntent.putExtra("gloryScore", totalGloryScore);
-                resultIntent.putExtra("totalTerritories", territoriesCount);
-                resultIntent.putExtra("totalGrows", totalGrows);
-                setResult(RESULT_OK, resultIntent);
+                textTerritoryRequirement.setText(getResources().getText(R.string.territories_needed) + " " + MainActivity.territoriesRequired);
+                textNumberOfGrowsRequirement.setText(getResources().getText(R.string.number_of_grows) + " " + MainActivity.growsRequired);
             }
         });
 
@@ -180,6 +170,13 @@ public class PopUpgrade extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * This function changes the current tier and dynamically changes the background of the main activity.
+     *
+     * @param tier represents the current tier.
+     * @return String representing the new tier.
+     */
     // changes the tier name by comparing the current name with the next names in the progression
     public static String upgradeTierName(String tier) {
         // ordered from easiest to hardest to reduce the number of comparisons
@@ -189,28 +186,40 @@ public class PopUpgrade extends AppCompatActivity {
             case "Tribal Village":
                 // territories required: 2
                 // grows required: 6
+                // programmatically change the background of the main activity
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background2);
                 return "Burgeoning Estate";
             case "Burgeoning Estate":
                 // territories required: 6
                 // grows required: 12
+                // programmatically change the background of the main activity
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
                 return "Humble County";
             case "Humble County":
                 // territories required: 18
                 // grows required: 24
+                // programmatically change the background of the main activity
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
                 return "Blessed Duchy";
             case "Blessed Duchy":
                 // territories required: 54
                 // grows required: 48
+                // programmatically change the background of the main activity
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
                 return "Glorious Queendom";
             case "Glorious Queendom":
                 // territories required: 162
                 // grows required: 96
+                // programmatically change the background of the main activity
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
                 return "Divine Empire";
             // unlimited tiering system but Glorious is just added to the front of the current tier at the point when we don't expect anyone to be able to reach
             default:
                 // below are for the first glorious append
                 // territories required: 64
                 // grows required: 192
+                // programmatically change the background of the main activity
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
                 return "Glorious" + tier;
         }
     }
