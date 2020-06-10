@@ -2,8 +2,13 @@ package com.e.antcolony;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +19,8 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 /**
  * Settings: this class is where all the settings are implemented for the app. This class is a child of MainActivity.
@@ -43,6 +50,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_settings);
 
         // change window color from black to maroon
@@ -142,7 +150,8 @@ public class Settings extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Settings.this, Languages.class));
+                // startActivity(new Intent(Settings.this, Languages.class));
+                showChangeLanguageDialog();
             }
         });
 
@@ -274,5 +283,71 @@ public class Settings extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    // create a separate strings.xml for each language first
+    private void showChangeLanguageDialog() {
+        // array of languages to display in alert dialogue
+        final String[] listItems = {"Français", "Español", "한국어", "中文", "English"};
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this);
+        mBuilder.setTitle("Select Language");
+        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // select language
+                switch (which) {
+                    case 0:
+                        // french
+                        setLocale("fr");
+                        recreate();
+                        break;
+                    case 1:
+                        // spanish
+                        setLocale("es");
+                        recreate();
+                        break;
+                    case 2:
+                        // korean
+                        setLocale("ko");
+                        recreate();
+                        break;
+                    case 3:
+                        // chinese
+                        setLocale("zh");
+                        recreate();
+                        break;
+                    // english
+                    default:
+                        setLocale("en");
+                        recreate();
+                }
+                // dismiss dialogInterface
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        // show alert dialog
+        mDialog.show();
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        // save data to shared preferences
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    // load language
+    public void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
     }
 }

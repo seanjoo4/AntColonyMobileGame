@@ -433,6 +433,7 @@ public class MainActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
     }
     // OUTSIDE OF OnCreate!
 
