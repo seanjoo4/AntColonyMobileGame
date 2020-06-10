@@ -230,33 +230,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (strength < 2) {
+
                     // play "can't do" sound
                     nouSound.start();
+
+                    // alert user that colony is too weak
                     Toast.makeText(
                             MainActivity.this, "colony is too weak", Toast.LENGTH_SHORT
                     ).show();
+
+                    // prevent pop up
                     return;
                 }
+
                 // play lift sound effect
                 liftSound.start();
+
                 // weaken strength due to tired ants unless strength <= 1 because we want strength to always be greater than 0
                 strength += strength > 1 ? (int) (-.1 * strength) : 0;
 
-                /*
-                ~50% likelihood of gain or loss
-                good outcome is equivalent to  10 to 50 clicks on queen
-                bad outcome is equivalent to 0 to 4 clicks on queen
-                */
+                // ~50% likelihood of gain or loss
                 // intertia designed to ensure ~50% lift rate success
-                liftIncreaseFactor = Math.random() + liftInertia <= .5 ? 11 + (int) (40 * Math.random()) : (int) (Math.random() * 5);
+                liftIncreaseFactor = (int) (Math.random() + liftInertia <= .5 ?
+                        // good outcome is equivalent to  10 to 50 clicks on queen
+                        11 + (40 * Math.random()) :
+                        // bad outcome is equivalent to 0 to 4 clicks on queen
+                        (Math.random() * 5));
+
+                // change number of ants by liftIncreaseFactor times strength
                 idleAntNumber += liftIncreaseFactor * strength;
-                unCount.setText(idleAntNumber + "");
                 antNumber += liftIncreaseFactor * strength;
+
+                // set texts
+                unCount.setText(idleAntNumber + "");
                 antCount.setText(antNumber + "");
                 strengthText.setText(strength + "");
                 liftMessage();
             }
         });
+
 
         // bite button
         biteSound = MediaPlayer.create(this, R.raw.bite);
