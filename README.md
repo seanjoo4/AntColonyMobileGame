@@ -1,4 +1,4 @@
-# Ant Colony Mobile App
+# Ant Colony Simulator Mobile App
 
   Built an Android Application where users manage ants in a colony.
   Idea based on [a popular facebook group](https://www.facebook.com/groups/1416375691836223).
