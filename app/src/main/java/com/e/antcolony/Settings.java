@@ -65,6 +65,10 @@ public class Settings extends AppCompatActivity {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.liftLoss));
         }
 
+        // set actionbar
+        //ActionBar actionBar = getSupportActionBar();
+        // actionBar.setTitle(getResources().getString(R.string.app_name));
+
         // Music Switch
         musicSwitch = (Switch) findViewById(R.id.musicSwitch);
         musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
