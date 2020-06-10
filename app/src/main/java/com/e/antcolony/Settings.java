@@ -26,6 +26,7 @@ public class Settings extends AppCompatActivity {
     Switch musicSwitch;
     Switch soundEffectSwitch;
     Button howToPlayButton;
+    Button selectLanguage;
     Button credits;
     Button rateUs;
     Button share;
@@ -127,6 +128,21 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Settings.this, HowToPlay.class));
+            }
+        });
+
+        // selectLanguage
+        selectLanguage = (Button) findViewById(R.id.selectLanguage);
+        selectLanguage.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * It is a callback for when the button (okayLift) is clicked.
+             *
+             * @param v used when a view is clicked.
+             */
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.this, Languages.class));
             }
         });
 

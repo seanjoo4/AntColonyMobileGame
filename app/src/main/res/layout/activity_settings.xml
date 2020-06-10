@@ -57,14 +57,14 @@
         android:textColor="@color/colorLight" />
 
     <Button
-        android:id="@+id/creditsButton"
+        android:id="@+id/selectLanguage"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/creditsInSettings"
+        android:text="@string/languageButton"
         android:textColor="@color/colorLight" />
 
     <Button
@@ -98,6 +98,17 @@
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
         android:text="@string/rate_us"
+        android:textColor="@color/colorLight" />
+
+    <Button
+        android:id="@+id/creditsButton"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4sp"
+        android:background="@color/liftLoss"
+        android:hapticFeedbackEnabled="true"
+        android:soundEffectsEnabled="false"
+        android:text="@string/creditsInSettings"
         android:textColor="@color/colorLight" />
 
     <Button
