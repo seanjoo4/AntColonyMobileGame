@@ -20,14 +20,6 @@ import android.widget.Toast;
  * @version June 8, 2020
  */
 public class PopUpgrade extends AppCompatActivity {
-    // top colony attributes
-    //String currentTier = "Tribal Village";
-    //int gloryScore = 0;
-    // number of territories and grows required to upgrade tier
-    int growsToUpgrade = 2;
-    int tempAnt = 0;
-    int territoriesCount = 1;
-    int totalGrows = 2;
 
     // button music when upgrade tier is pressed
     public static MediaPlayer forTheQueenSound;
@@ -54,7 +46,7 @@ public class PopUpgrade extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.colorDark));
         }
 
-
+        // get data from main activity
         Intent intent = getIntent();
 
         // SEAN can you add a bunch of things i don't know how to do this part
@@ -125,18 +117,28 @@ public class PopUpgrade extends AppCompatActivity {
             public void onClick(View v) {
                 if (victoryCount < MainActivity.territoriesRequired || growPressed < MainActivity.growsRequired) {
                     MainActivity.nouSound.start();
+
+                    // alert user that they do not have enough territories and grows
                     Toast.makeText(
                             PopUpgrade.this, "must have " + MainActivity.territoriesRequired + " territories and " + MainActivity.growsRequired + " G R O W S", Toast.LENGTH_SHORT
                     ).show();
+
+                    // prevent upgrade from occurring
                     return;
                 }
+
+                // play for the queen sound effect
                 forTheQueenSound.start();
-                // ADD LATER do something when upgrading tier (ex: dynamic background in MainActivity)
+
                 // change colony strength
-                textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + strengthCount); // add actual var
+                MainActivity.strength += (int) (MainActivity.strength * Math.random());
+                textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + MainActivity.strength);
+                MainActivity.strengthText.setText(getResources().getText(R.string.StrengthText) + " " + MainActivity.strength);
+
                 // update/double glory score
                 MainActivity.gloryScore *= 2;
                 textGloryScore.setText(getResources().getText(R.string.colony_glory_score) + " " + MainActivity.gloryScore);
+
                 // upgrade the tier status
                 //currentTier = upgradeTierName(currentTier);
                 MainActivity.tier = upgradeTierName(MainActivity.tier);
@@ -199,19 +201,19 @@ public class PopUpgrade extends AppCompatActivity {
                 // territories required: 18
                 // grows required: 24
                 // programmatically change the background of the main activity
-                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
                 return "Blessed Duchy";
             case "Blessed Duchy":
                 // territories required: 54
                 // grows required: 48
                 // programmatically change the background of the main activity
-                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
                 return "Glorious Queendom";
             case "Glorious Queendom":
                 // territories required: 162
                 // grows required: 96
                 // programmatically change the background of the main activity
-                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
+                MainActivity.mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
                 return "Divine Empire";
             // unlimited tiering system but Glorious is just added to the front of the current tier at the point when we don't expect anyone to be able to reach
             default:

@@ -7,6 +7,7 @@
     <color name="colorDark">#3D405B</color>
     <color name="colorOffBlack">#090c2b</color>
     <color name="colorAccent">#81b29a</color>
+    <color name="colorSky">#DDFDFF</color>
     <color name="biteVictory">#3C633E</color>
     <color name="biteLoss">#733829</color>
     <color name="liftVictory">#3d5b4f</color>

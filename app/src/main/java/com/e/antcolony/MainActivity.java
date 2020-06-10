@@ -42,7 +42,7 @@ import android.util.Log;
  */
 public class MainActivity extends AppCompatActivity {
     // MAIN ACTIVITY XML ELEMENTS
-    TextView strengthText;
+    public static TextView strengthText;
     TextView antCount;
     TextView unCount;
     TextView toGrowCount;
@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
     // OVERARCHING STATS
     private int idleAntNumber = 0;
     private int antNumber = 0;
-    // number of ants gained per click on queen
-    private int strength = 1;
     // GROW BUTTON
     // cost to grow in terms of idle ants
     private int costToGrow = 10;
@@ -75,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     private int liftIncreaseFactor = 0;
     // VARIABLES AFFECTED BY PopUpgrade.java
     public static ConstraintLayout mainBackground;
+    // number of ants gained per click on queen
+    public static int strength = 1;
     public static String tier = "Tribal Village";
     public static int gloryScore = 0;
 
@@ -117,16 +117,20 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // change system nav bar color
-            window.setNavigationBarColor(this.getResources().getColor(R.color.colorOffBlack));
+            window.setNavigationBarColor(this.getResources().getColor(R.color.colorPrimary));
             // change status bar color
-            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorDark));
         }
 
         // create strengthText
-        strengthText = findViewById(R.id.strengthNumber);
-        antCount = findViewById(R.id.AntCount);
         unCount = findViewById(R.id.UnemployedCount);
-        toGrowCount = findViewById(R.id.numberToGrow);
+        antCount = findViewById(R.id.AntCount);
+        toGrowCount = findViewById(R.id.toGrow);
+        strengthText = findViewById(R.id.currentStrength);
+
+        // set text to defaults
+        toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
+        strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
 
         // establish main background
         mainBackground = (ConstraintLayout) findViewById(R.id.mainBackground);
@@ -209,11 +213,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // increase colony strength
                 strength *= 2;
-                strengthText.setText(strength + "");
+                strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
 
                 // increase the cost of idle ants for next grow
                 costToGrow *= 3;
-                toGrowCount.setText(costToGrow + "");
+                toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
             }
         });
 
@@ -264,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 // set texts
                 unCount.setText(idleAntNumber + "");
                 antCount.setText(antNumber + "");
-                strengthText.setText(strength + "");
+                strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
                 liftMessage();
             }
         });
@@ -327,8 +331,8 @@ public class MainActivity extends AppCompatActivity {
                 // update texts
                 unCount.setText(idleAntNumber + "");
                 antCount.setText(antNumber + "");
-                strengthText.setText(strength + "");
-                toGrowCount.setText(costToGrow + "");
+                strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
+                toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
 
                 // display bitMessage
                 biteMessage();
