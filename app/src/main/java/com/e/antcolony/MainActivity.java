@@ -53,24 +53,24 @@ public class MainActivity extends AppCompatActivity {
     Button biteButton;
     Button upgradeButton;
     // OVERARCHING STATS
-    private int idleAntNumber = 0;
-    private int antNumber = 0;
+    public static int idleAntNumber = 0;
+    public static int antNumber = 0;
     // GROW BUTTON
     // cost to grow in terms of idle ants
     private int costToGrow = 10;
-    private int growPressed = 0;
+    public static int growPressed = 0;
     // BITE BUTTON
     private int biteEffect = 0;
     // start with one territory claimed to include home colony (cannot go below 1)
     // for statistics purposes
-    private int territoriesClaimed = 1;
-    private int territoriesLost = 0;
+    public static int territoriesClaimed = 1;
+    public static int territoriesLost = 0;
     private int biteInertia = 0;
     // LIFT BUTTON
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
-    private int successfulLift = 0;
-    private int unsuccessfulLift = 0;
+    public static int successfulLift = 0;
+    public static int unsuccessfulLift = 0;
     private int liftIncreaseFactor = 0;
     // VARIABLES AFFECTED BY PopUpgrade.java
     public static ConstraintLayout mainBackground;
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     public static int gloryScore = 0;
     public static int territoriesRequired = 1;
     public static int growsRequired = 6;
+    public static boolean musicState = true;
     // string constant for intent functions: package_name.OUR_TEXT
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
     // ADS
@@ -94,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
     public static MediaPlayer liftSound;
     public static MediaPlayer biteSound;
     public static MediaPlayer nouSound;
+    // saving using SharedPreferences
+    private SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
     /**
      * Initializes the activity.
@@ -124,9 +128,18 @@ public class MainActivity extends AppCompatActivity {
         toGrowCount = findViewById(R.id.toGrow);
         strengthText = findViewById(R.id.currentStrength);
 
+        // SharedPreferences default values
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        costToGrow = prefs.getInt("growthCost", 10);
+        strength = prefs.getInt("strengthCount", 1);
+        idleAntNumber = prefs.getInt("idleAntCounts", 0);
+        antNumber = prefs.getInt("totalAntCounts", 0);
+
         // set text to defaults
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
         strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
+        unCount.setText(idleAntNumber + "");
+        antCount.setText(antNumber + "");
 
         // establish main background
         mainBackground = (ConstraintLayout) findViewById(R.id.mainBackground);
@@ -173,6 +186,16 @@ public class MainActivity extends AppCompatActivity {
                 unCount.setText(idleAntNumber + "");
                 antNumber += strength;
                 antCount.setText(antNumber + "");
+
+                // Save the incremented value
+                editor = prefs.edit();
+                editor.putInt("idleAntCounts", idleAntNumber);
+                editor.putInt("totalAntCounts", antNumber);
+                editor.commit();
+
+                // To show the latest number
+                latestIdleCount();
+                latestTotalCount();
             }
         });
 
@@ -204,6 +227,9 @@ public class MainActivity extends AppCompatActivity {
                 // increment the number of times grow pressed
                 growPressed++;
 
+                // Load the latest int value in onclick
+                costToGrow = prefs.getInt("growthCost", 10);
+
                 // decrease idle ants
                 idleAntNumber -= costToGrow;
                 unCount.setText(idleAntNumber + "");
@@ -215,6 +241,18 @@ public class MainActivity extends AppCompatActivity {
                 // increase the cost of idle ants for next grow 10 20 40 80 160 320
                 costToGrow *= 2;
                 toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
+
+                // Save the incremented value
+                editor = prefs.edit();
+                editor.putInt("growthCost", costToGrow);
+                editor.putInt("strengthCount", strength);
+                editor.putInt("idleAntCounts", idleAntNumber);
+                editor.commit();
+
+                // To show the latest number
+                latestGrowth();
+                latestStrength();
+                latestIdleCount();
             }
         });
 
@@ -267,6 +305,18 @@ public class MainActivity extends AppCompatActivity {
                 antCount.setText(antNumber + "");
                 strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
                 liftMessage();
+
+                // Save the incremented value
+                editor = prefs.edit();
+                editor.putInt("strengthCount", strength);
+                editor.putInt("idleAntCounts", idleAntNumber);
+                editor.putInt("totalAntCounts", antNumber);
+                editor.commit();
+
+                // To show the latest number
+                latestStrength();
+                latestIdleCount();
+                latestTotalCount();
             }
         });
 
@@ -336,6 +386,19 @@ public class MainActivity extends AppCompatActivity {
 
                 // display bitMessage
                 biteMessage();
+
+                editor = prefs.edit();
+                editor.putInt("growthCost", costToGrow);
+                editor.putInt("strengthCount", strength);
+                editor.putInt("idleAntCounts", idleAntNumber);
+                editor.putInt("totalAntCounts", antNumber);
+                editor.commit();
+
+                // To show the latest number
+                latestGrowth();
+                latestStrength();
+                latestIdleCount();
+                latestTotalCount();
             }
         });
 
@@ -436,6 +499,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
     // OUTSIDE OF OnCreate!
+
+    public void latestTotalCount() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        antNumber = prefs.getInt("totalAntCounts", 0);
+        antCount.setText(antNumber + "");
+    }
+
+    public void latestIdleCount() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        idleAntNumber = prefs.getInt("idleAntCounts", 0);
+        unCount.setText(idleAntNumber + "");
+    }
+
+    public void latestStrength() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        strength = prefs.getInt("strengthCount", 1);
+        strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
+
+    }
+
+    // SavedPreference for Growth
+    public void latestGrowth() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        costToGrow = prefs.getInt("growthCost", 10);
+        toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
+    }
 
     /**
      * This function displays the lift message depending on output.

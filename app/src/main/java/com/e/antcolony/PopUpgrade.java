@@ -91,14 +91,14 @@ public class PopUpgrade extends AppCompatActivity {
         TextView textViewGrowPressed = findViewById(R.id.growPressed);
 
         // setting text for colony stats
-        textViewTotalAnts.setText(getResources().getText(R.string.total_ants) + " " + totalAntsCount);
-        textViewIdleAnts.setText(getResources().getText(R.string.idle_ants) + " " + unemployedCount);
+        textViewTotalAnts.setText(getResources().getText(R.string.total_ants) + " " + MainActivity.antNumber);
+        textViewIdleAnts.setText(getResources().getText(R.string.idle_ants) + " " + MainActivity.idleAntNumber);
         textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + strengthCount);
-        textViewVictory.setText(getResources().getText(R.string.territories_owned) + " " + victoryCount);
-        textViewLoss.setText(getResources().getText(R.string.bite_defeats) + " " + lossCount);
-        textViewSuccessful.setText(getResources().getText(R.string.successful_lifts) + " " + successfulLift);
-        textViewUnsuccessful.setText(getResources().getText(R.string.unsuccessful_lifts) + " " + unsuccessfulLift);
-        textViewGrowPressed.setText(getResources().getText(R.string.number_of_grows) + " " + growPressed);
+        textViewVictory.setText(getResources().getText(R.string.territories_owned) + " " + MainActivity.territoriesClaimed);
+        textViewLoss.setText(getResources().getText(R.string.bite_defeats) + " " + MainActivity.territoriesLost);
+        textViewSuccessful.setText(getResources().getText(R.string.successful_lifts) + " " + MainActivity.successfulLift);
+        textViewUnsuccessful.setText(getResources().getText(R.string.unsuccessful_lifts) + " " + MainActivity.unsuccessfulLift);
+        textViewGrowPressed.setText(getResources().getText(R.string.number_of_grows) + " " + MainActivity.growPressed);
 
         // upgrade button
         // work sound to be played upon clicking the queen button
