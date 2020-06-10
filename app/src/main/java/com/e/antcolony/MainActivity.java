@@ -38,7 +38,7 @@ import android.util.Log;
  * MainActivity: the main class that runs the main interface of the app.
  *
  * @author Aidan Andrucyk and Sean Joo
- * @version June 9, 2020
+ * @version June 10, 2020
  */
 public class MainActivity extends AppCompatActivity {
     // MAIN ACTIVITY XML ELEMENTS
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     // for statistics purposes
     private int territoriesClaimed = 1;
     private int territoriesLost = 0;
+    private int biteInertia = 0;
     // LIFT BUTTON
     // will attempt to ensure roughly 50% success rate of lifting
     private double liftInertia = 0;
@@ -77,17 +78,12 @@ public class MainActivity extends AppCompatActivity {
     public static int strength = 1;
     public static String tier = "Tribal Village";
     public static int gloryScore = 0;
-
     public static int territoriesRequired = 1;
-    public static int growsRequired = 2;
+    public static int growsRequired = 6;
     // string constant for intent functions: package_name.OUR_TEXT
     public static final String EXTRA_TEXT = "com.e.antcolony.EXTRA_TEXT";
     // ADS
     AdView adView;
-    // SAVE STATE
-    // for switching through android activity cycles (probably should delete)
-    int antCountSave = 0;
-    int unAntCountSave = 0;
     // AUDIO
     HomeWatcher mHomeWatcher;
     private boolean mIsBound = false;
@@ -202,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                     ).show();
                     return;
                 }
+
                 // play grow sound effect
                 growSound.start();
                 // increment the number of times grow pressed
@@ -211,12 +208,12 @@ public class MainActivity extends AppCompatActivity {
                 idleAntNumber -= costToGrow;
                 unCount.setText(idleAntNumber + "");
 
-                // increase colony strength
-                strength *= 2;
+                // increase colony strength 1,2,4,7,11,17,26
+                strength += (int) (.5 * strength + 1);
                 strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
 
-                // increase the cost of idle ants for next grow
-                costToGrow *= 3;
+                // increase the cost of idle ants for next grow 10 20 40 80 160 320
+                costToGrow *= 2;
                 toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
             }
         });
@@ -300,8 +297,8 @@ public class MainActivity extends AppCompatActivity {
                 // play bite sound effect
                 biteSound.start();
 
-                // if (1 < (0 <= random num <1) + unemployed(.25) + total(.1)
-                biteEffect = (int) (1 < Math.random() + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .01) ?
+                // if (1 < (0 <= random num <1) + inertia(.1)  + unemployed(.25) + total(.1)
+                biteEffect = (int) (1 < Math.random() + (biteInertia * .1) + ((unCount.getText().toString().length()) * .025) + ((antCount.getText().toString().length()) * .01) ?
                         // case victory: gain at most 75% of colony size
                         antNumber * 0.75 * Math.random() :
                         // case loss: lose at most 50% of colony size
@@ -310,6 +307,9 @@ public class MainActivity extends AppCompatActivity {
                 // change idle and total number ants by bite effect
                 idleAntNumber += biteEffect;
                 antNumber += biteEffect;
+
+                // if won, make it harder to win, else make it easier for next bite
+                biteInertia += biteEffect > 0 ? -1 : 1;
 
                 // lower to grow requirement after battle
                 costToGrow *= .85;
