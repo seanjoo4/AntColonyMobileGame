@@ -31,7 +31,6 @@
         android:id="@+id/musicSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
         android:text="@string/music"
         android:textColor="@color/liftLoss"
         android:textSize="25sp" />
@@ -40,7 +39,6 @@
         android:id="@+id/soundEffectSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
         android:text="@string/sound_effects"
         android:textColor="@color/liftLoss"
         android:textSize="25sp" />

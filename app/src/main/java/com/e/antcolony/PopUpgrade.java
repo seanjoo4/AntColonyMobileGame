@@ -182,6 +182,7 @@ public class PopUpgrade extends AppCompatActivity {
                 // To show the latest value
                 latestTierValue();
                 latestTerritoriesRequired();
+                latestGrowsRequired();
             }
         });
 

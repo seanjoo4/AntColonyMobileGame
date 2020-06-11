@@ -42,6 +42,10 @@ public class Settings extends AppCompatActivity {
     Button termsOfUse;
     Button okay;
 
+    // variables for SavedPreferences functionality
+    private SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+
     /**
      * Initializes the activity.
      *
@@ -69,44 +73,42 @@ public class Settings extends AppCompatActivity {
         //ActionBar actionBar = getSupportActionBar();
         // actionBar.setTitle(getResources().getString(R.string.app_name));
 
-        // Music Switch
         musicSwitch = (Switch) findViewById(R.id.musicSwitch);
-        musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        soundEffectSwitch = (Switch) findViewById(R.id.soundEffectSwitch);
 
-            /**
-             * This function checks if the switch is checked or not.
-             *
-             * @param buttonView checks if the state has changed.
-             * @parm isChecked if it is checked, it returns true, if not, false.
-             */
+        // SharedPreferences default values
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        musicSwitch.setChecked(prefs.getBoolean("musicState", true));
+        // Music Switch
+        musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+            public void onClick(View v) {
+                if (musicSwitch.isChecked()) {
                     Toast.makeText(getBaseContext(), "Music On", Toast.LENGTH_SHORT).show();
                     MusicService.mPlayer.setVolume(.1f, .1f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("musicState", true);
+                    editor.commit();
                     musicSwitch.setChecked(true);
-                } else {
+                }
+                else {
                     Toast.makeText(getBaseContext(), "Music Off", Toast.LENGTH_SHORT).show();
                     MusicService.mPlayer.setVolume(0f, 0f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("musicState", false);
+                    editor.commit();
                     musicSwitch.setChecked(false);
                 }
             }
         });
 
         // Sound Effect Switch
-        soundEffectSwitch = (Switch) findViewById(R.id.soundEffectSwitch);
-        soundEffectSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            /**
-             * This function checks if the switch is checked or not.
-             *
-             * @param buttonView checks if the state has changed.
-             * @param isChecked if it is checked, it returns true, if not, false.
-             */
-
+        //prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        soundEffectSwitch.setChecked(prefs.getBoolean("soundEffectState", true));
+        soundEffectSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+            public void onClick(View v) {
+                if (soundEffectSwitch.isChecked()) {
                     Toast.makeText(getBaseContext(), "Sound Effect On", Toast.LENGTH_SHORT).show();
                     MainActivity.workSound.setVolume(1f, 1f);
                     MainActivity.growSound.setVolume(1f, 1f);
@@ -114,6 +116,9 @@ public class Settings extends AppCompatActivity {
                     MainActivity.biteSound.setVolume(1f, 1f);
                     MainActivity.nouSound.setVolume(1f, 1f);
                     PopUpgrade.forTheQueenSound.setVolume(1f, 1f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("soundEffectState", true);
+                    editor.commit();
                     soundEffectSwitch.setChecked(true);
                 } else {
                     Toast.makeText(getBaseContext(), "Sound Effect Off", Toast.LENGTH_SHORT).show();
@@ -123,6 +128,9 @@ public class Settings extends AppCompatActivity {
                     MainActivity.biteSound.setVolume(0f, 0f);
                     MainActivity.nouSound.setVolume(0f, 0f);
                     PopUpgrade.forTheQueenSound.setVolume(0f, 0f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("soundEffectState", false);
+                    editor.commit();
                     soundEffectSwitch.setChecked(false);
                 }
             }
@@ -288,7 +296,6 @@ public class Settings extends AppCompatActivity {
             }
         });
     }
-
 
     // create a separate strings.xml for each language first
     private void showChangeLanguageDialog() {
