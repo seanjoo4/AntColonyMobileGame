@@ -18,6 +18,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Text;
 
+import java.util.Locale;
+
 /**
  * PopBite: a popup class that displays the result of the bite button. The class will display how many ants were lost/gained,
  * a description of the event, and a dynamic background depending on the output. This class is a child of MainActivity.
@@ -93,6 +95,11 @@ public class PopBite extends Activity {
      * @return the description of the battle.
      */
     public static String getBattleDescription(boolean isVictorious) {
+        String language = Locale.getDefault().getLanguage();
+        if (language == "fr") {
+            return "lalalalala";
+        }
+
         // for each battle outcome, there are 10 possible battle descriptions which are randomly chosen to be displayed
         int textChoice = (int) (Math.random() * 10);
         // the +'s are purely for  ease of reading source code

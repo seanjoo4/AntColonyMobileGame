@@ -151,7 +151,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // selectLanguage
+        // select language button
         selectLanguage = (Button) findViewById(R.id.selectLanguage);
         selectLanguage.setOnClickListener(new View.OnClickListener() {
 
@@ -162,7 +162,7 @@ public class Settings extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(Settings.this, Languages.class));
+                // create a pop up for user to select from dialog (combo box type feature)
                 showChangeLanguageDialog();
             }
         });
@@ -297,12 +297,14 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    // create a separate strings.xml for each language first
+    // Outside of onCreate!
+
+    // create pop-up asking user which language they would like to select
     private void showChangeLanguageDialog() {
         // array of languages to display in alert dialogue
         final String[] listItems = {"Français", "Español", "한국어", "中文", "English"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this);
-        mBuilder.setTitle("Select Language");
+        mBuilder.setTitle(getResources().getString(R.string.select_lang));
         mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -311,30 +313,31 @@ public class Settings extends AppCompatActivity {
                     case 0:
                         // french
                         setLocale("fr");
-                        recreate();
                         break;
                     case 1:
                         // spanish
                         setLocale("es");
-                        recreate();
                         break;
                     case 2:
                         // korean
                         setLocale("ko");
-                        recreate();
                         break;
                     case 3:
                         // chinese
                         setLocale("zh");
-                        recreate();
                         break;
                     // english
                     default:
                         setLocale("en");
-                        recreate();
                 }
-                // dismiss dialogInterface
+
+                // dismiss the interface
                 dialog.dismiss();
+
+                // recreates the application so that text are localized according the language
+                Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
