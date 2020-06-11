@@ -26,6 +26,7 @@ import org.w3c.dom.Text;
  * @version June 5, 2020
  */
 public class PopBite extends Activity {
+
     Button okayButton;
 
     /**

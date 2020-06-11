@@ -19,6 +19,9 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     public static MediaPlayer mPlayer;
     private int length = 0;
 
+    // Constants
+    private static float MUSIC_ON = .1f;
+
     /**
      * This class represents the music service.
      */
@@ -44,7 +47,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     }
 
     /**
-     *  Establishes music media player its attributes
+     * Establishes music media player its attributes
      */
     @Override
     public void onCreate() {
@@ -57,7 +60,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         // creates loop for music
         if (mPlayer != null) {
             mPlayer.setLooping(true);
-            mPlayer.setVolume(.1f, .1f);
+            mPlayer.setVolume(MUSIC_ON, MUSIC_ON);
         }
 
 
@@ -83,7 +86,8 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
 
     /**
      * This function starts the starting of music services.
-     * @param intent represents carried data.
+     *
+     * @param intent  represents carried data.
      * @param flags
      * @param startId
      * @return
@@ -130,7 +134,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
         if (mPlayer != null) {
             mPlayer.setLooping(true);
             // reduce volume
-            mPlayer.setVolume(.1f, .1f);
+            mPlayer.setVolume(MUSIC_ON, MUSIC_ON);
             mPlayer.start();
         }
 
@@ -165,6 +169,7 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
 
     /**
      * This function stops music from playing when error occurs and notifies end user.
+     *
      * @param mp
      * @param what
      * @param extra

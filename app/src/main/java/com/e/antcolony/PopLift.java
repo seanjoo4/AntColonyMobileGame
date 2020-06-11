@@ -23,6 +23,7 @@ import org.w3c.dom.Text;
  * @version June 5, 2020
  */
 public class PopLift extends Activity {
+
     Button okayButton;
 
     /**
@@ -76,7 +77,6 @@ public class PopLift extends Activity {
              *
              * @param v used when a view is clicked.
              */
-
             @Override
             public void onClick(View v) {
                 finish();

@@ -24,6 +24,7 @@ public class HomeWatcher {
 
     /**
      * This method will close the system dialogs.
+     *
      * @param context represents phone state.
      */
     public HomeWatcher(Context context) {
@@ -33,6 +34,7 @@ public class HomeWatcher {
 
     /**
      * This function sets the listener for the home button and initializes a InnerReceiver.
+     *
      * @param listener represents the listener for the system nav bar home button.
      */
     public void setOnHomePressedListener(OnHomePressedListener listener) {
@@ -50,7 +52,7 @@ public class HomeWatcher {
     }
 
     /**
-     * his method checks if the music media receiver is not null to call to stop.
+     * This method checks if the music media receiver is not null to call to stop.
      */
     public void stopWatch() {
         if (mReceiver != null) {
@@ -68,6 +70,8 @@ public class HomeWatcher {
         final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
 
         /**
+         * This method receives the information given
+         *
          * @param context represents previous events affecting the media player.
          * @param intent  represents the carried-over data.
          */
@@ -96,6 +100,7 @@ public class HomeWatcher {
      */
     public interface OnHomePressedListener {
         void onHomePressed();
+
         void onHomeLongPressed();
     }
 }

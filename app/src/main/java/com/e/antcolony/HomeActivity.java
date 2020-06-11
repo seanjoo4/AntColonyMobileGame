@@ -16,7 +16,9 @@ import android.view.WindowManager;
  * @version June 5, 2020
  */
 public class HomeActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT = 2000;
+
+    // Constants
+    private static final int SPLASH_TIME_OUT = 2000;
 
     /**
      * Initializes the activity.
