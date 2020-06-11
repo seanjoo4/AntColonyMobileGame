@@ -42,17 +42,6 @@ public class Settings extends AppCompatActivity {
     Button termsOfUse;
     Button okay;
 
-    // Constants
-    private static final String SHARED_PREF = "sharedPref";
-    private static final String MUSIC_STATE = "musicState";
-    private static final String SOUND_EFFECT_STATE = "soundEffectState";
-    private static final String SETTINGS = "Settings";
-    private static final String MY_LANG = "My_Lang";
-    private static final float MUSIC_ON = .1f;
-    private static final float MUSIC_OFF = 0f;
-    private static final float SOUND_EFFECT_ON = 1f;
-
-
     // variables for SavedPreferences functionality
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -88,25 +77,25 @@ public class Settings extends AppCompatActivity {
         soundEffectSwitch = (Switch) findViewById(R.id.soundEffectSwitch);
 
         // SharedPreferences default values
-        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
-        musicSwitch.setChecked(prefs.getBoolean(MUSIC_STATE, true));
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        musicSwitch.setChecked(prefs.getBoolean("musicState", true));
         // Music Switch
         musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (musicSwitch.isChecked()) {
                     Toast.makeText(getBaseContext(), "Music On", Toast.LENGTH_SHORT).show();
-                    MusicService.mPlayer.setVolume(MUSIC_ON, MUSIC_ON);
-                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
-                    editor.putBoolean(MUSIC_STATE, true);
+                    MusicService.mPlayer.setVolume(.1f, .1f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("musicState", true);
                     editor.commit();
                     musicSwitch.setChecked(true);
                 }
                 else {
                     Toast.makeText(getBaseContext(), "Music Off", Toast.LENGTH_SHORT).show();
-                    MusicService.mPlayer.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
-                    editor.putBoolean(MUSIC_STATE, false);
+                    MusicService.mPlayer.setVolume(0f, 0f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("musicState", false);
                     editor.commit();
                     musicSwitch.setChecked(false);
                 }
@@ -115,32 +104,32 @@ public class Settings extends AppCompatActivity {
 
         // Sound Effect Switch
         //prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        soundEffectSwitch.setChecked(prefs.getBoolean(SOUND_EFFECT_STATE, true));
+        soundEffectSwitch.setChecked(prefs.getBoolean("soundEffectState", true));
         soundEffectSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (soundEffectSwitch.isChecked()) {
                     Toast.makeText(getBaseContext(), "Sound Effect On", Toast.LENGTH_SHORT).show();
-                    MainActivity.workSound.setVolume(SOUND_EFFECT_ON, SOUND_EFFECT_ON);
-                    MainActivity.growSound.setVolume(SOUND_EFFECT_ON, SOUND_EFFECT_ON);
-                    MainActivity.liftSound.setVolume(SOUND_EFFECT_ON, SOUND_EFFECT_ON);
-                    MainActivity.biteSound.setVolume(SOUND_EFFECT_ON, SOUND_EFFECT_ON);
-                    MainActivity.nouSound.setVolume(SOUND_EFFECT_ON, SOUND_EFFECT_ON);
-                    PopUpgrade.forTheQueenSound.setVolume(SOUND_EFFECT_ON, SOUND_EFFECT_ON);
-                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
-                    editor.putBoolean(SOUND_EFFECT_STATE, true);
+                    MainActivity.workSound.setVolume(1f, 1f);
+                    MainActivity.growSound.setVolume(1f, 1f);
+                    MainActivity.liftSound.setVolume(1f, 1f);
+                    MainActivity.biteSound.setVolume(1f, 1f);
+                    MainActivity.nouSound.setVolume(1f, 1f);
+                    PopUpgrade.forTheQueenSound.setVolume(1f, 1f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("soundEffectState", true);
                     editor.commit();
                     soundEffectSwitch.setChecked(true);
                 } else {
                     Toast.makeText(getBaseContext(), "Sound Effect Off", Toast.LENGTH_SHORT).show();
-                    MainActivity.workSound.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    MainActivity.growSound.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    MainActivity.liftSound.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    MainActivity.biteSound.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    MainActivity.nouSound.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    PopUpgrade.forTheQueenSound.setVolume(MUSIC_OFF, MUSIC_OFF);
-                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
-                    editor.putBoolean(SOUND_EFFECT_STATE, false);
+                    MainActivity.workSound.setVolume(0f, 0f);
+                    MainActivity.growSound.setVolume(0f, 0f);
+                    MainActivity.liftSound.setVolume(0f, 0f);
+                    MainActivity.biteSound.setVolume(0f, 0f);
+                    MainActivity.nouSound.setVolume(0f, 0f);
+                    PopUpgrade.forTheQueenSound.setVolume(0f, 0f);
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean("soundEffectState", false);
                     editor.commit();
                     soundEffectSwitch.setChecked(false);
                 }
@@ -162,7 +151,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        // selectLanguage
+        // select language button
         selectLanguage = (Button) findViewById(R.id.selectLanguage);
         selectLanguage.setOnClickListener(new View.OnClickListener() {
 
@@ -173,7 +162,7 @@ public class Settings extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(Settings.this, Languages.class));
+                // create a pop up for user to select from dialog (combo box type feature)
                 showChangeLanguageDialog();
             }
         });
@@ -308,14 +297,14 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    /**
-     * Alters the language of the application
-     */
+    // Outside of onCreate!
+
+    // create pop-up asking user which language they would like to select
     private void showChangeLanguageDialog() {
         // array of languages to display in alert dialogue
         final String[] listItems = {"Français", "Español", "한국어", "中文", "English"};
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this);
-        mBuilder.setTitle("Select Language");
+        mBuilder.setTitle(getResources().getString(R.string.select_lang));
         mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -324,30 +313,31 @@ public class Settings extends AppCompatActivity {
                     case 0:
                         // french
                         setLocale("fr");
-                        recreate();
                         break;
                     case 1:
                         // spanish
                         setLocale("es");
-                        recreate();
                         break;
                     case 2:
                         // korean
                         setLocale("ko");
-                        recreate();
                         break;
                     case 3:
                         // chinese
                         setLocale("zh");
-                        recreate();
                         break;
                     // english
                     default:
                         setLocale("en");
-                        recreate();
                 }
-                // dismiss dialogInterface
+
+                // dismiss the interface
                 dialog.dismiss();
+
+                // recreates the application so that text are localized according the language
+                Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
@@ -356,10 +346,6 @@ public class Settings extends AppCompatActivity {
         mDialog.show();
     }
 
-    /**
-     *
-     * @param lang
-     */
     private void setLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -367,19 +353,15 @@ public class Settings extends AppCompatActivity {
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         // save data to shared preferences
-        SharedPreferences.Editor editor = getSharedPreferences(SETTINGS, MODE_PRIVATE).edit();
-        editor.putString(MY_LANG, lang);
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
         editor.apply();
     }
 
     // load language
-
-    /**
-     *
-     */
     public void loadLocale() {
-        SharedPreferences prefs = getSharedPreferences(SETTINGS, Activity.MODE_PRIVATE);
-        String language = prefs.getString(MY_LANG, "");
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
         setLocale(language);
     }
 }

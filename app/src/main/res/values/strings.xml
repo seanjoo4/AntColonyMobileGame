@@ -2,16 +2,12 @@
     <string name="app_name">Ant Colony Simulator</string>
     <string name="totalAnts">Total Ants:</string>
     <string name="queenButton">todo</string>
-    <string name="AntCount">0</string>
     <string name="UnemployedAnts">Idle Ants:</string>
-    <string name="UnemployedCount">0</string>
     <string name="b_i_t_e">B I T E</string>
     <string name="g_r_o_w">G R O W</string>
     <string name="l_i_f_t">L I F T</string>
     <string name="ToGROW">Idle Needed To Grow:</string>
-    <string name="NeededToGrow">10</string>
     <string name="StrengthText">Current Strength:</string>
-    <string name="Strength">1</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="settings">SETTINGS</string>
     <string name="lift_for_the_queen">LIFT FOR THE QUEEN</string>
@@ -67,5 +63,6 @@
     <string name="share">Share!</string>
     <string name="visit_us">Visit Us!</string>
     <string name="languageButton">Language</string>
+    <string name="select_lang">Select Language</string>
     <string name="french">français</string>
 </resources>

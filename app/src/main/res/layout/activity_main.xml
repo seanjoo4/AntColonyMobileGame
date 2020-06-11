@@ -13,7 +13,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/StaticAnts"
+        android:id="@+id/staticAnts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/UnemployedCount" />
 
     <TextView
-        android:id="@+id/StaticUnemployed"
+        android:id="@+id/staticUnemployed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -68,16 +68,15 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
-        android:text="@string/UnemployedCount"
         android:textColor="#3D405B"
         android:textSize="45sp"
         app:autoSizeMaxTextSize="60sp"
         app:autoSizeMinTextSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/StaticAnts"
+        app:layout_constraintBottom_toTopOf="@+id/staticAnts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StaticUnemployed" />
+        app:layout_constraintTop_toBottomOf="@+id/staticUnemployed" />
 
     <TextView
         android:id="@+id/AntCount"
@@ -89,7 +88,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/AntCount"
         android:textColor="#3D405B"
         android:textSize="17sp"
         app:autoSizeMaxTextSize="14sp"
@@ -97,7 +95,7 @@
         app:layout_constraintBottom_toTopOf="@+id/queen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StaticAnts" />
+        app:layout_constraintTop_toBottomOf="@+id/staticAnts" />
 
     <ImageButton
         android:id="@+id/queen"
@@ -288,7 +286,7 @@
         android:textScaleX="1.1"
         android:textStyle="bold"
         android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintBottom_toTopOf="@+id/StaticUnemployed"
+        app:layout_constraintBottom_toTopOf="@+id/staticUnemployed"
         app:layout_constraintEnd_toEndOf="@+id/settingsButton"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"

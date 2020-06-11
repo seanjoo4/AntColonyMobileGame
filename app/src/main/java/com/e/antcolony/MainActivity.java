@@ -331,7 +331,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         // bite button
         biteSound = MediaPlayer.create(this, R.raw.bite);
         biteButton = (Button) findViewById(R.id.biteButton);
@@ -675,15 +674,6 @@ public class MainActivity extends AppCompatActivity {
             mServ.resumeMusic();
         }
 
-        // trial 2 to attempt to save progress
-        /*SharedPreferences sh = getApplicationContext().getSharedPreferences("MyShared", MODE_PRIVATE);
-        int total = sh.getInt("totalAnt", 0);
-        int untotal = sh.getInt("untotalAnt", 0);
-        int growth = sh.getInt("growthMult", 10);
-        antCount.setText(String.valueOf(total));
-        unCount.setText(String.valueOf(untotal));
-        toGrowCount.setText(String.valueOf(growth));*/
-
     }
 
     /**
@@ -709,13 +699,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //trial 2 to attempt to save progress
-        /*SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-        myEdit.putInt("totalAnt", Integer.parseInt(antCount.getText().toString()));
-        myEdit.putInt("untotalAnt", Integer.parseInt(unCount.getText().toString()));
-        myEdit.putInt("growthMult", Integer.parseInt(toGrowCount.getText().toString()));
-        myEdit.commit();*/
     }
 
     /**
@@ -751,34 +734,4 @@ public class MainActivity extends AppCompatActivity {
         music.setClass(this, MusicService.class);
         stopService(music);
     }
-
-    // trial 1 to save attempt
-   /* @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
-        Log.d("save Instance State", "This is saving the instant state");
-        savedInstanceState.putInt("employedAnt", antCountSave);
-        savedInstanceState.putInt("unemployedAnt", unAntCountSave);
-        savedInstanceState.putInt("growth", numberToGrow);
-    }*/
-    /*@Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        // Restore UI state from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
-        Log.d("Restore Instance State", "This is restoring the instant state");
-        antCountSave = savedInstanceState.getInt("employedAnt");
-        unAntCountSave = savedInstanceState.getInt("unemployedAnt");
-        numberToGrow = savedInstanceState.getInt("growth");
-        /*antCount.setText(antCountSave);
-        unCount.setText(unAntCountSave);
-        toGrowCount.setText(numberToGrow);
-
-        antCount.setText(savedInstanceState.getInt((antCountSave) + ""));
-        unCount.setText(savedInstanceState.getInt((unAntCountSave) + ""));
-        toGrowCount.setText(savedInstanceState.getInt((numberToGrow) + ""));
-    }*/
 }
