@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     public static MediaPlayer liftSound;
     public static MediaPlayer biteSound;
     public static MediaPlayer nouSound;
-    // saving using SharedPreferences
+    // variables for SavedPreferences functionality
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
@@ -134,6 +134,11 @@ public class MainActivity extends AppCompatActivity {
         strength = prefs.getInt("strengthCount", 1);
         idleAntNumber = prefs.getInt("idleAntCounts", 0);
         antNumber = prefs.getInt("totalAntCounts", 0);
+        territoriesClaimed = prefs.getInt("territoryWonCount", 1);
+        territoriesLost = prefs.getInt("territoryLostCount", 0);
+        successfulLift = prefs.getInt("successfulLiftCount", 0);
+        unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
+        growPressed = prefs.getInt("growPressedCount", 0);
 
         // set text to defaults
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
@@ -247,12 +252,14 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt("growthCost", costToGrow);
                 editor.putInt("strengthCount", strength);
                 editor.putInt("idleAntCounts", idleAntNumber);
+                editor.putInt("growPressedCount", growPressed);
                 editor.commit();
 
                 // To show the latest number
                 latestGrowth();
                 latestStrength();
                 latestIdleCount();
+                latestGrowPressed();
             }
         });
 
@@ -311,12 +318,16 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt("strengthCount", strength);
                 editor.putInt("idleAntCounts", idleAntNumber);
                 editor.putInt("totalAntCounts", antNumber);
+                editor.putInt("successfulLiftCount", successfulLift);
+                editor.putInt("unsuccessfulLiftCount", unsuccessfulLift);
                 editor.commit();
 
                 // To show the latest number
                 latestStrength();
                 latestIdleCount();
                 latestTotalCount();
+                latestLiftSuccess();
+                latestLiftUnsuccessful();
             }
         });
 
@@ -392,6 +403,8 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt("strengthCount", strength);
                 editor.putInt("idleAntCounts", idleAntNumber);
                 editor.putInt("totalAntCounts", antNumber);
+                editor.putInt("territoryWonCount", territoriesClaimed);
+                editor.putInt("territoryLostCount", territoriesLost);
                 editor.commit();
 
                 // To show the latest number
@@ -399,6 +412,8 @@ public class MainActivity extends AppCompatActivity {
                 latestStrength();
                 latestIdleCount();
                 latestTotalCount();
+                latestTerritoryWon();
+                latestTerritoryLost();
             }
         });
 
@@ -499,6 +514,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
     // OUTSIDE OF OnCreate!
+
+    public void latestGrowPressed() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        growPressed = prefs.getInt("growPressedCount", 0);
+    }
+
+    public void latestLiftUnsuccessful() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
+    }
+
+    public void latestLiftSuccess() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        successfulLift = prefs.getInt("successfulLiftCount", 0);
+    }
+
+    public void latestTerritoryLost() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        territoriesLost = prefs.getInt("territoryLostCount", 0);
+    }
+
+    public void latestTerritoryWon() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        territoriesClaimed = prefs.getInt("territoryWonCount", 1);
+    }
 
     public void latestTotalCount() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
