@@ -32,7 +32,7 @@ public class PopUpgrade extends AppCompatActivity {
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
-    // Constants
+    // Constants for PopUpgrade
     private static String SHARED_PREF = "sharedPref";
     private static String STRENGTH_COUNT = "strengthCount";
     private static String VICTORY_COUNT = "victoryCount";
