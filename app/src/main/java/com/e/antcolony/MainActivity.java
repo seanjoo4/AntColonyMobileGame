@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public static MediaPlayer liftSound;
     public static MediaPlayer biteSound;
     public static MediaPlayer nouSound;
+    public static MediaPlayer forTheQueenSound;
     // variables for SavedPreferences functionality
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -156,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
         // no sounds
         nouSound = MediaPlayer.create(this, R.raw.nou);
+        forTheQueenSound = MediaPlayer.create(this, R.raw.forthequeen);
 
         // deselect colony name after finished editing
         EditText colonyName = (EditText) findViewById(R.id.ColonyName);
@@ -516,6 +518,24 @@ public class MainActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+
+        boolean check = prefs.getBoolean(Settings.SOUND_EFFECT_STATE, true);
+        if (check) {
+            workSound.setVolume(1f, 1f);
+            growSound.setVolume(1f, 1f);
+            liftSound.setVolume(1f, 1f);
+            biteSound.setVolume(1f, 1f);
+            nouSound.setVolume(1f, 1f);
+            forTheQueenSound.setVolume(1f, 1f);
+        } else {
+            workSound.setVolume(0f, 0f);
+            growSound.setVolume(0f, 0f);
+            liftSound.setVolume(0f, 0f);
+            biteSound.setVolume(0f, 0f);
+            nouSound.setVolume(0f, 0f);
+            forTheQueenSound.setVolume(0f, 0f);
+        }
 
     }
     // OUTSIDE OF OnCreate!

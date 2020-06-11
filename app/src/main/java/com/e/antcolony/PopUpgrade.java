@@ -139,8 +139,6 @@ public class PopUpgrade extends AppCompatActivity {
         textViewGrowPressed.setText(getResources().getText(R.string.number_of_grows) + " " + MainActivity.growPressed);
 
         // upgrade button
-        // work sound to be played upon clicking the queen button
-        forTheQueenSound = MediaPlayer.create(this, R.raw.forthequeen);
         Button upgradeButton = findViewById(R.id.upgradeButton);
         upgradeButton.setOnClickListener(new View.OnClickListener() {
 
@@ -208,7 +206,7 @@ public class PopUpgrade extends AppCompatActivity {
                 }
 
                 // play for the queen sound effect
-                forTheQueenSound.start();
+                MainActivity.forTheQueenSound.start();
 
                 // change colony strength
                 MainActivity.strength += (int) (MainActivity.strength * Math.random());

@@ -46,8 +46,7 @@ public class Settings extends AppCompatActivity {
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
-    // Constant
-    private static String MUSIC_STATE = "musicState";
+    public static String SOUND_EFFECT_STATE = "soundEffectState";
 
     /**
      * Initializes the activity.
@@ -81,7 +80,7 @@ public class Settings extends AppCompatActivity {
 
         // SharedPreferences default values
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        musicSwitch.setChecked(prefs.getBoolean(MUSIC_STATE, true));
+        musicSwitch.setChecked(prefs.getBoolean("musicState", true));
         // Music Switch
         musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +89,7 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Music On", Toast.LENGTH_SHORT).show();
                     MusicService.mPlayer.setVolume(.1f, .1f);
                     editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean(MUSIC_STATE, true);
+                    editor.putBoolean("musicState", true);
                     editor.commit();
                     musicSwitch.setChecked(true);
                 }
@@ -98,7 +97,7 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Music Off", Toast.LENGTH_SHORT).show();
                     MusicService.mPlayer.setVolume(0f, 0f);
                     editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean(MUSIC_STATE, false);
+                    editor.putBoolean("musicState", false);
                     editor.commit();
                     musicSwitch.setChecked(false);
                 }
@@ -112,15 +111,15 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (soundEffectSwitch.isChecked()) {
-                    Toast.makeText(getBaseContext(), "Sound Effect On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), SOUND_EFFECT_STATE, Toast.LENGTH_SHORT).show();
                     MainActivity.workSound.setVolume(1f, 1f);
                     MainActivity.growSound.setVolume(1f, 1f);
                     MainActivity.liftSound.setVolume(1f, 1f);
                     MainActivity.biteSound.setVolume(1f, 1f);
                     MainActivity.nouSound.setVolume(1f, 1f);
-                    PopUpgrade.forTheQueenSound.setVolume(1f, 1f);
+                    MainActivity.forTheQueenSound.setVolume(1f, 1f);
                     editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("soundEffectState", true);
+                    editor.putBoolean(SOUND_EFFECT_STATE, true);
                     editor.commit();
                     soundEffectSwitch.setChecked(true);
                 } else {
@@ -130,9 +129,15 @@ public class Settings extends AppCompatActivity {
                     MainActivity.liftSound.setVolume(0f, 0f);
                     MainActivity.biteSound.setVolume(0f, 0f);
                     MainActivity.nouSound.setVolume(0f, 0f);
-                    PopUpgrade.forTheQueenSound.setVolume(0f, 0f);
+                    MainActivity.forTheQueenSound.setVolume(0f, 0f);
+
                     editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("soundEffectState", false);
+                    editor.putBoolean("musicState", true);
+                    editor.commit();
+                    musicSwitch.setChecked(true);
+
+                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor.putBoolean(SOUND_EFFECT_STATE, false);
                     editor.commit();
                     soundEffectSwitch.setChecked(false);
                 }
