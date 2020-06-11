@@ -46,6 +46,9 @@ public class Settings extends AppCompatActivity {
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
+    // Constant
+    private static String MUSIC_STATE = "musicState";
+
     /**
      * Initializes the activity.
      *
@@ -78,7 +81,7 @@ public class Settings extends AppCompatActivity {
 
         // SharedPreferences default values
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        musicSwitch.setChecked(prefs.getBoolean("musicState", true));
+        musicSwitch.setChecked(prefs.getBoolean(MUSIC_STATE, true));
         // Music Switch
         musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +90,7 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Music On", Toast.LENGTH_SHORT).show();
                     MusicService.mPlayer.setVolume(.1f, .1f);
                     editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("musicState", true);
+                    editor.putBoolean(MUSIC_STATE, true);
                     editor.commit();
                     musicSwitch.setChecked(true);
                 }
@@ -95,7 +98,7 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Music Off", Toast.LENGTH_SHORT).show();
                     MusicService.mPlayer.setVolume(0f, 0f);
                     editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("musicState", false);
+                    editor.putBoolean(MUSIC_STATE, false);
                     editor.commit();
                     musicSwitch.setChecked(false);
                 }

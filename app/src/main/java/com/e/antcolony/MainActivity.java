@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
         growPressed = prefs.getInt("growPressedCount", 0);
         tier = prefs.getString(PopUpgrade.CURRENT_TIER_STATE, "");
 
+
+
         // set text to defaults
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
         strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
@@ -447,6 +449,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("totalTerritories", territoriesRequired);
                 intent.putExtra("totalGrows", growsRequired);
 
+                System.out.println("The tier name is:" + MainActivity.tier);
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
             }
@@ -563,7 +566,6 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         strength = prefs.getInt("strengthCount", 1);
         strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
-
     }
 
     // SavedPreference for Growth
@@ -617,7 +619,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
     }
-
 
     /**
      * This function changes the current tier and dynamically changes the background of the main activity.

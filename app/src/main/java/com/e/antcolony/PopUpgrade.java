@@ -160,6 +160,7 @@ public class PopUpgrade extends AppCompatActivity {
                     ).show();
 
                     // prevent upgrade from occurring
+                    System.out.println("The tier name is:" + MainActivity.tier);
                     return;
                 }
 
@@ -240,6 +241,7 @@ public class PopUpgrade extends AppCompatActivity {
                 latestTerritoriesRequired();
                 latestGrowsRequired();
                 latestTerritoryRequired();
+                System.out.println("The tier name is:" + MainActivity.tier);
             }
         });
 
