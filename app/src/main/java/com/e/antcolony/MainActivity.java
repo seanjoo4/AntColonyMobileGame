@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
     public static ConstraintLayout mainBackground;
     // number of ants gained per click on queen
     public static int strength = 1;
-    public static String tier = "Tier";
+    public static String tier = "";
     public static int gloryScore = 0;
-    public static int territoriesRequired = 2;
+    public static int territoriesRequired = 1;
     public static int growsRequired = 6;
     public static boolean musicState = true;
     // string constant for intent functions: package_name.OUR_TEXT
@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
         territoriesLost = prefs.getInt("territoryLostCount", 0);
         successfulLift = prefs.getInt("successfulLiftCount", 0);
         unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
-        territoriesRequired = prefs.getInt("territoriesRequired", 1);
         growPressed = prefs.getInt("growPressedCount", 0);
 
         // set text to defaults
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         mainBackground = (ConstraintLayout) findViewById(R.id.mainBackground);
 
         // set tier to localized name name
-        setTier(territoriesRequired);
+        setMainBackground();
 
         // no sounds
         nouSound = MediaPlayer.create(this, R.raw.nou);
@@ -449,14 +448,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
-
-                editor = prefs.edit();
-                editor.putInt("territoriesRequired", territoriesRequired);
-                System.out.println("this is the number for territories: " + territoriesRequired);
-                editor.commit();
-
-                // To show the latest number
-                latestTerritoryRequired();
             }
         });
 
@@ -525,10 +516,10 @@ public class MainActivity extends AppCompatActivity {
     }
     // OUTSIDE OF OnCreate!
 
-    public void latestTerritoryRequired() {
+    /*public void latestTerritoryRequired() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        territoriesRequired = prefs.getInt("territoriesRequired", 2);
-    }
+        territoriesRequired = prefs.getInt("territoriesRequired", 1);
+    }*/
 
     public void latestGrowPressed() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
@@ -629,49 +620,66 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This function changes the current tier and dynamically changes the background of the main activity.
-     *
-     * @param territoriesRequired represents the current tier as SavedPreferences only allows for certain data types to be saved.
-     * @return String representing the new tier.
      */
+    public void setMainBackground() {
+        // ordered from easiest to hardest to reduce the number of comparisons
+        if (tier.equals(getResources().getString(R.string.tier1))) {
+            return;
+        } else if (tier.equals(getResources().getString(R.string.tier2))) {
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background2);
+        } else if (tier.equals(getResources().getString(R.string.tier3))) {
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
+        } else if (tier.equals(getResources().getString(R.string.tier4))) {
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
+        } else if (tier.equals(getResources().getString(R.string.tier5))) {
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
+        } else if (tier.equals(getResources().getString(R.string.tier6))) {
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
+        } else {
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background7);
+        }
+    }
+
+
+    /*
     // changes the tier name by comparing the current name with the next names in the progression
     public void setTier(int territoriesRequired) {
         // ordered from easiest to hardest to reduce the number of comparisons
         if (territoriesRequired == 1) {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier1);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background);
-        } else if (territoriesRequired == 2) {
+        } else if (territoriesRequired == 3) {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier2);
             // programmatically change the background of the main activity
             mainBackground.setBackgroundResource(R.drawable.ant_colony_background2);
-        } else if (territoriesRequired == 3) {
+        } else if (territoriesRequired == 9) {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier3);
             // programmatically change the background of the main activity
             mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
-        } else if (territoriesRequired == 9) {
+        } else if (territoriesRequired == 18) {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier4);
             // programmatically change the background of the main activity
             mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
-        } else if (territoriesRequired == 18) {
+        } else if (territoriesRequired == 54) {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier5);
             // programmatically change the background of the main activity
             mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
-        } else if (territoriesRequired == 54) {
+        } else if (territoriesRequired == 162) {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier6);
             // programmatically change the background of the main activity
             mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
-        } /*else if (territoriesRequired == 162) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier7);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
-        }*/ else {
+        } else {
             // set the tier to localized string
             tier = getResources().getString(R.string.tier7append) + tier;
             // programmatically change the background of the main activity
@@ -679,6 +687,7 @@ public class MainActivity extends AppCompatActivity {
             // append "Glorious" or localized equivalent to front of current tier name
         }
     }
+     */
 
 
     // music services

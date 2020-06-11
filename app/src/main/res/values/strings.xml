@@ -60,7 +60,7 @@
     <string name="share">Share!</string>
     <string name="visit_us">Visit Us!</string>
     <string name="languageButton">Language</string>
-    <string name="select_lang">Select Language</string>
+    <string name="select_lang" translatable="false">Select Language</string>
     <string name="french">français</string>
     <string name="tier1" translatable="false">Tribal Village</string>
     <string name="tier2" translatable="false">Burgeoning Estate</string>

@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ResourceBundle;
+
 /**
  * PopUpgrade: this class is employed to show the user statistics and colony upgrade requirements upon pressing the arrow button from the parent activity.
  *
@@ -39,7 +41,7 @@ public class PopUpgrade extends AppCompatActivity {
     private static String SUCCESSFUL_LIFT = "successfulLift";
     private static String GROW_PRESSED = "growPressed";
     private static String CURRENT_TIER_STATE = "currentTierState";
-    private static String DEFAULT_VILLAGE = "Tribal Village";
+    private static String DEFAULT_VILLAGE = "";
     private static String TOTAL_TERRITORIES_COUNT = "totalTerritoriesCount";
     private static String TOTAL_GROWS_REQUIRED = "totalGrowsRequired";
     private static int TOTAL_TERRITORIES_DEFAULT = 1;
@@ -55,6 +57,9 @@ public class PopUpgrade extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_upgrade);
+
+        // set defualt tier to tier1
+        DEFAULT_VILLAGE = getResources().getString(R.string.tier1);
 
         // change window colors
         // first checks if correct version
@@ -77,6 +82,7 @@ public class PopUpgrade extends AppCompatActivity {
         final int victoryCount = intent.getIntExtra(VICTORY_COUNT, DEFAULT);
         final int successfulLift = intent.getIntExtra(SUCCESSFUL_LIFT, DEFAULT);
         final int growPressed = intent.getIntExtra(GROW_PRESSED, DEFAULT);
+
 
         // update glory score
         MainActivity.gloryScore = MainActivity.territoriesRequired * 30 + MainActivity.strength + successfulLift +
@@ -114,6 +120,7 @@ public class PopUpgrade extends AppCompatActivity {
         MainActivity.tier = prefs.getString(CURRENT_TIER_STATE, DEFAULT_VILLAGE);
         MainActivity.territoriesRequired = prefs.getInt(TOTAL_TERRITORIES_COUNT, TOTAL_TERRITORIES_DEFAULT);
         MainActivity.growsRequired = prefs.getInt(TOTAL_GROWS_REQUIRED, TOTAL_GROWS_DEFAULT);
+        MainActivity.territoriesRequired = prefs.getInt("territoriesRequired", 1);
 
         // set text to defaults
         textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.tier);
@@ -225,12 +232,14 @@ public class PopUpgrade extends AppCompatActivity {
                 editor.putString(CURRENT_TIER_STATE, MainActivity.tier);
                 editor.putInt(TOTAL_TERRITORIES_COUNT, MainActivity.territoriesRequired);
                 editor.putInt(TOTAL_GROWS_REQUIRED, MainActivity.growsRequired);
+                editor.putInt("territoriesRequired", MainActivity.territoriesRequired);
                 editor.commit();
 
                 // To show the latest value
                 latestTierValue();
                 latestTerritoriesRequired();
                 latestGrowsRequired();
+                latestTerritoryRequired();
             }
         });
 
@@ -250,6 +259,11 @@ public class PopUpgrade extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void latestTerritoryRequired() {
+        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
+        MainActivity.territoriesRequired = prefs.getInt("territoriesRequired", 1);
     }
 
     public void latestGrowsRequired() {
