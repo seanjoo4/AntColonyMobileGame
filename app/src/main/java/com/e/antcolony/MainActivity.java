@@ -22,7 +22,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     public static ConstraintLayout mainBackground;
     // number of ants gained per click on queen
     public static int strength = 1;
-    public static String tier = "Tribal Village";
+    public static String tier = "Tier";
     public static int gloryScore = 0;
     public static int territoriesRequired = 1;
     public static int growsRequired = 6;
@@ -148,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
 
         // establish main background
         mainBackground = (ConstraintLayout) findViewById(R.id.mainBackground);
+
+        // set tier to localized name name
+        setTier(territoriesRequired);
 
         // no sounds
         nouSound = MediaPlayer.create(this, R.raw.nou);
@@ -610,12 +612,63 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    /**
+     * This function changes the current tier and dynamically changes the background of the main activity.
+     *
+     * @param territoriesRequired represents the current tier as SavedPreferences only allows for certain data types to be saved.
+     * @return String representing the new tier.
+     */
+    // changes the tier name by comparing the current name with the next names in the progression
+    public void setTier(int territoriesRequired) {
+        // ordered from easiest to hardest to reduce the number of comparisons
+        if (territoriesRequired == 1) {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier1);
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background);
+        } else if (territoriesRequired == 3) {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier2);
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background2);
+        } else if (territoriesRequired == 9) {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier3);
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
+        } else if (territoriesRequired == 18) {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier4);
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
+        } else if (territoriesRequired == 54) {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier5);
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
+        } else if (territoriesRequired == 162) {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier6);
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
+        } else {
+            // set the tier to localized string
+            tier = getResources().getString(R.string.tier7append) + tier;
+            // programmatically change the background of the main activity
+            mainBackground.setBackgroundResource(R.drawable.ant_colony_background7);
+            // append "Glorious" or localized equivalent to front of current tier name
+        }
+    }
+
+
     // music services
     private ServiceConnection Scon = new ServiceConnection() {
 
         /**
          * This function is called upon the creation of the app to connect the music service.
-         * @param name represents the file component
+         *
+         * @param name   represents the file component
          * @param binder tells the app what it is responsible for incrementing and maintaining
          */
         public void onServiceConnected(ComponentName name, IBinder

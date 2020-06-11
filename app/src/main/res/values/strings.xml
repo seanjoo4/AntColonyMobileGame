@@ -14,7 +14,6 @@
     <string name="press_back_to_return">Press Back to return</string>
     <string name="todo">TODO</string>
     <string name="bite_for_the_queen">BITE FOR THE QUEEN!!!</string>
-    <string name="doubleBack">okay</string>
     <string name="settingsCog">⚙</string>
     <string name="upgradeArrow">⟰</string>
     <string name="bitevictorymessage">  </string>
@@ -26,7 +25,6 @@
     </string>
     <string name="privacy">Privacy</string>
     <string name="privacy_Caps">PRIVACY</string>
-    <string name="okay_lift">Okay</string>
     <string name="termsDescription">All contents, logo, and other visual media are the sole property of Pluto’s Playground. Pluto Playground is not responsible for third party redirects, particularly those of Google Ads. \n \n Source code for this application is available at https://github.com/aidanandrucyk/AntColonyMobileApp. While non-commercial use of the source or object code is permitted, commercial use of any description is strictly prohibited without the explicit consent of Pluto’s Playground. Users who fail to follow established guidelines will be barred from further usage in cases of abuse at Pluto’s Playgrounds sole discretion.</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="credits">CREDITS</string>
@@ -59,10 +57,16 @@
     <string name="lift_for_queen">LIFT FOR QUEEN</string>
     <string name="okay">Okay</string>
     <string name="bite_for_queen">BITE FOR QUEEN</string>
-    <string name="okay_bite">okay</string>
     <string name="share">Share!</string>
     <string name="visit_us">Visit Us!</string>
     <string name="languageButton">Language</string>
     <string name="select_lang">Select Language</string>
     <string name="french">français</string>
+    <string name="tier1" translatable="false">Tribal Village</string>
+    <string name="tier2" translatable="false">Burgeoning Estate</string>
+    <string name="tier3" translatable="false">Humble County</string>
+    <string name="tier4" translatable="false">Blessed Duchy</string>
+    <string name="tier5" translatable="false">Glorious Queendom</string>
+    <string name="tier6" translatable="false">Divine Empire</string>
+    <string name="tier7append" translatable="false">Glorious </string>
 </resources>
