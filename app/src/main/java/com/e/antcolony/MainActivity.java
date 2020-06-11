@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         successfulLift = prefs.getInt("successfulLiftCount", 0);
         unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
         growPressed = prefs.getInt("growPressedCount", 0);
+        tier = prefs.getString(PopUpgrade.CURRENT_TIER_STATE, "");
 
         // set text to defaults
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
@@ -623,7 +624,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void setMainBackground() {
         // ordered from easiest to hardest to reduce the number of comparisons
-        if (tier.equals(getResources().getString(R.string.tier1))) {
+        if (tier.equals(getResources().getString(R.string.tier1)) || tier.equals("")) {
             return;
         } else if (tier.equals(getResources().getString(R.string.tier2))) {
             // programmatically change the background of the main activity

@@ -40,7 +40,7 @@ public class PopUpgrade extends AppCompatActivity {
     private static String VICTORY_COUNT = "victoryCount";
     private static String SUCCESSFUL_LIFT = "successfulLift";
     private static String GROW_PRESSED = "growPressed";
-    private static String CURRENT_TIER_STATE = "currentTierState";
+    public static String CURRENT_TIER_STATE = "currentTierState";
     private static String DEFAULT_VILLAGE = "";
     private static String TOTAL_TERRITORIES_COUNT = "totalTerritoriesCount";
     private static String TOTAL_GROWS_REQUIRED = "totalGrowsRequired";

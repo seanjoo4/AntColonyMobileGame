@@ -299,13 +299,28 @@ public class Settings extends AppCompatActivity {
 
     // Outside of onCreate!
 
+
+    /**
+     * This method shows the interface for selecting which language the user would prefer.
+     */
     // create pop-up asking user which language they would like to select
     private void showChangeLanguageDialog() {
+
         // array of languages to display in alert dialogue
         final String[] listItems = {"Français", "Español", "한국어", "中文", "English"};
+
+        // create new alert dialogue
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Settings.this);
+
+        // allow user to select preferred language and exit upon selection
         mBuilder.setTitle(getResources().getString(R.string.select_lang));
         mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            /**
+             * This is a method which allow
+             *
+             * @param dialog represents the interface.
+             * @param which  corresponds to which location in the listItems array the respective language corresponds to.
+             */
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // select language
