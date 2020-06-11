@@ -32,6 +32,20 @@ public class PopUpgrade extends AppCompatActivity {
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
+    // Constants
+    private static String SHARED_PREF = "sharedPref";
+    private static String STRENGTH_COUNT = "strengthCount";
+    private static String VICTORY_COUNT = "victoryCount";
+    private static String SUCCESSFUL_LIFT = "successfulLift";
+    private static String GROW_PRESSED = "growPressed";
+    private static String CURRENT_TIER_STATE = "currentTierState";
+    private static String DEFAULT_VILLAGE = "Tribal Village";
+    private static String TOTAL_TERRITORIES_COUNT = "totalTerritoriesCount";
+    private static String TOTAL_GROWS_REQUIRED = "totalGrowsRequired";
+    private static int TOTAL_TERRITORIES_DEFAULT = 1;
+    private static int TOTAL_GROWS_DEFAULT = 6;
+    private static int DEFAULT = 0;
+
     /**
      * Initializes the activity.
      *
@@ -44,6 +58,7 @@ public class PopUpgrade extends AppCompatActivity {
 
         // change window colors
         // first checks if correct version
+        // 21 Android IOS version
         if (android.os.Build.VERSION.SDK_INT >= 21 && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -58,16 +73,10 @@ public class PopUpgrade extends AppCompatActivity {
         Intent intent = getIntent();
 
         // SEAN can you add a bunch of things i don't know how to do this part
-        final int totalAntsCount = intent.getIntExtra("totalAnts", 0);
-        final int unemployedCount = intent.getIntExtra("unemployed", 0);
-        final int strengthCount = intent.getIntExtra("strengthCount", 0);
-        final int victoryCount = intent.getIntExtra("victoryCount", 0);
-        final int lossCount = intent.getIntExtra("lossCount", 0);
-        final int successfulLift = intent.getIntExtra("successfulLift", 0);
-        final int unsuccessfulLift = intent.getIntExtra("unsuccessfulLift", 0);
-        final int growPressed = intent.getIntExtra("growPressed", 0);
-        final int totalTerritories = intent.getIntExtra("totalTerritories", 0);
-        final int totalGrows = intent.getIntExtra("totalGrows", 0);
+        final int strengthCount = intent.getIntExtra(STRENGTH_COUNT, DEFAULT);
+        final int victoryCount = intent.getIntExtra(VICTORY_COUNT, DEFAULT);
+        final int successfulLift = intent.getIntExtra(SUCCESSFUL_LIFT, DEFAULT);
+        final int growPressed = intent.getIntExtra(GROW_PRESSED, DEFAULT);
 
         // update glory score
         MainActivity.gloryScore = MainActivity.territoriesRequired * 30 + MainActivity.strength + successfulLift +
@@ -101,10 +110,10 @@ public class PopUpgrade extends AppCompatActivity {
 
 
         // SharedPreferences default values
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        MainActivity.tier = prefs.getString("currentTierState", "Tribal Village");
-        MainActivity.territoriesRequired = prefs.getInt("totalTerritoriesCount", 1);
-        MainActivity.growsRequired = prefs.getInt("totalGrowsRequired", 6);
+        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        MainActivity.tier = prefs.getString(CURRENT_TIER_STATE, DEFAULT_VILLAGE);
+        MainActivity.territoriesRequired = prefs.getInt(TOTAL_TERRITORIES_COUNT, TOTAL_TERRITORIES_DEFAULT);
+        MainActivity.growsRequired = prefs.getInt(TOTAL_GROWS_REQUIRED, TOTAL_GROWS_DEFAULT);
 
         // set text to defaults
         textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.tier);
@@ -213,9 +222,9 @@ public class PopUpgrade extends AppCompatActivity {
                 textNumberOfGrowsRequirement.setText(getResources().getText(R.string.number_of_grows) + " " + MainActivity.growsRequired);
 
                 editor = prefs.edit();
-                editor.putString("currentTierState", MainActivity.tier);
-                editor.putInt("totalTerritoriesCount", MainActivity.territoriesRequired);
-                editor.putInt("totalGrowsRequired", MainActivity.growsRequired);
+                editor.putString(CURRENT_TIER_STATE, MainActivity.tier);
+                editor.putInt(TOTAL_TERRITORIES_COUNT, MainActivity.territoriesRequired);
+                editor.putInt(TOTAL_GROWS_REQUIRED, MainActivity.growsRequired);
                 editor.commit();
 
                 // To show the latest value
@@ -244,17 +253,17 @@ public class PopUpgrade extends AppCompatActivity {
     }
 
     public void latestGrowsRequired() {
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        MainActivity.growsRequired = prefs.getInt("totalGrowsRequired", 6);
+        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        MainActivity.growsRequired = prefs.getInt(TOTAL_GROWS_REQUIRED, TOTAL_GROWS_DEFAULT);
     }
 
     public void latestTerritoriesRequired() {
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        MainActivity.territoriesRequired = prefs.getInt("totalTerritoriesCount", 1);
+        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        MainActivity.territoriesRequired = prefs.getInt(TOTAL_TERRITORIES_COUNT, TOTAL_TERRITORIES_DEFAULT);
     }
 
     public void latestTierValue() {
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        MainActivity.tier = prefs.getString("currentTierState", "Tribal Village");
+        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        MainActivity.tier = prefs.getString(CURRENT_TIER_STATE, DEFAULT_VILLAGE);
     }
 }

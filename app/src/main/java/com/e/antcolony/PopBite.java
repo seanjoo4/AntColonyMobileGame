@@ -28,6 +28,7 @@ import java.util.Locale;
  * @version June 5, 2020
  */
 public class PopBite extends Activity {
+
     Button okayButton;
 
     /**
