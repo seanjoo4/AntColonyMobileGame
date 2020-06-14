@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Ant Colony Simulator</string>
-    <string name="totalAnts">Total Ants:</string>
     <string name="queenButton">todo</string>
     <string name="UnemployedAnts">Idle Ants:</string>
     <string name="b_i_t_e">B I T E</string>
@@ -74,12 +73,7 @@
     <string name="bite_description_bad">Outnumbered and outmaneuvered, our noble ants have been truncated to meager numbers. Those noble souls may be lost but they are not forgotten. Anon we shall exact our vengeance upon the mound of innoble ants!</string>
     <string name="lift_report"> change in ants</string>
     <string name="lift_description_good">The aphids have graced us with sweet honeydew!</string>
+    <string name="how_to_play_description">"There are five major game player interactions:             Clicking on the queen: increases idle and total ants by strength factor at no cost             Grow: increases the colony strength at the cost of idle ants             Lift: large increase of idle and total ants at the cost of strength with 50% success rate             Bite: risky huge change in idle/total ants and territories owned with success rate contingent on number of idle and total ants and random chance.             Upgrade Colony: increases strength, colony tier, glory score, and colony aesthetics requiring (but not costing) territories claimed and number of grows.       "</string>
+    <string name="totalAnts">Total Ants:</string>
     <string name="lift_description_bad">No humans are throwing away scraps!</string>
-    <string name="how_to_play_description">There are five major game player interactions: \n \n
-        Clicking on the queen: increases idle and total ants by strength factor at no cost \n \n
-        Grow: increases the colony strength at the cost of idle ants \n \n
-        Lift: large increase of idle and total ants at the cost of strength with 50% success rate \n \n
-        Bite: risky huge change in idle/total ants and territories owned with success rate contingent on number of idle and total ants and random chance. \n \n
-        Upgrade Colony: increases strength, colony tier, glory score, and colony aesthetics requiring (but not costing) territories claimed and number of grows. \n
-    </string>
 </resources>
