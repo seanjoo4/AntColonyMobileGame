@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -570,6 +572,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // notifications
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 2,
+                new Intent(this, MyReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        // set to repeat every month
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pendingIntent);
     }
     // OUTSIDE OF OnCreate!
 
