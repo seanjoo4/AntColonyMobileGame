@@ -26,7 +26,7 @@ import java.util.Locale;
  * Settings: this class is where all the settings are implemented for the app. This class is a child of MainActivity.
  *
  * @author Aidan Andrucyk and Sean Joo
- * @version June 8, 2020
+ * @version June 10, 2020
  */
 public class Settings extends AppCompatActivity {
 

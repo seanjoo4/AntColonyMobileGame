@@ -59,18 +59,18 @@ public class MainActivity extends AppCompatActivity {
     private int costToGrow = 10;
     public static int growPressed = 0;
     // BITE BUTTON
-    private int biteEffect = 0;
+    public static boolean isVictorious = true;
+    public static int biteEffect = 0;
     // start with one territory claimed to include home colony (cannot go below 1)
     // for statistics purposes
     public static int territoriesClaimed = 1;
     public static int territoriesLost = 0;
     private int biteInertia = 0;
     // LIFT BUTTON
-    // will attempt to ensure roughly 50% success rate of lifting
-    private double liftInertia = 0;
+    public static boolean isSuccessful = true;
     public static int successfulLift = 0;
     public static int unsuccessfulLift = 0;
-    private int liftIncreaseFactor = 0;
+    public static int liftIncreaseFactor = 0;
     // VARIABLES AFFECTED BY PopUpgrade.java
     public static ConstraintLayout mainBackground;
     // number of ants gained per click on queen
@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // ~50% likelihood of gain or loss
                 // intertia designed to ensure ~50% lift rate success
-                liftIncreaseFactor = (int) (Math.random() + liftInertia <= .5 ?
+                liftIncreaseFactor = (int) (Math.random() <= .5 ?
                         // good outcome is equivalent to  10 to 50 clicks on queen
                         11 + (40 * Math.random()) :
                         // bad outcome is equivalent to 0 to 4 clicks on queen
@@ -318,6 +318,8 @@ public class MainActivity extends AppCompatActivity {
                 unCount.setText(idleAntNumber + "");
                 antCount.setText(antNumber + "");
                 strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
+
+                // create pop up
                 liftMessage();
 
                 // Save the incremented value
@@ -401,9 +403,29 @@ public class MainActivity extends AppCompatActivity {
                 strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
                 toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
 
+
+                // if victorious, then increase territories claimed
+                if (isVictorious) {
+                    // gain territory
+                    territoriesClaimed++;
+                } else {
+                    // lose territory
+                    territoriesLost++;
+                    territoriesClaimed--;
+
+                    // prevents territories claimed from becoming 0 or negative
+                    if (territoriesClaimed <= 0) {
+                        // reset to 1
+                        territoriesClaimed = 1;
+                        // huge blow to strength (30%)
+                        strength -= (int) (.30 * strength);
+                    }
+                }
+
                 // display bitMessage
                 biteMessage();
 
+                // saved preferences
                 editor = prefs.edit();
                 editor.putInt("growthCost", costToGrow);
                 editor.putInt("strengthCount", strength);
@@ -599,19 +621,19 @@ public class MainActivity extends AppCompatActivity {
      * This function displays the lift message depending on output.
      */
     public void liftMessage() {
-        String text = liftIncreaseFactor >= 11 ?
-                "GAINED A MIGHTY " + liftIncreaseFactor * strength + " ANTS! \n ALL HAIL THE QUEEN!!!" :
-                "ONLY GAINED A MEAGER " + liftIncreaseFactor * strength + " ANTS! \n LIFT HARDER!!!";
-        // if victory, increment by lift inertia by 1 else decrement by 1
-        liftInertia += text.charAt(0) == 'G' ? .1 : -.1;
-        if (text.charAt(0) == 'G') {
+        isSuccessful = liftIncreaseFactor >= 11 ? true : false;
+
+
+        // stats for lifts
+        if (isSuccessful) {
             successfulLift++;
         } else {
             unsuccessfulLift++;
         }
+
         // get pop up
         Intent intent = new Intent(this, PopLift.class);
-        intent.putExtra(EXTRA_TEXT, text);
+        // intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
     }
 
@@ -619,24 +641,10 @@ public class MainActivity extends AppCompatActivity {
      * This function displays the bite message depending on output.
      */
     public void biteMessage() {
-        String text = biteEffect > 0 ?
-                "VICTORY IS OURS!!! GAINED " + biteEffect + " ANTS!" :
-                "LOST " + Math.abs(biteEffect) + " NOBLE ANTS! RETREAT!!!";
-        // if victorious, then increase territories claimed
-        if (text.charAt(0) == 'V') {
-            territoriesClaimed++;
-        } else {
-            territoriesLost++;
-            // prevents territories claimed from becoming 0 or negative
-            if (territoriesClaimed <= 0) {
-                // reset to 1
-                territoriesClaimed = 1;
-                // huge blow to strength
-                strength *= .75;
-            }
-        }
+        // set global boolean isVictorious to true if biteEffect is positive and otherwise false
+        isVictorious = biteEffect > 0 ? true : false;
+        // create intent for pop up message
         Intent intent = new Intent(this, PopBite.class);
-        intent.putExtra(EXTRA_TEXT, text);
         startActivity(intent);
     }
 
@@ -667,50 +675,6 @@ public class MainActivity extends AppCompatActivity {
             mainBackground.setBackgroundResource(R.drawable.ant_colony_background7);
         }
     }
-
-
-    /*
-    // changes the tier name by comparing the current name with the next names in the progression
-    public void setTier(int territoriesRequired) {
-        // ordered from easiest to hardest to reduce the number of comparisons
-        if (territoriesRequired == 1) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier1);
-        } else if (territoriesRequired == 3) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier2);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background2);
-        } else if (territoriesRequired == 9) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier3);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background3);
-        } else if (territoriesRequired == 18) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier4);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background4);
-        } else if (territoriesRequired == 54) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier5);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background5);
-        } else if (territoriesRequired == 162) {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier6);
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background6);
-        } else {
-            // set the tier to localized string
-            tier = getResources().getString(R.string.tier7append) + tier;
-            // programmatically change the background of the main activity
-            mainBackground.setBackgroundResource(R.drawable.ant_colony_background7);
-            // append "Glorious" or localized equivalent to front of current tier name
-        }
-    }
-     */
-
 
     // music services
     private ServiceConnection Scon = new ServiceConnection() {

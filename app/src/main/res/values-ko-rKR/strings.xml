@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Ant Colony Simulator</string>
-    <string name="totalAnts">Fourmis Totales:</string>
+    <string name="totalAnts">Total Ants:</string>
     <string name="queenButton">todo</string>
-    <string name="AntCount">0</string>
-    <string name="UnemployedAnts">Fourmis Oisives:</string>
-    <string name="UnemployedCount">0</string>
-    <string name="b_i_t_e">MORDRE</string>
-    <string name="g_r_o_w">GRANDIR</string>
-    <string name="l_i_f_t">PORTER</string>
-    <string name="ToGROW">fourmis oisives pour grandir:</string>
-    <string name="NeededToGrow">10</string>
-    <string name="StrengthText">force actuelle:</string>
-    <string name="Strength">1</string>
+    <string name="UnemployedAnts">Idle Ants:</string>
+    <string name="b_i_t_e">B I T E</string>
+    <string name="g_r_o_w">G R O W</string>
+    <string name="l_i_f_t">L I F T</string>
+    <string name="ToGROW">Idle Needed To Grow:</string>
+    <string name="StrengthText">Current Strength:</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="settings">RÉGLAGES</string>
-    <string name="lift_for_the_queen">PORTER POUR LA REINE</string>
-    <string name="press_back_to_return">appuyez pour revenir</string>
+    <string name="settings">SETTINGS</string>
+    <string name="lift_for_the_queen">LIFT FOR THE QUEEN</string>
+    <string name="press_back_to_return">Press Back to return</string>
     <string name="todo">TODO</string>
     <string name="bite_for_the_queen">BITE FOR THE QUEEN!!!</string>
-    <string name="doubleBack">okay</string>
     <string name="settingsCog">⚙</string>
     <string name="upgradeArrow">⟰</string>
     <string name="bitevictorymessage">  </string>
@@ -31,19 +25,18 @@
     </string>
     <string name="privacy">Privacy</string>
     <string name="privacy_Caps">PRIVACY</string>
-    <string name="okay_lift">d\'accord</string>
     <string name="termsDescription">All contents, logo, and other visual media are the sole property of Pluto’s Playground. Pluto Playground is not responsible for third party redirects, particularly those of Google Ads. \n \n Source code for this application is available at https://github.com/aidanandrucyk/AntColonyMobileApp. While non-commercial use of the source or object code is permitted, commercial use of any description is strictly prohibited without the explicit consent of Pluto’s Playground. Users who fail to follow established guidelines will be barred from further usage in cases of abuse at Pluto’s Playgrounds sole discretion.</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
-    <string name="credits">CRÉDITS</string>
+    <string name="credits">CREDITS</string>
     <string name="software_developers_aidan_andrucyk_and_sean_joo">Software Developers: \n Aidan Andrucyk and Sean Joo</string>
-    <string name="contact_us">Nous contacter:</string>
+    <string name="contact_us">Contact Us:</string>
     <string name="music_bensound">Music: \n Bensound</string>
     <string name="inspiration_credits">Inspiration: \n A group where we all pretend to be ants in an ant colony</string>
     <string name="number_of_grows">Number of GROWs:</string>
     <string name="unsuccessful_lifts">Unsuccessful LIFTs:</string>
     <string name="total_ants">Total Ants:</string>
     <string name="colony_glory_score">Colony Glory Score:</string>
-    <string name="sean_pls_make_this_colony_name_in_all_caps_lol">Sean pls make this colony name in all caps lol</string>
+    <string name="sean_pls_make_this_colony_name_in_all_caps_lol">Queen\'s Colony</string>
     <string name="tier">Tier:</string>
     <string name="tier_upgrade_requirements">TIER UPGRADE REQUIREMENTS</string>
     <string name="territories_needed">Territories Needed:</string>
@@ -54,19 +47,39 @@
     <string name="territories_owned">Territories Owned:</string>
     <string name="bite_defeats">BITE Defeats:</string>
     <string name="successful_lifts">Successful LIFTs:</string>
-    <string name="music">la musique</string>
+    <string name="music">Music</string>
     <string name="sound_effects">Sound Effects</string>
-    <string name="how_to_play">comment jouer</string>
-    <string name="creditsInSettings">crédits</string>
-    <string name="rate_us">évaluez nous!</string>
-    <string name="terms_of_use">conditions d\'utilisation</string>
-    <string name="back">retour</string>
+    <string name="how_to_play">How To Play</string>
+    <string name="creditsInSettings">Credits</string>
+    <string name="rate_us">Rate Us!</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="back">back</string>
     <string name="lift_for_queen">LIFT FOR QUEEN</string>
-    <string name="okay">d\'accord</string>
+    <string name="okay">Okay</string>
     <string name="bite_for_queen">BITE FOR QUEEN</string>
-    <string name="okay_bite">d\'accord</string>
     <string name="share">Share!</string>
-    <string name="languageButton">Language</string>
-    <string name="french">français</string>
-    <string name="visit_us">korean</string>
+    <string name="visit_us">Visit Us!</string>
+    <string name="language_button">Language</string>
+    <string name="select_lang">Select Language</string>
+    <string name="tier1">Tribal Village</string>
+    <string name="tier2">Burgeoning Estate</string>
+    <string name="tier3">Humble County</string>
+    <string name="tier4">Blessed Duchy</string>
+    <string name="tier5">Glorious Queendom</string>
+    <string name="tier6">Divine Empire</string>
+    <string name="tier7append">Glorious </string>
+    <string name="lang">en</string>
+    <string name="bite_report"> change in ants</string>
+    <string name="bite_description_good">Your colony won!</string>
+    <string name="bite_description_bad">Your colony loss!</string>
+    <string name="lift_report"> change in ants</string>
+    <string name="lift_description_good">Your colony won!</string>
+    <string name="lift_description_bad">Your colony won!</string>
+    <string name="how_to_play_description">There are five major game player interactions: \n \n
+        Clicking on the queen: increases idle and total ants by strength factor at no cost \n \n
+        Grow: increases the colony strength at the cost of idle ants \n \n
+        Lift: large increase of idle and total ants at the cost of strength with 50% success rate \n \n
+        Bite: risky huge change in idle/total ants and territories owned with success rate contingent on number of idle and total ants and random chance. \n \n
+        Upgrade Colony: increases strength, colony tier, glory score, and colony aesthetics requiring (but not costing) territories claimed and number of grows. \n
+    </string>
 </resources>

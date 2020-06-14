@@ -40,23 +40,20 @@ public class PopBite extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // get xml layout to display
         setContentView(R.layout.activity_bite);
 
-        Intent intent = getIntent();
-        String text = intent.getStringExtra(MainActivity.EXTRA_TEXT);
-
+        // set text to report
         TextView message = (TextView) findViewById(R.id.biteMessage);
-        message.setText(text);
+        message.setText(getBattleReport());
 
-        // if the first character is 'L' from "Lost", then not victorious
-        boolean isVictorious = text.charAt(0) != 'L';
         // set description to generated message
         TextView description = (TextView) findViewById(R.id.biteDescription);
-        description.setText(getBattleDescription(isVictorious));
+        description.setText(getBattleDescription());
 
         // set background depending on victory status
         LinearLayout bgElement = (LinearLayout) findViewById(R.id.container);
-        if (isVictorious) {
+        if (MainActivity.isVictorious) {
             // if victorious, then make the background green
             bgElement.setBackgroundColor(getResources().getColor(R.color.biteVictory));
         } else {
@@ -90,21 +87,45 @@ public class PopBite extends Activity {
     }
 
     /**
-     * This function randomly returns a description for the respective win/loss bite state.
+     * This function returns a report for the respective win/loss bite state.
      *
-     * @param isVictorious a boolean that tells the function whether the battle was won or not.
-     * @return the description of the battle.
+     * @return the report of how many ants were loss/gained.
      */
-    public static String getBattleDescription(boolean isVictorious) {
-        String language = Locale.getDefault().getLanguage();
-        if (language == "fr") {
-            return "lalalalala";
+    public String getBattleReport() {
+
+        // if not in english, get localized report
+        if (!getResources().getString(R.string.lang).equals("en")) {
+            // number of ants gained/loss + respective language translation for the description
+            return MainActivity.biteEffect + getResources().getString(R.string.bite_report);
         }
 
+        // if in english
+        return MainActivity.isVictorious ?
+                "VICTORY IS OURS!!! GAINED " + MainActivity.biteEffect + " ANTS!" :
+                "LOST " + Math.abs(MainActivity.biteEffect) + " NOBLE ANTS! RETREAT!!!";
+    }
+
+    /**
+     * This function randomly returns a description for the respective win/loss bite state.
+     *
+     * @return the description of the battle.
+     */
+    public String getBattleDescription() {
+
+        // gives a different description if not in english
+        if (!getResources().getString(R.string.lang).equals("en")) {
+            if (MainActivity.isVictorious) {
+                return getResources().getString(R.string.bite_description_good);
+            }
+            // else if loss
+            return getResources().getString(R.string.bite_description_bad);
+        }
+
+        // more extensive english translations
         // for each battle outcome, there are 10 possible battle descriptions which are randomly chosen to be displayed
         int textChoice = (int) (Math.random() * 10);
         // the +'s are purely for  ease of reading source code
-        if (isVictorious) {
+        if (MainActivity.isVictorious) {
             switch (textChoice) {
                 case 0:
                     return "The stealth and guile of our mighty ants sanctioned our raiding group to obnubilate " +

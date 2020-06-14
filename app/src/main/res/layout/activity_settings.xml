@@ -18,7 +18,7 @@
         android:gravity="center"
         android:text="@string/settings"
         android:textColor="@color/liftLoss"
-        android:textSize="45sp"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
     <View
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/music"
         android:textColor="@color/liftLoss"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Switch
         android:id="@+id/soundEffectSwitch"
@@ -41,34 +41,35 @@
         android:layout_height="wrap_content"
         android:text="@string/sound_effects"
         android:textColor="@color/liftLoss"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/howToPlayButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
         android:text="@string/how_to_play"
-        android:textColor="@color/colorLight" />
+        android:textColor="@color/colorLight"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/selectLanguage"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
         android:soundEffectsEnabled="false"
-        android:text="@string/languageButton"
+        android:text="@string/language_button"
         android:textColor="@color/colorLight" />
 
     <Button
         android:id="@+id/shareButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
@@ -79,7 +80,7 @@
     <Button
         android:id="@+id/visitButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
@@ -90,7 +91,7 @@
     <Button
         android:id="@+id/rateUsButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
@@ -101,7 +102,7 @@
     <Button
         android:id="@+id/creditsButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
@@ -112,7 +113,7 @@
     <Button
         android:id="@+id/privacyButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
@@ -123,7 +124,7 @@
     <Button
         android:id="@+id/termsOfUseButton"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="42sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"
@@ -134,7 +135,7 @@
     <Button
         android:id="@+id/okaySetting"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="40sp"
         android:layout_margin="4sp"
         android:background="@color/liftLoss"
         android:hapticFeedbackEnabled="true"

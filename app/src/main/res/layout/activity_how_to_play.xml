@@ -17,99 +17,18 @@
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="HOW TO PLAY"
+        android:text="@string/how_to_play"
         android:textColor="#000000"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/overviewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:text="Overview: "
-        android:textColor="#000000" />
-
     <TextView
-        android:id="@+id/overviewDescription"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/queenTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:text="Queen: "
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/queenDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/biteTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:text="Bite: "
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/biteDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/growTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:text="Grow: "
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/growDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/liftTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:text="Lift: "
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/liftDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
+        android:layout_margin="5sp"
+        android:gravity="center"
+        android:text="@string/how_to_play_description"
         android:textColor="#000000" />
 
     <Button
@@ -117,6 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:soundEffectsEnabled="false"
-        android:text="Okay" />
+        android:text="@string/okay" />
 
 </LinearLayout>

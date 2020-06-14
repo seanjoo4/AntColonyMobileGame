@@ -35,23 +35,19 @@ public class PopLift extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // get xml layout to display
         setContentView(R.layout.activity_lift);
 
-        Intent intent = getIntent();
-        String text = intent.getStringExtra(MainActivity.EXTRA_TEXT);
-
         TextView message = (TextView) findViewById(R.id.liftMessage);
-        message.setText(text);
+        message.setText(getLiftReport());
 
-        // if the first character is 'O' from "Only gained", then not successful
-        boolean isSuccessful = text.charAt(0) != 'O';
         // set description to generated message
         TextView liftDescription = findViewById(R.id.liftDescription);
-        liftDescription.setText(getHarvestDescription(isSuccessful));
+        liftDescription.setText(getHarvestDescription());
 
         // set background depending on victory status
         LinearLayout bgElement = (LinearLayout) findViewById(R.id.container);
-        if (isSuccessful) {
+        if (MainActivity.isSuccessful) {
             // if victorious, then make the background green
             bgElement.setBackgroundColor(getResources().getColor(R.color.liftVictory));
         } else {
@@ -84,18 +80,50 @@ public class PopLift extends Activity {
         });
     }
 
+
+    /**
+     * This function returns a report for the respective win/loss bite state.
+     *
+     * @return the report of how many ants were loss/gained.
+     */
+    public String getLiftReport() {
+
+        // if not in english, get localized report
+        if (!getResources().getString(R.string.lang).equals("en")) {
+            // number of ants gained/loss + respective language translation for the description
+            return MainActivity.liftIncreaseFactor * MainActivity.strength + getResources().getString(R.string.lift_report);
+        }
+
+        // if in english
+        return MainActivity.isSuccessful ?
+                // MainActivity.liftIncreaseFactor * MainActivity.strength represents the number of ants gained/lost
+                "GAINED A MIGHTY " + MainActivity.liftIncreaseFactor * MainActivity.strength + " ANTS! \n ALL HAIL THE QUEEN!!!" :
+                "ONLY GAINED A MEAGER " + MainActivity.liftIncreaseFactor * MainActivity.strength + " ANTS! \n LIFT HARDER!!!";
+    }
+
+
     /**
      * This function randomly returns a description for the respective win/loss lift state.
      *
-     * @param isSuccessful a boolean that tells the function whether the lift was successful or not.
      * @return the description of the adventure.
      */
-    public static String getHarvestDescription(boolean isSuccessful){
+    public String getHarvestDescription() {
+
+        // gives a different description if not in english
+        if (!getResources().getString(R.string.lang).equals("en")) {
+            if (MainActivity.isSuccessful) {
+                return getResources().getString(R.string.lift_description_good);
+            }
+            // else if loss
+            return getResources().getString(R.string.lift_description_bad);
+        }
+
+
         // for each battle outcome, there are 10 possible lift descriptions which are randomly chosen to be displayed
-        int textChoice = (int)(Math.random()*10);
+        int textChoice = (int) (Math.random() * 10);
         // the +'s are purely for  ease of reading source code
-        if (isSuccessful){
-            switch(textChoice){
+        if (MainActivity.isSuccessful) {
+            switch (textChoice) {
                 case 0:
                     return "The Queen’s ants found a package of severely genetically modified strawberries!";
                 case 1:
@@ -109,7 +137,7 @@ public class PopLift extends Activity {
                 case 5:
                     return "White powder?! SUGAR!!!";
                 case 6:
-                    return "Thicc leaves!";
+                    return "Powell made printers go BRRR! Human minions make green stonks and spend it lavishly on food they can't finish!";
                 case 7:
                     return "One of our brothers found a coconut! He cannot lift on his own. We must help! LIFT!";
                 case 8:
@@ -129,9 +157,9 @@ public class PopLift extends Activity {
                 case 3:
                     return "A terrible harvesting season results in little food available.";
                 case 4:
-                    return "Our ants cannot lift the loot that is given! Come back when our army is bigger!";
+                    return "A rival ant colony already plundered the bountiful human baby cabinet!";
                 case 5:
-                    return "So heavy … so tired ...";
+                    return "So heavy... so tired ...";
                 case 6:
                     return "We have been searching for hours, but cannot find anything.";
                 case 7:
