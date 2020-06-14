@@ -68,7 +68,7 @@
     <string name="tier5">Glorious Queendom</string>
     <string name="tier6">Divine Empire</string>
     <string name="tier7append">Glorious </string>
-    <string name="lang">en</string>
+    <string name="lang">ko</string>
     <string name="bite_report"> change in ants</string>
     <string name="bite_description_good">Your colony won!</string>
     <string name="bite_description_bad">Your colony loss!</string>
