@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -46,7 +45,17 @@ public class Settings extends AppCompatActivity {
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
+    // Constants
     public static String SOUND_EFFECT_STATE = "soundEffectState";
+    public static String MUSIC_STATE = "musicState";
+    public static String SHARED_PREF = "sharedPref";
+    public static String SETTINGS = "Settings";
+    public static String MY_LANG = "My_Lang";
+    public static String SHARE_USING = "Share Using";
+    public static String EMPTY_STRING = "";
+    public static float MUSIC_ON = .1f;
+    public static float SOUND_OFF = 0f;
+    public static int CURRENT_ANDROID_VERSION = 21;
 
     /**
      * Initializes the activity.
@@ -61,7 +70,7 @@ public class Settings extends AppCompatActivity {
 
         // change window color from black to maroon
         // first checks if correct version
-        if (android.os.Build.VERSION.SDK_INT >= 21 && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (android.os.Build.VERSION.SDK_INT >= CURRENT_ANDROID_VERSION && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -79,25 +88,24 @@ public class Settings extends AppCompatActivity {
         soundEffectSwitch = (Switch) findViewById(R.id.soundEffectSwitch);
 
         // SharedPreferences default values
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        musicSwitch.setChecked(prefs.getBoolean("musicState", true));
+        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        musicSwitch.setChecked(prefs.getBoolean(MUSIC_STATE, true));
         // Music Switch
         musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (musicSwitch.isChecked()) {
                     Toast.makeText(getBaseContext(), "Music On", Toast.LENGTH_SHORT).show();
-                    MusicService.mPlayer.setVolume(.1f, .1f);
-                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("musicState", true);
+                    MusicService.mPlayer.setVolume(MUSIC_ON, MUSIC_ON);
+                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
+                    editor.putBoolean(MUSIC_STATE, true);
                     editor.commit();
                     musicSwitch.setChecked(true);
-                }
-                else {
+                } else {
                     Toast.makeText(getBaseContext(), "Music Off", Toast.LENGTH_SHORT).show();
-                    MusicService.mPlayer.setVolume(0f, 0f);
-                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("musicState", false);
+                    MusicService.mPlayer.setVolume(SOUND_OFF, SOUND_OFF);
+                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
+                    editor.putBoolean(MUSIC_STATE, false);
                     editor.commit();
                     musicSwitch.setChecked(false);
                 }
@@ -106,7 +114,7 @@ public class Settings extends AppCompatActivity {
 
         // Sound Effect Switch
         //prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        soundEffectSwitch.setChecked(prefs.getBoolean("soundEffectState", true));
+        soundEffectSwitch.setChecked(prefs.getBoolean(SOUND_EFFECT_STATE, true));
         soundEffectSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,25 +126,19 @@ public class Settings extends AppCompatActivity {
                     MainActivity.biteSound.setVolume(1f, 1f);
                     MainActivity.nouSound.setVolume(1f, 1f);
                     MainActivity.forTheQueenSound.setVolume(1f, 1f);
-                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
                     editor.putBoolean(SOUND_EFFECT_STATE, true);
                     editor.commit();
                     soundEffectSwitch.setChecked(true);
                 } else {
                     Toast.makeText(getBaseContext(), "Sound Effect Off", Toast.LENGTH_SHORT).show();
-                    MainActivity.workSound.setVolume(0f, 0f);
-                    MainActivity.growSound.setVolume(0f, 0f);
-                    MainActivity.liftSound.setVolume(0f, 0f);
-                    MainActivity.biteSound.setVolume(0f, 0f);
-                    MainActivity.nouSound.setVolume(0f, 0f);
-                    MainActivity.forTheQueenSound.setVolume(0f, 0f);
-
-                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
-                    editor.putBoolean("musicState", true);
-                    editor.commit();
-                    musicSwitch.setChecked(true);
-
-                    editor = getSharedPreferences("sharedPref", MODE_PRIVATE).edit();
+                    MainActivity.workSound.setVolume(SOUND_OFF, SOUND_OFF);
+                    MainActivity.growSound.setVolume(SOUND_OFF, SOUND_OFF);
+                    MainActivity.liftSound.setVolume(SOUND_OFF, SOUND_OFF);
+                    MainActivity.biteSound.setVolume(SOUND_OFF, SOUND_OFF);
+                    MainActivity.nouSound.setVolume(SOUND_OFF, SOUND_OFF);
+                    MainActivity.forTheQueenSound.setVolume(SOUND_OFF, SOUND_OFF);
+                    editor = getSharedPreferences(SHARED_PREF, MODE_PRIVATE).edit();
                     editor.putBoolean(SOUND_EFFECT_STATE, false);
                     editor.commit();
                     soundEffectSwitch.setChecked(false);
@@ -232,9 +234,9 @@ public class Settings extends AppCompatActivity {
                 myIntent.setType("text/plain");
                 String body = "Your body here";
                 String sub = "Your Subject";
-                myIntent.putExtra(Intent.EXTRA_SUBJECT,sub);
-                myIntent.putExtra(Intent.EXTRA_TEXT,body);
-                startActivity(Intent.createChooser(myIntent, "Share Using"));
+                myIntent.putExtra(Intent.EXTRA_SUBJECT, sub);
+                myIntent.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(myIntent, SHARE_USING));
             }
         });
 
@@ -376,15 +378,15 @@ public class Settings extends AppCompatActivity {
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         // save data to shared preferences
-        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-        editor.putString("My_Lang", lang);
+        SharedPreferences.Editor editor = getSharedPreferences(SETTINGS, MODE_PRIVATE).edit();
+        editor.putString(MY_LANG, lang);
         editor.apply();
     }
 
     // load language
     public void loadLocale() {
-        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My_Lang", "");
+        SharedPreferences prefs = getSharedPreferences(SETTINGS, Activity.MODE_PRIVATE);
+        String language = prefs.getString(MY_LANG, EMPTY_STRING);
         setLocale(language);
     }
 }

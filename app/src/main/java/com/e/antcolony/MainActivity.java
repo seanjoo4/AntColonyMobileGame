@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     public static MediaPlayer biteSound;
     public static MediaPlayer nouSound;
     public static MediaPlayer forTheQueenSound;
+    public static MediaPlayer mPlayer;
     // variables for SavedPreferences functionality
     private SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -140,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
         unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
         growPressed = prefs.getInt("growPressedCount", 0);
         tier = prefs.getString(PopUpgrade.CURRENT_TIER_STATE, "");
-
-
 
         // set text to defaults
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
@@ -472,8 +471,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("gloryScore", gloryScore);
                 intent.putExtra("totalTerritories", territoriesRequired);
                 intent.putExtra("totalGrows", growsRequired);
-
-                System.out.println("The tier name is:" + MainActivity.tier);
                 // for variables, we should create constants to avoid confusion (ex: unemployed & 1)
                 startActivityForResult(intent, 1);
             }
@@ -541,9 +538,8 @@ public class MainActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
-
-        boolean check = prefs.getBoolean(Settings.SOUND_EFFECT_STATE, true);
-        if (check) {
+        boolean checkSoundEffect = prefs.getBoolean(Settings.SOUND_EFFECT_STATE, true);
+        if (checkSoundEffect) {
             workSound.setVolume(1f, 1f);
             growSound.setVolume(1f, 1f);
             liftSound.setVolume(1f, 1f);
@@ -557,6 +553,21 @@ public class MainActivity extends AppCompatActivity {
             biteSound.setVolume(0f, 0f);
             nouSound.setVolume(0f, 0f);
             forTheQueenSound.setVolume(0f, 0f);
+        }
+
+        boolean checkMusic = prefs.getBoolean(Settings.MUSIC_STATE, true);
+        if (checkMusic) {
+            //MusicService.mPlayer.setVolume(.1f, .1f);
+            //mPlayer.setVolume(.1f, .1f);
+            if (mServ != null) {
+                mServ.resumeMusic();
+            }
+        } else {
+            //MusicService.mPlayer.setVolume(0f, 0f);
+            //mPlayer.setVolume(0f, 0f);
+            if (mServ != null) {
+                mServ.pauseMusic();
+            }
         }
 
     }
