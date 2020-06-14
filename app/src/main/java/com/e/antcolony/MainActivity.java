@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Context;
 
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;

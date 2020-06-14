@@ -9,7 +9,7 @@ import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationManagerCompat;
 
 public class MyNewIntentService extends JobIntentService {
-    private static final int NOTIFICATION_ID = 3;
+    private static final int NOTIFICATION_ID = 2;
 
     public MyNewIntentService() {
         // super();
