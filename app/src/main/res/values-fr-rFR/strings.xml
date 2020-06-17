@@ -77,4 +77,6 @@
     <string name="termsDescription">Tous les contenus, logo et autres supports visuels sont la propriété exclusive de Pluto’s Playground. Pluto Playground n\'est pas responsable des redirections de tiers, en particulier celles de Google Ads. Le code source de cette application est disponible sur https://github.com/aidanandrucyk/AntColonyMobileApp. Bien que l’utilisation non commerciale du code source ou objet soit autorisée, l’utilisation commerciale de toute description est strictement interdite sans le consentement explicite de Pluto’s Playground. Les utilisateurs qui ne respectent pas les directives établies seront exclus de toute utilisation ultérieure en cas d\'abus à la seule discrétion de Pluto\'s Playgrounds.</string>
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">Bon travail de mise à niveau! La Reine vous remercie pour votre travail! Continuez à LEVER, À BIEN ET À CROÎTRE! POUR LA REINE!!!</string>
     <string name="upgraded">Amélioré!</string>
+    <string name="now_tier">Nouveau Niveau:</string>
+    <string name="now_strength">Nouvelle Force:</string>
 </resources>

@@ -77,4 +77,6 @@
     <string name="bite_description_bad">우리의 고귀한 개미는 수보다 많고 능숙하지 못하여 빈약 한 숫자로 잘 렸습니다. 그 고귀한 영혼들은 잃어 버렸지 만 잊혀지지 않았습니다. 우리는 무고한 개미들의 마운드에 복수를해야합니다!</string>
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">좋은 직업 업그레이드! 여왕은 당신의 일에 감사합니다! 리프팅, 바이 팅 및 성장을 유지하십시오! 여왕을 위해!!!</string>
     <string name="upgraded">업그레이드!</string>
+    <string name="now_tier">새로운 계층:</string>
+    <string name="now_strength">새로운 힘:</string>
 </resources>

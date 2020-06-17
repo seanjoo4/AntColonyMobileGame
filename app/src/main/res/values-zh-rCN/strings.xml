@@ -82,4 +82,6 @@
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">做好工作升级！ 女王感谢您的工作！ 继续提升，活动和成长！ 为了女王！</string>
     <string name="upgraded">升级了！</string>
     <string name="lang">zh</string>
+    <string name="now_tier">新等级：</string>
+    <string name="now_strength">新优势：</string>
 </resources>

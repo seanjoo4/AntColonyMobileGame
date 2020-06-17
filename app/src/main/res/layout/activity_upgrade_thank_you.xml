@@ -24,10 +24,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="50sp"
+        android:padding="40sp"
         android:text="@string/good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen"
         android:textColor="#000000"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/nowTierText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/now_tier"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:padding="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nowStrengthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/now_strength"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:padding="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/popupOkayButton"

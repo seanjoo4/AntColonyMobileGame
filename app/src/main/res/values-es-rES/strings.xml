@@ -77,4 +77,6 @@
     <string name="bite_description_bad">Superados en número y superados, nuestras nobles hormigas han sido truncadas a números exiguos. Esas almas nobles pueden perderse pero no se olvidan. ¡Anon vamos a exigir nuestra venganza sobre el montículo de hormigas inocentes!</string>
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">Buen trabajo de actualización! ¡La reina te agradece tu trabajo! ¡Sigue LEVANTANDO, MORDIENDO Y CRECIENDO! PARA LA REINA!!!</string>
     <string name="upgraded">¡Actualizado!</string>
+    <string name="now_tier">Nuevo Nivel:</string>
+    <string name="now_strength">Nueva Fuerza:</string>
 </resources>

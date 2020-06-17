@@ -83,4 +83,6 @@
     <string name="lift_description_bad">No humans are throwing away scraps!</string>
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">Good job upgrading! The Queen thanks you for your work! Keep LIFTING, BITING, AND GROWING! FOR THE QUEEN!!!</string>
     <string name="upgraded">Upgraded!</string>
+    <string name="now_tier">New Tier:</string>
+    <string name="now_strength">New Strength:</string>
 </resources>

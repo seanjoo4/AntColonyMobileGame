@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class UpgradeThankYou extends AppCompatActivity {
 
@@ -13,6 +14,13 @@ public class UpgradeThankYou extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade_thank_you);
+
+        TextView nowTier = findViewById(R.id.nowTierText);
+        TextView nowStrength = findViewById(R.id.nowStrengthText);
+
+        nowTier.setText("New Tier: " + MainActivity.tier);
+        nowStrength.setText("New Strength: " + MainActivity.strength);
+
 
         // popup layout
         DisplayMetrics dm = new DisplayMetrics();
