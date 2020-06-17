@@ -371,6 +371,11 @@ public class Settings extends AppCompatActivity {
         mDialog.show();
     }
 
+    /**
+     * This function sets the language chosen
+     *
+     * @param lang languages that are offered
+     */
     private void setLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -383,7 +388,9 @@ public class Settings extends AppCompatActivity {
         editor.apply();
     }
 
-    // load language
+    /**
+     * This function loads the language
+     */
     public void loadLocale() {
         SharedPreferences prefs = getSharedPreferences(SETTINGS, Activity.MODE_PRIVATE);
         String language = prefs.getString(MY_LANG, EMPTY_STRING);

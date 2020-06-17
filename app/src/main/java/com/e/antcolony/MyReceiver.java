@@ -11,9 +11,18 @@ import android.content.Intent;
  * @version June 12, 2020
  */
 public class MyReceiver extends BroadcastReceiver {
+
+    /**
+     * Receiving data
+     */
     public MyReceiver() {
     }
 
+    /**
+     *
+     * @param context the receiver is running.
+     * @param intent the Intent being received.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
 

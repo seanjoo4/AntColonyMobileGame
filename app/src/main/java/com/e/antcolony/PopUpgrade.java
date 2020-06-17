@@ -265,21 +265,33 @@ public class PopUpgrade extends AppCompatActivity {
         });
     }
 
+    /**
+     * SharedPreference for MainActivity.territoriesRequired
+     */
     public void latestTerritoryRequired() {
         prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         MainActivity.territoriesRequired = prefs.getInt(TERRITORIES_REQUIRED, TERRITORIES_DEFAULT);
     }
 
+    /**
+     * SharedPreference for MainActivity.growsRequired
+     */
     public void latestGrowsRequired() {
         prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         MainActivity.growsRequired = prefs.getInt(TOTAL_GROWS_REQUIRED, TOTAL_GROWS_DEFAULT);
     }
 
+    /**
+     * SharedPreference for MainActivity.territoriesRequired
+     */
     public void latestTerritoriesRequired() {
         prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         MainActivity.territoriesRequired = prefs.getInt(TOTAL_TERRITORIES_COUNT, TOTAL_TERRITORIES_DEFAULT);
     }
 
+    /**
+     * SharedPreference for MainActivity.tier
+     */
     public void latestTierValue() {
         prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
         MainActivity.tier = prefs.getString(CURRENT_TIER_STATE, DEFAULT_VILLAGE);

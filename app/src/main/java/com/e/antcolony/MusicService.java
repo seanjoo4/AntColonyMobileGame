@@ -87,10 +87,10 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      * This function starts the starting of music services.
      *
-     * @param intent  represents carried data.
-     * @param flags
-     * @param startId
-     * @return
+     * @param intent represents carried data.
+     * @param flags additional data about this start request.
+     * @param startId a unique integer representing this specific request to start
+     * @return value indicates what semantics the system should use for the service's current started state.
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -170,10 +170,10 @@ public class MusicService extends Service implements MediaPlayer.OnErrorListener
     /**
      * This function stops music from playing when error occurs and notifies end user.
      *
-     * @param mp
-     * @param what
-     * @param extra
-     * @return
+     * @param mp the MediaPlayer the error pertains to
+     * @param what the type of error that has occurred:
+     * @param extra an extra code, specific to the error.
+     * @return true if the method handled the error, false if it didn't
      */
     public boolean onError(MediaPlayer mp, int what, int extra) {
 

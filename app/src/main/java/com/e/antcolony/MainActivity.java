@@ -559,14 +559,10 @@ public class MainActivity extends AppCompatActivity {
 
         boolean checkMusic = prefs.getBoolean(Settings.MUSIC_STATE, true);
         if (checkMusic) {
-            //MusicService.mPlayer.setVolume(.1f, .1f);
-            //mPlayer.setVolume(.1f, .1f);
             if (mServ != null) {
                 mServ.resumeMusic();
             }
         } else {
-            //MusicService.mPlayer.setVolume(0f, 0f);
-            //mPlayer.setVolume(0f, 0f);
             if (mServ != null) {
                 mServ.pauseMusic();
             }
@@ -599,7 +595,6 @@ public class MainActivity extends AppCompatActivity {
         unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
     }
 
-
     /**
      * This functions stores the number of lift was successful
      */
@@ -607,7 +602,6 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         successfulLift = prefs.getInt("successfulLiftCount", 0);
     }
-
 
     /**
      * This functions stores the number of territories lost
@@ -660,7 +654,6 @@ public class MainActivity extends AppCompatActivity {
         costToGrow = prefs.getInt("growthCost", 10);
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
     }
-
 
     // POP-UPS
 
@@ -738,7 +731,7 @@ public class MainActivity extends AppCompatActivity {
 
         /**
          * This function disconnects music service.
-         * @param name
+         * @param name the concrete component name of the service whose connection has been lost.
          */
         public void onServiceDisconnected(ComponentName name) {
             mServ = null;

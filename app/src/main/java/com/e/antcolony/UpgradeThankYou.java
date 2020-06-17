@@ -8,8 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * This class is a popup thanking the user when colony is upgraded. Child of PopUpgrade.
+ *
+ * @author Sean Joo
+ * @version June 17, 2020
+ */
 public class UpgradeThankYou extends AppCompatActivity {
 
+    /**
+     * Initializes the activity.
+     *
+     * @param savedInstanceState used when activity needs to be created/recreated
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
