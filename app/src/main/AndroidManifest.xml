@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".UpgradeThankYou"
+            android:parentActivityName=".PopUpgrade" />
+        <activity
             android:name=".Settings"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -63,18 +66,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-        </activity>
-
-        <!-- notifications-->
+        </activity> <!-- notifications -->
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
 
         <service
             android:name=".MyNewIntentService"
             android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

@@ -163,6 +163,9 @@ public class PopUpgrade extends AppCompatActivity {
                     return;
                 }
 
+                // popup
+                startActivity(new Intent(PopUpgrade.this, UpgradeThankYou.class));
+
                 // upgrade the tier status
                 // changes the tier name by comparing the current name with the next names in the progression
                 // ordered from easiest to hardest to reduce the number of comparisons

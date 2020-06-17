@@ -75,4 +75,6 @@
     <string name="colony_stats">ESTADÍSTICAS DE LA COLONIA</string>
     <string name="bite_description_good">Después de varios ciclos solares de batalla, ambos bandos sufrieron graves pérdidas. Expresarlo verbalmente era un tira y afloja sería un eufemismo. Fue solo en el empuje final que se volvió lúcido que la colonia de nuestra Reina fue la vencedora de tal compromiso. ¡Las batallas de tales naturalezas acaloradas traerán gloria a nuestro queendom!</string>
     <string name="bite_description_bad">Superados en número y superados, nuestras nobles hormigas han sido truncadas a números exiguos. Esas almas nobles pueden perderse pero no se olvidan. ¡Anon vamos a exigir nuestra venganza sobre el montículo de hormigas inocentes!</string>
+    <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">Buen trabajo de actualización! ¡La reina te agradece tu trabajo! ¡Sigue LEVANTANDO, MORDIENDO Y CRECIENDO! PARA LA REINA!!!</string>
+    <string name="upgraded">¡Actualizado!</string>
 </resources>

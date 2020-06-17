@@ -75,4 +75,6 @@
     <string name="how_to_play_description">5 가지 주요 게임 플레이어 상호 작용이 있습니다. 여왕을 클릭하면 무료로 강도 요소별로 유휴 및 총 개미 증가 성장 : 유휴 개미 비용으로 식민지 강도 증가 리프트 : 강도 비용으로 유휴 및 총 개미가 크게 증가 성공률이 50 % 인 바이트 : 유휴 / 총 개미 수와 무작위 확률에 따라 성공률이 높은 유휴 / 총 개미 및 영토의 위험한 큰 변화. 식민지 업그레이드 : 주장 된 영토와 성장 횟수를 요구하는 강도, 식민지 등급, 영광 점수 및 식민지 미학을 증가시킵니다.</string>
     <string name="bite_description_good">몇 차례의 태양주기 전투 후에 양측은 중대한 손실을 입었습니다. 말로 표현하기 위해 그것은 줄다리기 일 것입니다. 우리 여왕의 식민지가 그러한 약혼의 승리 자라는 것이 명백하게 밝혀졌다. 그러한 격렬한 본성의 싸움은 우리의 여왕에게 영광을 가져올 것입니다!</string>
     <string name="bite_description_bad">우리의 고귀한 개미는 수보다 많고 능숙하지 못하여 빈약 한 숫자로 잘 렸습니다. 그 고귀한 영혼들은 잃어 버렸지 만 잊혀지지 않았습니다. 우리는 무고한 개미들의 마운드에 복수를해야합니다!</string>
+    <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">좋은 직업 업그레이드! 여왕은 당신의 일에 감사합니다! 리프팅, 바이 팅 및 성장을 유지하십시오! 여왕을 위해!!!</string>
+    <string name="upgraded">업그레이드!</string>
 </resources>

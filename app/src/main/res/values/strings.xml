@@ -76,4 +76,6 @@
     <string name="how_to_play_description">"There are five major game player interactions:             Clicking on the queen: increases idle and total ants by strength factor at no cost             Grow: increases the colony strength at the cost of idle ants             Lift: large increase of idle and total ants at the cost of strength with 50% success rate             Bite: risky huge change in idle/total ants and territories owned with success rate contingent on number of idle and total ants and random chance.             Upgrade Colony: increases strength, colony tier, glory score, and colony aesthetics requiring (but not costing) territories claimed and number of grows.       "</string>
     <string name="totalAnts">Total Ants:</string>
     <string name="lift_description_bad">No humans are throwing away scraps!</string>
+    <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">Good job upgrading! The Queen thanks you for your work! Keep LIFTING, BITING, AND GROWING! FOR THE QUEEN!!!</string>
+    <string name="upgraded">Upgraded!</string>
 </resources>
