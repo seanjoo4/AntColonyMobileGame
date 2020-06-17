@@ -64,7 +64,6 @@
     <string name="tier5">Glorious Queendom</string>
     <string name="tier6">Divine Empire</string>
     <string name="tier7append">Glorious </string>
-    <string name="lang">en</string>
     <string name="bite_report"> change in ants</string>
     <string name="bite_description_good">经过数轮的太阳战，双方损失惨重。 口头表达这是一场拔河比赛，这是一种轻描淡写的说法。 直到最后一推才使我们的女王的殖民地赢得了如此明确的认可。 这些激烈的自然之战将为我们的王后带来荣耀！</string>
     <string name="bite_description_bad">数量众多，机动灵活，我们的贵族蚂蚁被截断成微薄的数字。 这些高尚的灵魂可以迷失，但他们不会被遗忘。 我们将对无辜的蚁丘报仇！</string>
@@ -82,4 +81,5 @@
     <string name="contact_us">" "</string>
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">做好工作升级！ 女王感谢您的工作！ 继续提升，活动和成长！ 为了女王！</string>
     <string name="upgraded">升级了！</string>
+    <string name="lang">zh</string>
 </resources>

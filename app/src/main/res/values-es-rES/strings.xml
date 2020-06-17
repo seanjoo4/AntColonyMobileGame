@@ -54,11 +54,11 @@
     <string name="visit_us">¡Visítanos!</string>
     <string name="language_button">Idioma</string>
     <string name="select_lang">Seleccione el Idioma</string>
-    <string name="tier1">Pueblo Tribal</string>
-    <string name="tier2">Estado Floreciente</string>
-    <string name="tier3">Condado Humilde</string>
-    <string name="tier4">Bendito Ducado</string>
-    <string name="tier5">Glorioso Queendom</string>
+    <string name="tier1">Tribal Village</string>
+    <string name="tier2">Burgeoning Estate</string>
+    <string name="tier3">Humble County</string>
+    <string name="tier4">Blessed Duchy</string>
+    <string name="tier5">Glorious Queendom</string>
     <string name="tier6">Imperio Divino</string>
     <string name="tier7append">Glorioso</string>
     <string name="lang">es</string>
