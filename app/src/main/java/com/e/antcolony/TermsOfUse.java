@@ -24,6 +24,7 @@ public class TermsOfUse extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_of_use);
 
+        // popup layout
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 

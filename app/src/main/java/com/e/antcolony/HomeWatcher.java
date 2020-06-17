@@ -16,7 +16,6 @@ import static android.content.ContentValues.TAG;
  */
 public class HomeWatcher {
 
-    //static final String TAG = "hg";
     private Context mContext;
     private OnHomePressedListener mListener;
     private IntentFilter mFilter;

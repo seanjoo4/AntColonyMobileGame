@@ -1,24 +1,12 @@
 package com.e.antcolony;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import org.w3c.dom.Text;
-
-import java.util.Locale;
 
 /**
  * PopBite: a popup class that displays the result of the bite button. The class will display how many ants were lost/gained,

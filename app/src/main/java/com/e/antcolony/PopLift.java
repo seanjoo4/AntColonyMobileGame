@@ -1,19 +1,12 @@
 package com.e.antcolony;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * PopLift: this class shows the result of the lift button. It will display how many ants were gained and a description
@@ -145,9 +138,8 @@ public class PopLift extends Activity {
                 default:
                     return "A human leaves their sausage left unattended! Lets lift!";
             }
-        }
-        else{
-            switch(textChoice){
+        } else {
+            switch (textChoice) {
                 case 0:
                     return "No honeydew to be found…";
                 case 1:

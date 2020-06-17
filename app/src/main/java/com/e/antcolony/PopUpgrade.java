@@ -1,12 +1,7 @@
 package com.e.antcolony;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -18,8 +13,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ResourceBundle;
 
 /**
  * PopUpgrade: this class is employed to show the user statistics and colony upgrade requirements upon pressing the arrow button from the parent activity.
@@ -49,6 +42,8 @@ public class PopUpgrade extends AppCompatActivity {
     private static String DEFAULT_VILLAGE = "";
     private static String TOTAL_TERRITORIES_COUNT = "totalTerritoriesCount";
     private static String TOTAL_GROWS_REQUIRED = "totalGrowsRequired";
+    private static String TERRITORIES_REQUIRED = "territoriesRequired";
+    private static int TERRITORIES_DEFAULT = 1;
     private static int TOTAL_TERRITORIES_DEFAULT = 1;
     private static int TOTAL_GROWS_DEFAULT = 6;
     private static int DEFAULT = 0;
@@ -63,13 +58,13 @@ public class PopUpgrade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_upgrade);
 
-        // set defualt tier to tier1
+        // set default tier to tier1
         DEFAULT_VILLAGE = getResources().getString(R.string.tier1);
 
         // change window colors
         // first checks if correct version
         // 21 Android IOS version
-        if (android.os.Build.VERSION.SDK_INT >= 21 && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (android.os.Build.VERSION.SDK_INT >= Settings.CURRENT_ANDROID_VERSION && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -125,7 +120,7 @@ public class PopUpgrade extends AppCompatActivity {
         MainActivity.tier = prefs.getString(CURRENT_TIER_STATE, DEFAULT_VILLAGE);
         MainActivity.territoriesRequired = prefs.getInt(TOTAL_TERRITORIES_COUNT, TOTAL_TERRITORIES_DEFAULT);
         MainActivity.growsRequired = prefs.getInt(TOTAL_GROWS_REQUIRED, TOTAL_GROWS_DEFAULT);
-        MainActivity.territoriesRequired = prefs.getInt("territoriesRequired", 1);
+        MainActivity.territoriesRequired = prefs.getInt(TERRITORIES_REQUIRED, TERRITORIES_DEFAULT);
 
         // set text to defaults
         textCurrentTier.setText(getResources().getText(R.string.tier) + " " + MainActivity.tier);
@@ -159,7 +154,8 @@ public class PopUpgrade extends AppCompatActivity {
 
                     // alert user that they do not have enough territories and grows
                     Toast.makeText(
-                            PopUpgrade.this, "must have " + MainActivity.territoriesRequired + " territories and " + MainActivity.growsRequired + " G R O W S", Toast.LENGTH_SHORT
+                            PopUpgrade.this, "must have " + MainActivity.territoriesRequired + " territories and " +
+                                    MainActivity.growsRequired + " G R O W S", Toast.LENGTH_SHORT
                     ).show();
 
                     // prevent upgrade from occurring
@@ -236,7 +232,7 @@ public class PopUpgrade extends AppCompatActivity {
                 editor.putString(CURRENT_TIER_STATE, MainActivity.tier);
                 editor.putInt(TOTAL_TERRITORIES_COUNT, MainActivity.territoriesRequired);
                 editor.putInt(TOTAL_GROWS_REQUIRED, MainActivity.growsRequired);
-                editor.putInt("territoriesRequired", MainActivity.territoriesRequired);
+                editor.putInt(TERRITORIES_REQUIRED, MainActivity.territoriesRequired);
                 editor.commit();
 
                 // To show the latest value
@@ -267,8 +263,8 @@ public class PopUpgrade extends AppCompatActivity {
     }
 
     public void latestTerritoryRequired() {
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        MainActivity.territoriesRequired = prefs.getInt("territoriesRequired", 1);
+        prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        MainActivity.territoriesRequired = prefs.getInt(TERRITORIES_REQUIRED, TERRITORIES_DEFAULT);
     }
 
     public void latestGrowsRequired() {
