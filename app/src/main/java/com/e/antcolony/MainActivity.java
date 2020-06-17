@@ -578,7 +578,7 @@ public class MainActivity extends AppCompatActivity {
                 new Intent(this, MyReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         // set to repeat every month
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 60 * 60 * 24 * 31, pendingIntent);
     }
     // OUTSIDE OF OnCreate!
 

@@ -27,7 +27,7 @@
     <string name="termsDescription">All contents, logo, and other visual media are the sole property of Pluto’s Playground. Pluto Playground is not responsible for third party redirects, particularly those of Google Ads. \n \n Source code for this application is available at https://github.com/aidanandrucyk/AntColonyMobileApp. While non-commercial use of the source or object code is permitted, commercial use of any description is strictly prohibited without the explicit consent of Pluto’s Playground. Users who fail to follow established guidelines will be barred from further usage in cases of abuse at Pluto’s Playgrounds sole discretion.</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="credits">CREDITS</string>
-    <string name="software_developers_aidan_andrucyk_and_sean_joo">Software Developers:   Aidan Andrucyk and Sean Joo</string>
+    <string name="software_developers_aidan_andrucyk_and_sean_joo">Software Developers: \n  Aidan Andrucyk and Sean Joo</string>
     <string name="contact_us">Contact Us: \n plutosplaygroundstudios@gmail.com</string>
     <string name="music_bensound">Music: \n Bensound</string>
     <string name="inspiration_credits">Inspiration: \n A group where we all pretend to be ants in an ant colony</string>
@@ -73,7 +73,12 @@
     <string name="bite_description_bad">Outnumbered and outmaneuvered, our noble ants have been truncated to meager numbers. Those noble souls may be lost but they are not forgotten. Anon we shall exact our vengeance upon the mound of innoble ants!</string>
     <string name="lift_report"> change in ants</string>
     <string name="lift_description_good">The aphids have graced us with sweet honeydew!</string>
-    <string name="how_to_play_description">"There are five major game player interactions:             Clicking on the queen: increases idle and total ants by strength factor at no cost             Grow: increases the colony strength at the cost of idle ants             Lift: large increase of idle and total ants at the cost of strength with 50% success rate             Bite: risky huge change in idle/total ants and territories owned with success rate contingent on number of idle and total ants and random chance.             Upgrade Colony: increases strength, colony tier, glory score, and colony aesthetics requiring (but not costing) territories claimed and number of grows.       "</string>
+    <string name="how_to_play_description">"There are five major game player interactions:
+        \n Clicking on the queen: increases idle and total ants by strength factor at no cost
+        \n Grow: increases the colony strength at the cost of idle ants
+        \n Lift: large increase of idle and total ants at the cost of strength with 50% success rate
+        \n Bite: risky huge change in idle/total ants and territories owned with success rate contingent on number of idle and total ants and random chance.
+        \n Upgrade Colony: increases strength, colony tier, glory score, and colony aesthetics requiring (but not costing) territories claimed and number of grows."</string>
     <string name="totalAnts">Total Ants:</string>
     <string name="lift_description_bad">No humans are throwing away scraps!</string>
     <string name="good_job_upgrading_the_queen_thanks_you_for_your_work_keep_lifting_biting_and_growing_for_the_queen">Good job upgrading! The Queen thanks you for your work! Keep LIFTING, BITING, AND GROWING! FOR THE QUEEN!!!</string>
