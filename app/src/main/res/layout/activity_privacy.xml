@@ -29,7 +29,7 @@
         android:paddingTop="10sp"
         android:text="@string/privacy_statement"
         android:textColor="#000000"
-        android:textSize="18sp" />
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/privacyBackButton"
