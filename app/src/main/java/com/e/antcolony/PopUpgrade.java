@@ -213,7 +213,7 @@ public class PopUpgrade extends AppCompatActivity {
                 MainActivity.forTheQueenSound.start();
 
                 // change colony strength
-                MainActivity.strength += (int) (MainActivity.strength * Math.random());
+                MainActivity.strength *= 2;
                 textColonyStrength.setText(getResources().getText(R.string.colony_strength) + " " + MainActivity.strength);
                 MainActivity.strengthText.setText(getResources().getText(R.string.StrengthText) + " " + MainActivity.strength);
 
