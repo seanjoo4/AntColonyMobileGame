@@ -21,7 +21,7 @@ public class UpgradeThankYou extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .6), (int) (height * .6));
+        getWindow().setLayout(width, height);
 
         // Back Button
         Button okay = findViewById(R.id.popupOkayButton);
