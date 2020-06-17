@@ -26,7 +26,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Context;
 
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -40,7 +39,7 @@ import android.util.Log;
  * MainActivity: the main class that runs the main interface of the app.
  *
  * @author Aidan Andrucyk and Sean Joo
- * @version June 10, 2020
+ * @version June 17, 2020
  */
 public class MainActivity extends AppCompatActivity {
     // MAIN ACTIVITY XML ELEMENTS
@@ -531,7 +530,7 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
 
             /**
-             * @param initializationStatus represents
+             * @param initializationStatus represents ad lifecycle status
              */
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -582,67 +581,94 @@ public class MainActivity extends AppCompatActivity {
     }
     // OUTSIDE OF OnCreate!
 
-    /*public void latestTerritoryRequired() {
-        prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
-        territoriesRequired = prefs.getInt("territoriesRequired", 1);
-    }*/
+    // SAVED PREFERENCES
 
+    /**
+     * This functions stores the number of times grow was pressed
+     */
     public void latestGrowPressed() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         growPressed = prefs.getInt("growPressedCount", 0);
     }
 
+    /**
+     * This functions stores the number of lift was unsuccessful
+     */
     public void latestLiftUnsuccessful() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         unsuccessfulLift = prefs.getInt("unsuccessfulLiftCount", 0);
     }
 
+
+    /**
+     * This functions stores the number of lift was successful
+     */
     public void latestLiftSuccess() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         successfulLift = prefs.getInt("successfulLiftCount", 0);
     }
 
+
+    /**
+     * This functions stores the number of territories lost
+     */
     public void latestTerritoryLost() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         territoriesLost = prefs.getInt("territoryLostCount", 0);
     }
 
+    /**
+     * This functions stores the number of territories won
+     */
     public void latestTerritoryWon() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         territoriesClaimed = prefs.getInt("territoryWonCount", 1);
     }
 
+    /**
+     * This functions stores the number of total ants
+     */
     public void latestTotalCount() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         antNumber = prefs.getInt("totalAntCounts", 0);
         antCount.setText(antNumber + "");
     }
 
+    /**
+     * This functions stores the number of idle ants
+     */
     public void latestIdleCount() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         idleAntNumber = prefs.getInt("idleAntCounts", 0);
         unCount.setText(idleAntNumber + "");
     }
 
+    /**
+     * This functions stores the colony strength
+     */
     public void latestStrength() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         strength = prefs.getInt("strengthCount", 1);
         strengthText.setText(getResources().getText(R.string.StrengthText) + " " + strength);
     }
 
-    // SavedPreference for Growth
+    /**
+     * This functions stores the number of idle ants needed to grow
+     */
     public void latestGrowth() {
         prefs = getSharedPreferences("sharedPref", MODE_PRIVATE);
         costToGrow = prefs.getInt("growthCost", 10);
         toGrowCount.setText(getResources().getText(R.string.ToGROW) + " " + costToGrow);
     }
 
+
+    // POP-UPS
+
     /**
      * This function displays the lift message depending on output.
      */
     public void liftMessage() {
         isSuccessful = liftIncreaseFactor >= 11 ? true : false;
-
 
         // stats for lifts
         if (isSuccessful) {

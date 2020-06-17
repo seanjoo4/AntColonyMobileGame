@@ -8,18 +8,34 @@ import android.content.Intent;
 import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationManagerCompat;
 
+/**
+ * MyNewIntentService: the class that creates new notifications intents.
+ *
+ * @author Aidan Andrucyk
+ * @version June 12, 2020
+ */
 public class MyNewIntentService extends JobIntentService {
     private static final int NOTIFICATION_ID = 2;
 
+    /**
+     * Constructor for intent service
+     */
     public MyNewIntentService() {
         // super();
     }
 
+    /**
+     * Creates notification with data
+     *
+     * @param intent represents transferred data from main activity
+     */
     @Override
     protected void onHandleWork(Intent intent) {
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Ant Colony Simulator");
-        builder.setContentText("It has been a while since you managed the colony and your ants are missing you!");
+        // app title as content title
+        builder.setContentTitle(getResources().getString(R.string.app_name));
+        // bite victory message as content text
+        builder.setContentText(getResources().getString(R.string.bitevictorymessage));
         builder.setSmallIcon(R.drawable.ant_logo);
         Intent notifyIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
