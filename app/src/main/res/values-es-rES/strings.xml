@@ -63,7 +63,7 @@
     <string name="tier7append">Glorioso</string>
     <string name="lang">es</string>
     <string name="bite_report">cambio en hormigas</string>
-    <string name="lift_report"> change in ants</string>
+    <string name="lift_report">cambio de hormigas</string>
     <string name="lift_description_good">¡Los pulgones nos han honrado con dulce melón!</string>
     <string name="lift_description_bad">¡Ningún ser humano está tirando restos!</string>
     <string name="how_to_play_description">Hay cinco interacciones principales entre jugadores: Hacer clic en la reina: aumenta las hormigas inactivas y totales por factor de fuerza sin costo Crecer: aumenta la fuerza de la colonia a costa de las hormigas inactivas Levantamiento: gran aumento de hormigas inactivas y totales a costa de la fuerza con una tasa de éxito del 50% Mordisco: gran cambio arriesgado en hormigas inactivas / totales y territorios poseídos con una tasa de éxito supeditada a la cantidad de hormigas inactivas y totales y la posibilidad aleatoria. Mejora de colonia: aumenta la fuerza, el nivel de colonia, el puntaje de gloria y la estética de la colonia que requiere (pero no cuesta) los territorios reclamados y la cantidad de cultivos.</string>
