@@ -102,26 +102,25 @@
     <ImageButton
         android:id="@+id/queen"
         android:layout_width="227dp"
-        android:layout_height="279dp"
+        android:layout_height="295dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:background="#00FFFFFF"
         android:contentDescription="@string/queenButton"
         android:hapticFeedbackEnabled="false"
-        android:scaleX="1.5"
-        android:scaleY="1.1"
+        android:scaleX="1.2"
+        android:scaleY=".95"
         android:soundEffectsEnabled="false"
-        android:tint="#27190202"
         app:layout_constraintBottom_toTopOf="@+id/toGrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AntCount"
-        app:srcCompat="@drawable/tempant" />
+        app:srcCompat="@drawable/ant_queen" />
 
     <TextView
         android:id="@+id/toGrow"

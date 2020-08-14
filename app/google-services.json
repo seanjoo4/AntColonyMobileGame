@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "732302735511",
+    "firebase_url": "https://ant-colony-simulator-bad0f.firebaseio.com",
+    "project_id": "ant-colony-simulator-bad0f",
+    "storage_bucket": "ant-colony-simulator-bad0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732302735511:android:96bf98ce69797fa7f811d2",
+        "android_client_info": {
+          "package_name": "com.e.antcolony"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732302735511-d6rs81903mp9rqjj5d1831nh14q1sko6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqlqQCKW5O7plcR492_WlmFt38fwsPwCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732302735511-d6rs81903mp9rqjj5d1831nh14q1sko6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9740705485691815~7203768333"
+    }
+  ],
+  "configuration_version": "1"
+}
