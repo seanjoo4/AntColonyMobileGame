@@ -14,6 +14,6 @@ Throughout your journey, you will face highs and lows. During these times, you w
 
 ## Development Description
 * Inspiration largely from [a popular facebook group](https://www.facebook.com/groups/1416375691836223). 
-* Published an android game on Google Play
+* Published an android game on [Google Play] (https://play.google.com/store/apps/details?id=com.e.antcolony&hl=en_US).
 * Utilized Firebase to employ Google Analytics, AdMob, Test Lab, and Crashlytics.
 * Implemented saved preferences across app lifecycle, activities using intents, language localizations, dynamic XML layouts,  git version control, alert dialogs, togglable audio as well as a complementary mobile-friendly website using Bootstrap.
