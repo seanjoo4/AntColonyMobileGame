@@ -18,6 +18,6 @@ Throughout your journey, you will face highs and lows. During these times, you w
 * Utilized Firebase to employ Google Analytics, AdMob, Test Lab, and Crashlytics.
 * Implemented saved preferences across app lifecycle, activities using intents, language localizations, dynamic XML layouts,  git version control, alert dialogs, togglable audio as well as a complementary mobile-friendly website using Bootstrap.
 
-## Creators
+## Developers
 * [Aidan Andrucyk](http://aidanandrucyk.github.io/)
 * [Sean Joo](https://seanjoo4.github.io/)
